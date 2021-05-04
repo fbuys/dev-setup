@@ -62,6 +62,25 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
+# Start of installation...
+
+# Symlink dotfiles
+dir=./dotfiles
+home_files=".vimrc .default-npm-packages"
+
+if [[ -d $dir ]]
+then
+  cd $dir
+  for file in $home_files; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in home directory."
+      ln -sf $(pwd)/$file ~/$file
+    fi
+  done
+fi
+
+# Brew
 println "Updating Homebrew formulas..."
 brew update
 
