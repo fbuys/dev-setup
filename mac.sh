@@ -87,14 +87,17 @@ brew update
 println "Installing Git..."
 brew_install_or_upgrade 'git'
 
-println "Installing CoreUtiles (dependency)..."
+println "Installing CoreUtiles (asdf dependency)..."
 brew_install_or_upgrade 'coreutils'
 
-println "Installing curl (dependency)..."
+println "Installing curl (asdf dependency)..."
 brew_install_or_upgrade 'curl'
 
-println "Installing asdf..."
-brew_install_or_upgrade 'asdf'
+println "Installing gpg (node dependency)..."
+brew install gpg
+
+println "Installing gawk (node dependency)..."
+brew install gawk
 
 println "Installing iTerm2..."
 brew install --cask iterm2
@@ -117,3 +120,10 @@ brew reinstall --cask postgres
 println "Installing Redis..."
 brew_install_or_upgrade 'redis'
 
+# Install asdf + plugins
+println "Installing asdf..."
+brew_install_or_upgrade 'asdf'
+
+asdf plugin add nodejs
+asdf install nodejs 14.16.1
+asdf global nodejs 14.16.1
