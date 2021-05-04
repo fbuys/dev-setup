@@ -1,0 +1,145 @@
+{:default true
+
+  :alone 800
+  :held 800
+  :delay 300
+  :sim 350
+  :simlayer-threshold 350
+
+  :froms {
+    :-j {:key :j}
+  }
+
+  :tos {
+    ;named symbols
+    :open_brace {:key :open_bracket :modi :shift}
+    :close_brace {:key :close_bracket :modi :shift}
+
+    :open_paren {:key :9 :modi :shift}
+    :close_paren {:key :0 :modi :shift}
+
+    :less_than {:key :comma :modi :shift}
+    :greater_than {:key :period :modi :shift}
+  }
+
+  :templates {
+    :paste "osascript -e '
+             set the clipboard to \"%s\"
+             tell application \"System Events\"
+                  keystroke \"v\" using command down
+             end tell
+           '"
+  }
+
+  :applications {
+    :iterm ["com.googlecode.iterm2"]
+  }
+
+  :simlayers {
+   :b-mode {:key :b}
+   :d-mode {:key :d}
+   :emoji-mode {:key :z}
+   :q-mode {:key :q}
+   :s-mode {:key :s}
+   :spacebar-mode {:key :spacebar}
+  }
+
+  :main [
+    {:des "emoji"
+     :rules [:emoji-mode
+       [:equal_sign [:paste "👍"]]
+       [:hyphen [:paste "👎"]]
+       [:j [:paste "😂"]] ;joking
+       [:m [:paste "💪"]] ;muscle
+       [:s [:paste "🙂"]] ;smile
+       [:t [:paste "🙏"]] ;thanks
+       [:w [:paste "👋"]] ;wave
+       [:y [:paste "🎉"]] ;Yay
+    ]}
+
+    {:des "Tap caps => ESC, Hold caps => CTRL"
+     :rules [
+       [:caps_lock :left_control [:iterm] {:alone :escape}]
+    ]}
+
+    ; ITERM
+    {:des "Key for Iterm"
+     :rules [
+       [:s :right_shift [:iterm] {:alone :s}]
+       [:right_gui :right_gui [:iterm] {:alone :return_or_enter}]
+    ]}
+
+    {:des "B mode in iterm"
+     :rules [:b-mode
+       ;symbols {}()[]<>
+       [:h :open_brace]
+       [:n :close_brace]
+
+       [:j :open_paren]
+       [:k :close_paren]
+
+       [:u :open_bracket]
+       [:i :close_bracket]
+
+       [:l :less_than]
+       [:semicolon :greater_than]
+    ]}
+
+    {:des "D mode in iterm"
+     :rules [:d-mode
+       [:i :!TSi [:iterm]]
+    ]}
+
+    {:des "Spacebar mode in iterm"
+     :rules [:spacebar-mode
+       [:1 [:!Ta :1] [:iterm]]
+       [:2 [:!Ta :2] [:iterm]]
+       [:3 [:!Ta :3] [:iterm]]
+       [:4 [:!Ta :4] [:iterm]]
+       [:5 [:!Ta :5] [:iterm]]
+       [:backslash [:!Ta :backslash] [:iterm]]
+       [:c [:!Ta :c] [:iterm]]
+       [:h [:!Ta :h] [:iterm]]
+       [:hyphen [:!Ta :hyphen] [:iterm]]
+       [:j [:!Ta :j] [:iterm]]
+       [:k [:!Ta :k] [:iterm]]
+       [:l [:!Ta :l] [:iterm]]
+       [:open_bracket [:!Ta :open_bracket] [:iterm]]
+       [:semicolon [:!Ta :semicolon] [:iterm]]
+       [:x [:!Ta :x] [:iterm]]
+       [:z [:!Ta :z] [:iterm]]
+    ]}
+
+    {:des "Q mode in iterm"
+     :rules [:q-mode
+       [:h :left_arrow [:iterm]]
+       [:j :down_arrow [:iterm]]
+       [:k :up_arrow [:iterm]]
+       [:l :right_arrow [:iterm]]
+       [:y :!Tleft_arrow [:iterm]]
+       [:u :!Tdown_arrow [:iterm]]
+       [:i :!Tup_arrow [:iterm]]
+       [:o :!Tright_arrow [:iterm]]
+    ]}
+  ]
+}
+
+;; rule [:period ["media-mode" 1] nil {:afterup ["media-mode" 0] :alone :period}]
+;;       |_____| |_______________| |_| |_________________________________________|
+;;        <from>    <to>      <conditions>         <other options>
+
+    ;; !  | means mandatory
+    ;; #  | means optional
+    ;; C  | left_command
+    ;; T  | left_control
+    ;; O  | left_option
+    ;; S  | left_shift
+    ;; F  | fn
+    ;; Q  | right_command
+    ;; W  | right_control
+    ;; E  | right_option
+    ;; R  | right_shift
+    ;; 
+    ;; !! | mandatory command + control + optional + shift (hyper)
+    ;; ## | optional any
+;;

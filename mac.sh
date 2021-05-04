@@ -4,6 +4,10 @@ if [[ ! -d "$HOME/.bin/" ]]; then
   mkdir "$HOME/.bin"
 fi
 
+if [[ ! -d "$HOME/.config/" ]]; then
+  mkdir "$HOME/.config"
+fi
+
 if [ ! -f "$HOME/.bashrc" ]; then
   touch $HOME/.bashrc
 fi
@@ -66,7 +70,8 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .zshrc .default-npm-packages"
+home_files=".vimrc .tmux.conf .zshrc .default-npm-packages"
+config_files="karabiner.edn"
 
 if [[ -d $dir ]]
 then
@@ -76,6 +81,14 @@ then
     then
       echo "Creating symlink to $file in home directory."
       ln -sf $(pwd)/$file ~/$file
+    fi
+  done
+
+  for file in $config_files; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in home/.config directory."
+      ln -sf $(pwd)/$file ~/.config/$file
     fi
   done
 fi
@@ -101,6 +114,8 @@ brew install gawk
 
 println "Installing iTerm2..."
 brew install --cask iterm2
+println "Installing Tmux..."
+brew install tmux
 
 println "Installing Chrome..."
 brew reinstall --cask google-chrome
@@ -119,6 +134,10 @@ brew reinstall --cask postgres
 
 println "Installing Redis..."
 brew_install_or_upgrade 'redis'
+println "Installing Karabiner elements..."
+brew install --cask karabiner-elements
+brew install yqrashawn/goku/goku
+goku
 
 # Install asdf + plugins
 println "Installing asdf..."
