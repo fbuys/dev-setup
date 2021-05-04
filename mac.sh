@@ -66,7 +66,7 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .default-npm-packages"
+home_files=".vimrc .zshrc .default-npm-packages"
 
 if [[ -d $dir ]]
 then
@@ -127,3 +127,13 @@ brew_install_or_upgrade 'asdf'
 asdf plugin add nodejs
 asdf install nodejs 14.16.1
 asdf global nodejs 14.16.1
+
+# zshell and oh-my-zshell
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  println "Installing oh my zshell..."
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  println "Installing zshell autosuggestions..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+
