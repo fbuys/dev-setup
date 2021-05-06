@@ -97,6 +97,9 @@ fi
 println "Updating Homebrew formulas..."
 brew update
 
+println "Upgrade existing Homebrew formulas..."
+brew upgrade
+
 println "Installing Git..."
 brew_install_or_upgrade 'git'
 
@@ -114,6 +117,7 @@ brew install gawk
 
 println "Installing iTerm2..."
 brew install --cask iterm2
+
 println "Installing Tmux..."
 brew install tmux
 
@@ -134,6 +138,7 @@ brew reinstall --cask postgres
 
 println "Installing Redis..."
 brew_install_or_upgrade 'redis'
+
 println "Installing Karabiner elements..."
 brew install --cask karabiner-elements
 brew install yqrashawn/goku/goku
@@ -154,5 +159,3 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing zshell autosuggestions..."
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
-
-
