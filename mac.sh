@@ -172,6 +172,9 @@ asdf plugin add nodejs
 asdf install nodejs 14.16.1
 asdf global nodejs 14.16.1
 
+asdf plugin-add yarn
+asdf install yarn latest
+
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing oh my zshell..."
