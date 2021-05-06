@@ -1,0 +1,26 @@
+[alias]
+  aa = add --all
+	conflicted = !vim +Conflicted
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  pager = more -Fgr
+[merge]
+  ff = only
+[push]
+  default = upstream
+[fetch]
+  prune = true
+[gitsh "color"]
+  default = cyan
+[gitsh]
+  defaultcommand = status -sb
+  gitcommand = hub
+  nogreeting = true
+  prompt = "\n%D %c(%b%#)%w ➜"
+[user]
+  name = Francois Buys
+  email = buys.fran@gmail.com
+  signingkey = Francois Buys <buys.fran@gmail.com>

@@ -1,0 +1,17 @@
+.DS_Store
+*.sw[nop]
+.bundle
+.byebug_history
+db/*.sqlite3
+log/*.log
+rerun.txt
+tags
+!tags/
+tmp/**/*
+!tmp/cache/.keep
+*.pyc
+vim/view
+
+.project-notes*
+.vimrc.local
+node_modules

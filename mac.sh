@@ -70,7 +70,7 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .tmux.conf .zshrc .default-npm-packages"
+home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
 config_files="karabiner.edn"
 
 if [[ -d $dir ]]
