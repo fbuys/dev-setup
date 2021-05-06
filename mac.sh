@@ -74,7 +74,7 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .ctags .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
+home_files=".vimrc .ctags .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages .default-gems"
 config_files="karabiner.edn"
 
 if [[ -d $dir ]]
@@ -174,6 +174,11 @@ asdf global nodejs 14.16.1
 
 asdf plugin-add yarn
 asdf install yarn latest
+
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf install ruby 3.0.1
+asdf install ruby 2.7.3
+asdf global ruby 14.16.1
 
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
