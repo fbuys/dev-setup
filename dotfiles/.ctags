@@ -1,0 +1,3 @@
+--langdef=markdowntags
+--langmap=markdowntags:.md
+--regex-markdowntags=/(^|[[:space:]])@(\w\S*)/\2/t,tag,tags/

@@ -8,6 +8,10 @@ if [[ ! -d "$HOME/.config/" ]]; then
   mkdir "$HOME/.config"
 fi
 
+if [[ ! -d "$HOME/.git_template/hooks" ]]; then
+  mkdir -p ~/.git_template/hooks
+fi
+
 if [ ! -f "$HOME/.bashrc" ]; then
   touch $HOME/.bashrc
 fi
@@ -70,7 +74,7 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
+home_files=".vimrc .ctags .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
 config_files="karabiner.edn"
 
 if [[ -d $dir ]]
@@ -89,6 +93,22 @@ then
     then
       echo "Creating symlink to $file in home/.config directory."
       ln -sf $(pwd)/$file ~/.config/$file
+    fi
+  done
+fi
+
+# Symlink git hooks
+dir=./.git_template/hooks
+hooks="ctags post-commit post-merge post-checkout post-rewrite"
+
+if [[ -d $dir ]]
+then
+  cd $dir
+  for file in $hooks; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in git template directory."
+      ln -sf $(pwd)/$file ~/$dir/$file
     fi
   done
 fi

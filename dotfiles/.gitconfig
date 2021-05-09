@@ -1,6 +1,7 @@
 [alias]
   aa = add --all
-	conflicted = !vim +Conflicted
+  conflicted = !vim +Conflicted
+  ctags = !.git/hooks/ctags
 [color]
   ui = auto
 [core]
@@ -24,3 +25,5 @@
   name = Francois Buys
   email = buys.fran@gmail.com
   signingkey = Francois Buys <buys.fran@gmail.com>
+[init]
+  templatedir = ~/.git_template
