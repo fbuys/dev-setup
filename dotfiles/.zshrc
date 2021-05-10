@@ -122,5 +122,6 @@ prompt pure
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glos="GIT_PAGER=cat glo --max-count=20"
 alias ggpushf="ggpush --force-with-lease"
+alias cdtm="cd ~/git/github.com/ombulabs/ticket_matcher"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
