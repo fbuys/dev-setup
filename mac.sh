@@ -140,6 +140,7 @@ brew install --cask iterm2
 
 println "Installing Tmux..."
 brew install tmux
+brew install tmux-mem-cpu-load
 
 println "Installing Chrome..."
 brew reinstall --cask google-chrome
