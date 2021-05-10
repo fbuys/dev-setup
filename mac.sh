@@ -174,7 +174,9 @@ asdf install nodejs 14.16.1
 asdf global nodejs 14.16.1
 
 asdf plugin-add yarn
-asdf install yarn latest
+asdf install yarn lates
+# To make sure yarn packages are globally accessible
+# yarn config set prefix ~/.yarn
 
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf install ruby 3.0.1
