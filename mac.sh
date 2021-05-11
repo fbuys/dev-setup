@@ -8,6 +8,10 @@ if [[ ! -d "$HOME/.config/" ]]; then
   mkdir "$HOME/.config"
 fi
 
+if [[ ! -d "$HOME/.config/ctags" ]]; then
+  mkdir "$HOME/.config"
+fi
+
 if [[ ! -d "$HOME/.git_template/hooks" ]]; then
   mkdir -p ~/.git_template/hooks
 fi
@@ -74,8 +78,9 @@ fi
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .ctags .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages .default-gems"
+home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
 config_files="karabiner.edn"
+ctags_files="md.ctags"
 
 if [[ -d $dir ]]
 then
@@ -93,6 +98,14 @@ then
     then
       echo "Creating symlink to $file in home/.config directory."
       ln -sf $(pwd)/$file ~/.config/$file
+    fi
+  done
+
+  for file in $ctags_files; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in home/.config/ctags directory."
+      ln -sf $(pwd)/$file ~/.config/ctags/$file
     fi
   done
 fi
@@ -159,6 +172,9 @@ brew reinstall --cask postgres
 
 println "Installing Redis..."
 brew_install_or_upgrade 'redis'
+
+println "Installing Universal Ctags..."
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 println "Installing Karabiner elements..."
 brew install --cask karabiner-elements
