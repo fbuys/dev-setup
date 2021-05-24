@@ -123,5 +123,6 @@ prompt pure
 alias glos="GIT_PAGER=cat glo --max-count=20"
 alias ggpushf="ggpush --force-with-lease"
 alias cdtm="cd ~/git/github.com/ombulabs/ticket_matcher"
+alias cdp="cd ~/git/github.com/fastruby/points"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
