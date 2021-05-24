@@ -1,28 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ ! -d "$HOME/.bin/" ]]; then
-  mkdir "$HOME/.bin"
-fi
-
-if [[ ! -d "$HOME/.config/" ]]; then
-  mkdir "$HOME/.config"
-fi
-
-if [[ ! -d "$HOME/.config/ctags" ]]; then
-  mkdir "$HOME/.config"
-fi
-
-if [[ ! -d "$HOME/.git_template/hooks" ]]; then
-  mkdir -p ~/.git_template/hooks
-fi
-
-if [ ! -f "$HOME/.bashrc" ]; then
-  touch $HOME/.bashrc
-fi
-
-if [[ `uname -m` == 'arm64' ]]; then
-  softwareupdate --install-rosetta
-fi
 script_dir=$(pwd) # store current working directory
 
 println() {
@@ -47,6 +24,13 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
+new_directories="$HOME/.bin $HOME/.config/nvim $HOME/.git_template/hooks"
+for dir in "$new_directories"; do
+  if [[ ! -d "$dir" ]]; then
+    println "Creating $dir..."
+    mkdir -p "$dir"
+  fi
+done
 
 # Symlink dotfiles
 dir=./dotfiles
