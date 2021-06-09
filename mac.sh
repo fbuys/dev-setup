@@ -37,6 +37,7 @@ dir=./dotfiles
 home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
 config_files="karabiner.edn"
 ctags_files="md.ctags"
+nvim_files="init.vim"
 
 if [[ -d $dir ]]; then
   cd $dir
@@ -61,6 +62,16 @@ if [[ -d $dir ]]; then
       ln -sf $(pwd)/$file ~/.config/ctags/$file
     fi
   done
+
+  for file in $nvim_files; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in home/.config/nvim directory."
+      ln -sf $(pwd)/$file ~/.config/nvim/$file
+    fi
+  done
+
+  cd $script_dir
 fi
 
 # Symlink git hooks
