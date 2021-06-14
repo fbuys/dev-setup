@@ -122,7 +122,13 @@ prompt pure
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glos="GIT_PAGER=cat glo --max-count=20"
 alias ggpushf="ggpush --force-with-lease"
+
+alias cdo="cd ~/git/github.com/ombulabs/ombulabs.com"
+alias cdf="cd ~/git/github.com/ombulabs/fastruby.io"
 alias cdtm="cd ~/git/github.com/ombulabs/ticket_matcher"
-alias cdp="cd ~/git/github.com/fastruby/points"
+alias cdfp="cd ~/git/github.com/fastruby/points"
+alias cdrfo="cd ~/git/github.com/ombulabs/run-for-office-mini"
+alias cdnotes="cd ~/git/github.com/buys-fran/ombulabs"
+alias cdsetup="cd ~/git/github.com/buys-fran/dev-setup"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
