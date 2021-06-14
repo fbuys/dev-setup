@@ -18,6 +18,7 @@ endif
 
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'christoomey/vim-sort-motion'
+  Plug 'dense-analysis/ale'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -77,6 +78,21 @@ autocmd BufLeave,FocusLost * silent! wall  " Save anytime we leave a buffer or M
 " Disable auto-comment new line after existing comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 nmap <localleader>p <Plug>(Prettier)
+
+nnoremap <leader>p :ALEFix<CR>
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'prettier_standard', 'eslint'],
+\}
+
+" --- Mappings to move lines --- "
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+" ------------------------------ "
 
 " #####################
 " SEARCH
