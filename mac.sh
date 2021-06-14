@@ -102,17 +102,14 @@ fi
 # asdf  plugins
 println "Installing asdf plugins..."
 asdf plugin add nodejs
-asdf install nodejs 14.16.1
-asdf global nodejs 14.16.1
+asdf install nodejs latest
 
 asdf plugin-add yarn
 asdf install yarn latest
 yarn config set prefix ~/.yarn # To make sure yarn packages are globally accessible
 
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby 3.0.1
-asdf install ruby 2.7.3
-asdf global ruby 3.0.1
+asdf install ruby latest
 
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
