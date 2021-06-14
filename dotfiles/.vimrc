@@ -492,6 +492,8 @@ let g:ale_fixers = {
 \   'scss' : ['prettier'],
 \   'html' : ['tidy', 'prettier'],
 \   'javascript': ['prettier_standard', 'eslint'],
+\   'typescript': ['prettier_standard', 'eslint'],
+\   'typescriptreact': ['prettier_standard', 'eslint'],
 \   'json': ['prettier_standard', 'eslint'],
 \   'ruby': ['rubocop'],
 \   'svelte': ['prettier_standard', 'eslint'],
