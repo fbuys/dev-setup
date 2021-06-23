@@ -24,6 +24,10 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'pangloss/vim-javascript'    " JavaScript support
+  Plug 'leafgarland/typescript-vim' " TypeScript syntax
+  Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+  Plug 'jparise/vim-graphql'        " GraphQL syntax
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-eunuch',
@@ -45,6 +49,7 @@ set t_Co=256
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
+set re=0
 
 " #####################
 " EDITOR
@@ -83,6 +88,10 @@ nnoremap <leader>p :ALEFix<CR>
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
+\   'json': ['prettier', 'prettier_standard', 'eslint'],
+\   'ruby': ['rubocop'],
+\   'typescript': ['prettier', 'prettier_standard', 'eslint'],
+\   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
 
 " --- Mappings to move lines --- "
@@ -142,6 +151,8 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>t :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
 let g:fzf_layout = { 'down': '~40%' }
+" search word under cursor
+nnoremap g* :Rg <C-R><C-W><CR> 
 
 " #####################
 " CTags
@@ -156,7 +167,15 @@ let g:coc_global_extensions = [
     \ 'coc-tsserver',
   \ ]
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
-
+" Remap keys for applying codeAction to the current line.
+inoremap <leader>ca  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+inoremap <leader>cf  <Plug>(coc-fix-current)
+" GoTo code navigation.
+inoremap <leader>cd <Plug>(coc-definition)
+inoremap <leader>ct <Plug>(coc-type-definition)
+inoremap <leader>ci <Plug>(coc-implementation)
+inoremap <leader>cr <Plug>(coc-references)
 
 " #####################
 " Zettelkasten
