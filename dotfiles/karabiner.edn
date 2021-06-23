@@ -49,12 +49,13 @@
      :rules [:emoji-mode
        [:equal_sign [:paste "👍"]]
        [:hyphen [:paste "👎"]]
-       [:j [:paste "😂"]] ;joking
+       [:l [:paste "😂"]] ;lol
        [:m [:paste "💪"]] ;muscle
        [:s [:paste "🙂"]] ;smile
        [:t [:paste "🙏"]] ;thanks
        [:w [:paste "👋"]] ;wave
        [:y [:paste "🎉"]] ;Yay
+       [:r [:paste "🚀"]] ;Yay
     ]}
 
     {:des "Tap caps => ESC, Hold caps => CTRL"
