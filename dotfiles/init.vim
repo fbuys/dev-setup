@@ -103,6 +103,11 @@ let g:ale_fixers = {
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
 
+augroup markdown
+  au!
+  au FileType markdown set wrap
+augroup END
+
 " --- Mappings to move lines --- "
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
@@ -219,6 +224,6 @@ function! HandleFZF(file)
 endfunction
 command! -nargs=1 HandleFZF :call HandleFZF(<f-args>)
 
-nnoremap <leader>nz :NewZettel 
-nnoremap <leader>lz :call fzf#run({'sink': 'HandleFZF'})<CR>
+nnoremap <leader>zn :NewZettel 
+nnoremap <leader>zl:call fzf#run({'sink': 'HandleFZF'})<CR>
 inoremap <C-L> <ESC>:call fzf#run({'sink': 'HandleFZF'})<CR>
