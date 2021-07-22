@@ -136,4 +136,16 @@ alias notes="cd ~/git/github.com/buys-fran/ombulabs"
 alias francois="cd ~/git/github.com/buys-fran/francois"
 alias devsetup="cd ~/git/github.com/buys-fran/dev-setup"
 
+# Source sensitive env
+source ~/.secrets.sh
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Ombulabs Abstract specific details
+export C_INCLUDE_PATH="/usr/local/include"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+alias cda="cd ~/git/github.com/goabstract"
+alias cdap="cd ~/git/github.com/goabstract/projects"
+alias cdau="cd ~/git/github.com/goabstract/ui"
+
