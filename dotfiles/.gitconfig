@@ -1,6 +1,6 @@
 [alias]
   aa = add --all
-  conflicted = !vim +Conflicted
+  conflicted = !nvim +Conflicted
   ctags = !.git/hooks/ctags
 [color]
   ui = auto
