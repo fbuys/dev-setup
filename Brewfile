@@ -15,12 +15,9 @@ brew "git"
 brew "heroku/brew/heroku"
 brew "neovim"
 brew "ripgrep"
-brew "tmux"
-brew "tmux-mem-cpu-load"
+brew "tree"
 brew "v8-315"
 brew "yqrashawn/goku/goku"
-brew "zsh-completions"
-cask "iterm2"
 cask "karabiner-elements"
 tap "yqrashawn/goku"
 
@@ -37,3 +34,9 @@ brew "shared-mime-info"
 
 # redis
 brew "redis"
+
+# terminal
+cask "iterm2"
+brew "zsh-completions"
+brew "tmux"
+brew "tmux-mem-cpu-load"
