@@ -59,6 +59,7 @@ if [[ -d $dir ]]; then
     if [[ -f $file ]]
     then
       echo "Creating symlink to $file in home/.config/ctags directory."
+      mkdir ~/.config/ctags
       ln -sf $(pwd)/$file ~/.config/ctags/$file
     fi
   done
