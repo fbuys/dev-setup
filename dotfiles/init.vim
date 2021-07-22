@@ -17,21 +17,24 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-  Plug 'christoomey/vim-sort-motion'
-  Plug 'dense-analysis/ale'
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'michaeljsmith/vim-indent-object'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'pangloss/vim-javascript'    " JavaScript support
+  Plug 'christoomey/vim-conflicted' " helps resolve merge conflicts
+  Plug 'tpope/vim-endwise' " adds end in ruby
+  Plug 'christoomey/vim-sort-motion' " adds gss for sorting
+  Plug 'dense-analysis/ale' " adds code linting and fixing
+  Plug 'dracula/vim', { 'as': 'dracula' } " nice colorscheme
+  Plug 'jparise/vim-graphql'        " GraphQL syntax
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " file search
+  Plug 'junegunn/fzf.vim' " file search
   Plug 'leafgarland/typescript-vim' " TypeScript syntax
   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-  Plug 'jparise/vim-graphql'        " GraphQL syntax
+  Plug 'michaeljsmith/vim-indent-object' " add ii for managing indented parts
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
+  Plug 'pangloss/vim-javascript'    " JavaScript support
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-commentary' " gcc for commenting
   Plug 'tpope/vim-eunuch',
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
   Plug 'tpope/vim-surround'
 call plug#end()
 
@@ -85,11 +88,17 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 nmap <localleader>p <Plug>(Prettier)
 
 nnoremap <leader>p :ALEFix<CR>
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️ '
+let g:ale_linters = {
+\   'ruby': ['rubocop', 'standardrb'],
+\}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'css': ['prettier'],
 \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
-\   'ruby': ['rubocop'],
+\   'ruby': ['rubocop', 'standardrb'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
@@ -165,22 +174,33 @@ nnoremap <leader>tt :silent !ctags -R . <CR>:redraw!<CR>
 set wildmode=list:longest       " Bash-like tab completion
 let g:coc_global_extensions = [
     \ 'coc-tsserver',
+    \ 'coc-solargraph',
   \ ]
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " Remap keys for applying codeAction to the current line.
-inoremap <leader>ca  <Plug>(coc-codeaction)
+" inoremap <leader>ca  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-inoremap <leader>cf  <Plug>(coc-fix-current)
+" inoremap <leader>cf  <Plug>(coc-fix-current)
 " GoTo code navigation.
-inoremap <leader>cd <Plug>(coc-definition)
-inoremap <leader>ct <Plug>(coc-type-definition)
-inoremap <leader>ci <Plug>(coc-implementation)
-inoremap <leader>cr <Plug>(coc-references)
+" inoremap <leader>cd <Plug>(coc-definition)
+" inoremap <leader>ct <Plug>(coc-type-definition)
+" inoremap <leader>ci <Plug>(coc-implementation)
+" inoremap <leader>cr <Plug>(coc-references)
 
 " #####################
 " Zettelkasten
 " #####################
-let g:zettelfolder = "/Users/Francois/git/gitlab.com/buysfran/francois/Zettelkasten/"
+let g:zettelfolder = "$HOME/git/github.com/buys-fran/francois/Zettelkasten/"
 function! XNewZettel(file)
   let filename = fnameescape(a:file)
   let filename = tolower(filename)
