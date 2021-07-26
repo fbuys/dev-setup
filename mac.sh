@@ -23,11 +23,11 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
-new_directories="$HOME/.bin $HOME/.config/nvim $HOME/.git_template/hooks"
+new_directories="$HOME/.bin $HOME/.config/nvim $HOME/.git_template/hooks $HOME/.config/ctags"
 for dir in "$new_directories"; do
-  if [[ ! -d "$dir" ]]; then
+  if [[ ! -d $dir ]]; then
     println "Creating $dir..."
-    mkdir -p "$dir"
+    mkdir -p $dir
   fi
 done
 
@@ -54,9 +54,6 @@ if [[ -d $dir ]]; then
     fi
   done
 
-  if [[ ! -d $HOME/.config/ctags ]]; then
-    mkdir $HOME/.config/ctags
-  fi
   for file in $ctags_files; do
     if [[ -f $file ]]
     then
@@ -65,9 +62,6 @@ if [[ -d $dir ]]; then
     fi
   done
 
-  if [[ ! -d $HOME/.config/nvim ]]; then
-    mkdir $HOME/.config/nvim
-  fi
   for file in $nvim_files; do
     if [[ -f $file ]]
     then
@@ -125,13 +119,6 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/.
   touch $home/.secrets.sh
-fi
-
-if [ ! -d "/Applications/Postgres.app" ]; then
-  println "Downloading Postgres..."
-  cd "$HOME/Downloads"
-  curl -LJO https://github.com/PostgresApp/PostgresApp/releases/download/v2.4.3/Postgres-2.4.3-9.5-9.6-10-11-12-13.dmg
-  cd "$script_dir"
 fi
 
 if [[ ! -d $HOME/git/github.com/dracula ]]; then
