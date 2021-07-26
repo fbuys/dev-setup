@@ -13,7 +13,6 @@ if ! command -v brew &>/dev/null; then
   if [ ! -f "$HOME/.bashrc" ]; then
     touch $HOME/.bashrc
   fi
-
   if ! grep -qs "recommended by brew doctor" ~/.bashrc; then
     println "Put Homebrew location earlier in PATH..."
       printf '\n# recommended by brew doctor\n' >> ~/.bashrc
@@ -55,15 +54,20 @@ if [[ -d $dir ]]; then
     fi
   done
 
+  if [[ ! -d $HOME/.config/ctags ]]; then
+    mkdir $HOME/.config/ctags
+  fi
   for file in $ctags_files; do
     if [[ -f $file ]]
     then
       echo "Creating symlink to $file in home/.config/ctags directory."
-      mkdir ~/.config/ctags
       ln -sf $(pwd)/$file ~/.config/ctags/$file
     fi
   done
 
+  if [[ ! -d $HOME/.config/nvim ]]; then
+    mkdir $HOME/.config/nvim
+  fi
   for file in $nvim_files; do
     if [[ -f $file ]]
     then
@@ -104,24 +108,34 @@ fi
 println "Installing asdf plugins..."
 asdf plugin add nodejs
 asdf install nodejs latest
+asdf global nodejs latest
 
 asdf plugin-add yarn
 asdf install yarn latest
+asdf global yarn latest
 yarn config set prefix ~/.yarn # To make sure yarn packages are globally accessible
 
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf install ruby latest
+asdf global ruby latest
 
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing oh my zshell..."
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/.
+  touch $home/.secrets.sh
 fi
 
 if [ ! -d "/Applications/Postgres.app" ]; then
   println "Downloading Postgres..."
   cd "$HOME/Downloads"
   curl -LJO https://github.com/PostgresApp/PostgresApp/releases/download/v2.4.3/Postgres-2.4.3-9.5-9.6-10-11-12-13.dmg
+  cd "$script_dir"
+fi
+
+if [[ ! -d $HOME/git/github.com/dracula ]]; then
+  mkdir - $HOME/git/github.com/dracula && cd $_
+  git clone https://github.com/dracula/iterm.git
   cd "$script_dir"
 fi
