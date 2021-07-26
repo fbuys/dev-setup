@@ -8,10 +8,10 @@
         "revision": "e8b894acd1c6e7431b8efb5a30457ab8668daeeb"
       },
       "homebrew/cask": {
-        "revision": "6abf6536b52d362fa5d21bb900b91e567a05411d"
+        "revision": "83478c1a6581e64fa59b29c3df6cddb2fcbb208b"
       },
       "homebrew/core": {
-        "revision": "993d4913673150feb149ed27892b396904535ae6"
+        "revision": "022da00032b35f79599fbac1e7c800fc990c449d"
       },
       "yqrashawn/goku": {
         "revision": "9ade29f72a8624ff252e6b827a8505579e6944b9"
@@ -52,6 +52,12 @@
         "version": "1.1.64.561.g71bd09eb,1.1.64.561.g71bd09eb-18",
         "options": {
           "full_name": "spotify"
+        }
+      },
+      "postgres-unofficial": {
+        "version": "2.4.3",
+        "options": {
+          "full_name": "postgres-unofficial"
         }
       }
     },
@@ -655,9 +661,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "3.2.3",
+        "HOMEBREW_VERSION": "3.2.4",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "993d4913673150feb149ed27892b396904535ae6",
+        "Homebrew/homebrew-core": "022da00032b35f79599fbac1e7c800fc990c449d",
         "CLT": "12.5.1.0.1.1623191612",
         "Xcode": "12.5",
         "macOS": "11.5"

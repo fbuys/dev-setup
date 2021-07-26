@@ -33,6 +33,9 @@ brew "gawk"
 # ruby
 brew "shared-mime-info"
 
+# postgresql
+cask "postgres-unofficial"
+
 # redis
 brew "redis"
 
