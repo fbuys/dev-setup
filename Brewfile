@@ -7,6 +7,7 @@ tap "homebrew/core"
 cask "firefox"
 cask "google-chrome"
 cask "slack"
+cask "spotify"
 
 # dev
 brew "curl"
