@@ -81,6 +81,17 @@ set autowriteall " Save when doing various buffer-switching things.
 autocmd BufLeave,FocusLost * silent! wall  " Save anytime we leave a buffer or MacVim loses focus.
 
 " #####################
+" Terminal
+" #####################
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-w>h <C-\><C-n><C-w>h
+  tnoremap <C-w>j <C-\><C-n><C-w>j
+  tnoremap <C-w>k <C-\><C-n><C-w>k
+  tnoremap <C-w>l <C-\><C-n><C-w>l
+endif
+
+" #####################
 " LINTING AND AUTOFORMATTING
 " #####################
 " Disable auto-comment new line after existing comment
