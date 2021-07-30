@@ -178,6 +178,8 @@ nnoremap <Leader>T :Tags<CR>
 let g:fzf_layout = { 'down': '~40%' }
 " search word under cursor
 nnoremap g* :Rg <C-R><C-W><CR> 
+" CRTL-Q to select all
+let $FZF_DEFAULT_OPTS = '--bind ctrl-A:select-all'
 
 " #####################
 " CTags
