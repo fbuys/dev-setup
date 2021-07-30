@@ -39,6 +39,7 @@
    :b-mode {:key :b}
    :d-mode {:key :d}
    :emoji-mode {:key :z}
+   :w-mode {:key :w}
    :q-mode {:key :q}
    :s-mode {:key :s}
    :spacebar-mode {:key :spacebar}
@@ -109,6 +110,16 @@
        [:semicolon [:!Ta :semicolon] [:iterm]]
        [:x [:!Ta :x] [:iterm]]
        [:z [:!Ta :z] [:iterm]]
+    ]}
+
+    {:des "W mode in iterm"
+     :rules [:w-mode
+       [:h [:!Tw :left_arrow] [:iterm]]
+       [:j [:!Tw :down_arrow] [:iterm]]
+       [:k [:!Tw :up_arrow] [:iterm]]
+       [:l [:!Tw :right_arrow] [:iterm]]
+       [:comma [:!Tw :!Scomma] [:iterm]]
+       [:period [:!Tw :!Speriod] [:iterm]]
     ]}
 
     {:des "Q mode in iterm"
