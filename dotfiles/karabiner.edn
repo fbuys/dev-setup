@@ -50,13 +50,17 @@
      :rules [:emoji-mode
        [:equal_sign [:paste "👍"]]
        [:hyphen [:paste "👎"]]
+       [:a [:paste "⚠️"]] ;alert
+       [:c [:paste "✅"]] ;wave
+       [:e [:paste "👀"]] ;eyes
        [:l [:paste "😂"]] ;lol
        [:m [:paste "💪"]] ;muscle
+       [:n [:paste "👏"]] ;nice
        [:s [:paste "🙂"]] ;smile
        [:t [:paste "🙏"]] ;thanks
        [:w [:paste "👋"]] ;wave
        [:y [:paste "🎉"]] ;Yay
-       [:r [:paste "🚀"]] ;Yay
+       [:r [:paste "🚀"]] ;rocket
     ]}
 
     {:des "Tap caps => ESC, Hold caps => CTRL"
