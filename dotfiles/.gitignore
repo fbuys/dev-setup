@@ -23,8 +23,3 @@ vim/view
 .project-notes*
 .vimrc.local
 node_modules
-
-# Config files
-.solargraph.yml
-.tool-versions
-

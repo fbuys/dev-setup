@@ -8,10 +8,10 @@
         "revision": "e8b894acd1c6e7431b8efb5a30457ab8668daeeb"
       },
       "homebrew/cask": {
-        "revision": "83478c1a6581e64fa59b29c3df6cddb2fcbb208b"
+        "revision": "10d08313f5b9cb6ef880a4c76f5a0a245390099f"
       },
       "homebrew/core": {
-        "revision": "022da00032b35f79599fbac1e7c800fc990c449d"
+        "revision": "e4f2bf3667bc62f6270c729334e19f8c9bcc5a4f"
       },
       "yqrashawn/goku": {
         "revision": "9ade29f72a8624ff252e6b827a8505579e6944b9"
@@ -661,9 +661,9 @@
         "macOS": "10.15.7"
       },
       "big_sur": {
-        "HOMEBREW_VERSION": "3.2.4",
+        "HOMEBREW_VERSION": "3.2.5",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "022da00032b35f79599fbac1e7c800fc990c449d",
+        "Homebrew/homebrew-core": "e4f2bf3667bc62f6270c729334e19f8c9bcc5a4f",
         "CLT": "12.5.1.0.1.1623191612",
         "Xcode": "12.5",
         "macOS": "11.5"
