@@ -18,7 +18,6 @@ endif
 
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'christoomey/vim-conflicted' " helps resolve merge conflicts
-  Plug 'tpope/vim-endwise' " adds end in ruby
   Plug 'christoomey/vim-sort-motion' " adds gss for sorting
   Plug 'dense-analysis/ale' " adds code linting and fixing
   Plug 'dracula/vim', { 'as': 'dracula' } " nice colorscheme
@@ -32,10 +31,12 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'pangloss/vim-javascript'    " JavaScript support
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'tpope/vim-commentary' " gcc for commenting
+  Plug 'tpope/vim-endwise' " adds end in ruby
   Plug 'tpope/vim-eunuch',
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-surround'
+  Plug 'vim-test/vim-test'
 call plug#end()
 
 " #####################
@@ -214,6 +215,16 @@ endfunction
 " inoremap <leader>ct <Plug>(coc-type-definition)
 " inoremap <leader>ci <Plug>(coc-implementation)
 " inoremap <leader>cr <Plug>(coc-references)
+
+" #####################
+" TESTS
+" #####################
+let test#strategy = "neovim"
+nmap <silent> <leader>rs :TestNearest<CR>
+nmap <silent> <leader>ft :TestFile<CR>
+nmap <silent> <leader>ra :TestSuite<CR>
+nmap <silent> <leader>rl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
 
 " #####################
 " Zettelkasten
