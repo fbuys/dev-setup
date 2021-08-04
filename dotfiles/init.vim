@@ -93,6 +93,8 @@ let &runtimepath.=',~/.vim/bundle/neoterm'
 filetype plugin on
 
 let g:neoterm_default_mod = 'botright vertical'
+nmap <silent> <leader>to :Topen<CR>
+nmap <silent> <leader>tc :Tclose<CR>
 
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
