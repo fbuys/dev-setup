@@ -24,6 +24,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'jparise/vim-graphql'        " GraphQL syntax
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " file search
   Plug 'junegunn/fzf.vim' " file search
+  Plug 'kassio/neoterm' " makes it easy to use the nvim terminal
   Plug 'leafgarland/typescript-vim' " TypeScript syntax
   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
   Plug 'michaeljsmith/vim-indent-object' " add ii for managing indented parts
@@ -84,6 +85,15 @@ autocmd BufLeave,FocusLost * silent! wall  " Save anytime we leave a buffer or M
 " #####################
 " Terminal
 " #####################
+set nocompatible
+filetype off
+
+let &runtimepath.=',~/.vim/bundle/neoterm'
+
+filetype plugin on
+
+let g:neoterm_default_mod = 'botright vertical'
+
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>
   tnoremap <C-w>h <C-\><C-n><C-w>h
