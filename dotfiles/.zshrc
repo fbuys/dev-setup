@@ -1,6 +1,14 @@
+# PATH Export
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/Library/Python/3.9/bin:$HOME/git/github.com/goabstract/projects/stable/ops/bin:$PATH"
+path=(
+  $path
+  $HOME/.yarn/bin
+  $HOME/.config/yarn/global/node_modules/.bin
+  $HOME/Library/Python/3.9/bin
+  $HOME/git/github.com/goabstract/projects/stable/ops/bin
+  )
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-path+=("$HOME/.config/yarn/global/node_modules/.bin")
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -75,9 +83,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# ok for autoloaded function definitions
-fpath=($fpath ~/.zsh/pure)
-
 # Autoload all shell functions from all directories in $fpath (following
 # symlinks) that have the executable bit on (the executable bit is not
 # necessary, but gives you an easy way to stop the autoloading of a
@@ -139,7 +144,6 @@ alias devsetup="cd ~/git/github.com/buys-fran/dev-setup"
 # Source sensitive env
 source ~/.secrets.sh
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Ombulabs Abstract specific details
 export C_INCLUDE_PATH="/usr/local/include"
@@ -148,4 +152,3 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 alias cda="cd ~/git/github.com/goabstract"
 alias cdap="cd ~/git/github.com/goabstract/projects"
 alias cdau="cd ~/git/github.com/goabstract/ui"
-
