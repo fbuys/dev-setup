@@ -90,7 +90,7 @@ filetype off
 
 let &runtimepath.=',~/.vim/bundle/neoterm'
 
-filetype plugin on
+filetype plugin indent on
 
 let g:neoterm_default_mod = 'botright vertical'
 nmap <silent> <leader>to :Topen<CR>
@@ -117,12 +117,13 @@ let g:ale_sign_warning = '⚠️ '
 let g:ale_linters = {
 \   'ruby': ['rubocop', 'standardrb'],
 \}
+" \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css': ['prettier'],
-\   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
 \   'ruby': ['rubocop', 'standardrb'],
+\   'javascript': ['flow-language-server'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
@@ -203,20 +204,60 @@ nnoremap <leader>tt :silent !ctags -R . <CR>:redraw!<CR>
 " COC
 " #####################
 set wildmode=list:longest       " Bash-like tab completion
+set updatetime=300
+set shortmess+=c
+
 let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-solargraph',
   \ ]
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use leader T to show documentation in preview window
+nnoremap <leader>t :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('&lt;cword&gt;')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" instead of having ~/.vim/coc-settings.json
+let s:LSP_CONFIG = {
+\  'flow': {
+\    'command': exepath('flow'),
+\    'args': ['lsp'],
+\    'filetypes': ['javascript', 'javascriptreact'],
+\    'initializationOptions': {},
+\    'requireRootPattern': 1,
+\    'settings': {},
+\    'rootPatterns': ['.flowconfig']
+\  }
+\}
+
+let s:languageservers = {}
+for [lsp, config] in items(s:LSP_CONFIG)
+  let s:not_empty_cmd = !empty(get(config, 'command'))
+  if s:not_empty_cmd | let s:languageservers[lsp] = config | endif
+endfor
+
+if !empty(s:languageservers)
+  call coc#config('languageserver', s:languageservers)
+endif
+
 " inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " Remap keys for applying codeAction to the current line.
 " inoremap <leader>ca  <Plug>(coc-codeaction)
