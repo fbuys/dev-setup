@@ -36,7 +36,7 @@ dir=./dotfiles
 home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
 config_files="karabiner.edn"
 ctags_files="md.ctags"
-nvim_files="init.vim"
+nvim_files="init.vim coc-settings.json"
 
 if [[ -d $dir ]]; then
   cd $dir

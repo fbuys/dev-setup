@@ -110,20 +110,22 @@ endif
 " Disable auto-comment new line after existing comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 nmap <localleader>p <Plug>(Prettier)
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 nnoremap <leader>p :ALEFix<CR>
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️ '
 let g:ale_linters = {
 \   'ruby': ['rubocop', 'standardrb'],
+\   'javascript': ['flow-language-server'],
 \}
-" \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css': ['prettier'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['flow-language-server'],
+\   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
@@ -208,8 +210,9 @@ set updatetime=300
 set shortmess+=c
 
 let g:coc_global_extensions = [
-    \ 'coc-tsserver',
+    \ 'coc-flow',
     \ 'coc-solargraph',
+    \ 'coc-tsserver',
   \ ]
 
 inoremap <silent><expr> <TAB>
@@ -235,28 +238,29 @@ function! s:show_documentation()
   endif
 endfunction
 
+" FLOW config
 " instead of having ~/.vim/coc-settings.json
-let s:LSP_CONFIG = {
-\  'flow': {
-\    'command': exepath('flow'),
-\    'args': ['lsp'],
-\    'filetypes': ['javascript', 'javascriptreact'],
-\    'initializationOptions': {},
-\    'requireRootPattern': 1,
-\    'settings': {},
-\    'rootPatterns': ['.flowconfig']
-\  }
-\}
+" let s:LSP_CONFIG = {
+" \  'flow': {
+" \    'command': exepath('flow'),
+" \    'args': ['lsp'],
+" \    'filetypes': ['javascript', 'javascriptreact'],
+" \    'initializationOptions': {},
+" \    'requireRootPattern': 1,
+" \    'settings': {},
+" \    'rootPatterns': ['.flowconfig']
+" \  }
+" \}
 
-let s:languageservers = {}
-for [lsp, config] in items(s:LSP_CONFIG)
-  let s:not_empty_cmd = !empty(get(config, 'command'))
-  if s:not_empty_cmd | let s:languageservers[lsp] = config | endif
-endfor
+" let s:languageservers = {}
+" for [lsp, config] in items(s:LSP_CONFIG)
+"   let s:not_empty_cmd = !empty(get(config, 'command'))
+"   if s:not_empty_cmd | let s:languageservers[lsp] = config | endif
+" endfor
 
-if !empty(s:languageservers)
-  call coc#config('languageserver', s:languageservers)
-endif
+" if !empty(s:languageservers)
+"   call coc#config('languageserver', s:languageservers)
+" endif
 
 " inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " Remap keys for applying codeAction to the current line.
