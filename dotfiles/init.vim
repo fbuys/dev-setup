@@ -21,24 +21,34 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'christoomey/vim-sort-motion' " adds gss for sorting
   Plug 'dense-analysis/ale' " adds code linting and fixing
   Plug 'dracula/vim', { 'as': 'dracula' } " nice colorscheme
-  Plug 'jparise/vim-graphql'        " GraphQL syntax
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " file search
   Plug 'junegunn/fzf.vim' " file search
   Plug 'kassio/neoterm' " makes it easy to use the nvim terminal
-  Plug 'leafgarland/typescript-vim' " TypeScript syntax
-  Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
   Plug 'michaeljsmith/vim-indent-object' " add ii for managing indented parts
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
   Plug 'pangloss/vim-javascript'    " JavaScript support
-  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'tpope/vim-commentary' " gcc for commenting
-  Plug 'tpope/vim-endwise' " adds end in ruby
   Plug 'tpope/vim-eunuch',
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-surround'
-  Plug 'vim-test/vim-test'
 call plug#end()
+" call plug#begin(stdpath('data') . '/plugged')
+"   Plug 'jparise/vim-graphql'        " GraphQL syntax
+"   Plug 'leafgarland/typescript-vim' " TypeScript syntax
+"   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+"   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+"   Plug 'tpope/vim-endwise' " adds end in ruby
+"   Plug 'tpope/vim-rails'
+"   Plug 'tpope/vim-surround'
+"   Plug 'vim-test/vim-test'
+" call plug#end()
+
+" #####################
+" Settings
+" #####################
+
+" leader key
+let mapleader = ","
+let maplocalleader = ";"
 
 " #####################
 " Buffers
@@ -88,7 +98,7 @@ autocmd BufLeave,FocusLost * silent! wall  " Save anytime we leave a buffer or M
 set nocompatible
 filetype off
 
-let &runtimepath.=',~/.vim/bundle/neoterm'
+" let &runtimepath.=',~/.vim/bundle/neoterm'
 
 filetype plugin indent on
 
@@ -109,23 +119,34 @@ endif
 " #####################
 " Disable auto-comment new line after existing comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+nnoremap <leader>p :ALEFix<CR>
 nmap <localleader>p <Plug>(Prettier)
+
+" when to lint
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_filetype_changed = 1
+
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 
-nnoremap <leader>p :ALEFix<CR>
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️ '
+
 let g:ale_linters = {
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['flow-language-server'],
+\   'javascript': ['flow', 'eslint'],
 \}
+
+" \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css': ['prettier'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['prettier', 'prettier_standard', 'eslint'],
+\   'javascript': ['eslint'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}
@@ -151,12 +172,9 @@ set ignorecase
 set incsearch
 set smartcase
 set hlsearch
+
 " Space to turn off highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>""
-
-" leader key
-let mapleader = ","
-let maplocalleader = ";"
 
 " Undo 
 set undofile
@@ -192,9 +210,11 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>t :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
 let g:fzf_layout = { 'down': '~40%' }
+
 " search word under cursor
 nnoremap g* :Rg <C-R><C-W><CR> 
-" CRTL-Q to select all
+
+" CRTL-A to select all
 let $FZF_DEFAULT_OPTS = '--bind ctrl-A:select-all'
 
 " #####################
@@ -228,50 +248,26 @@ function! s:check_back_space() abort
 endfunction
 
 " Use leader T to show documentation in preview window
-nnoremap <leader>t :call <SID>show_documentation()<CR>
+nnoremap <leader>cp :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
+  if (index(['nvim','help'], &filetype) >= 0)
     execute 'h '.expand('&lt;cword&gt;')
   else
     call CocAction('doHover')
   endif
 endfunction
 
-" FLOW config
-" instead of having ~/.vim/coc-settings.json
-" let s:LSP_CONFIG = {
-" \  'flow': {
-" \    'command': exepath('flow'),
-" \    'args': ['lsp'],
-" \    'filetypes': ['javascript', 'javascriptreact'],
-" \    'initializationOptions': {},
-" \    'requireRootPattern': 1,
-" \    'settings': {},
-" \    'rootPatterns': ['.flowconfig']
-" \  }
-" \}
-
-" let s:languageservers = {}
-" for [lsp, config] in items(s:LSP_CONFIG)
-"   let s:not_empty_cmd = !empty(get(config, 'command'))
-"   if s:not_empty_cmd | let s:languageservers[lsp] = config | endif
-" endfor
-
-" if !empty(s:languageservers)
-"   call coc#config('languageserver', s:languageservers)
-" endif
-
 " inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " Remap keys for applying codeAction to the current line.
-" inoremap <leader>ca  <Plug>(coc-codeaction)
+inoremap <leader>ca  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-" inoremap <leader>cf  <Plug>(coc-fix-current)
+inoremap <leader>cf  <Plug>(coc-fix-current)
 " GoTo code navigation.
-" inoremap <leader>cd <Plug>(coc-definition)
-" inoremap <leader>ct <Plug>(coc-type-definition)
-" inoremap <leader>ci <Plug>(coc-implementation)
-" inoremap <leader>cr <Plug>(coc-references)
+inoremap <leader>cd <Plug>(coc-definition)
+inoremap <leader>ci <Plug>(coc-implementation)
+inoremap <leader>ct <Plug>(coc-type-definition)
+inoremap <leader>cr <Plug>(coc-references)
 
 " #####################
 " TESTS
@@ -294,7 +290,7 @@ function! XNewZettel(file)
   execute ":e" g:zettelfolder . strftime("%Y%m%d%H%M") . "_" . filename . ".md"
 endfunction
 command! -nargs=1 NewZettel :call XNewZettel(<f-args>)
-" command! -nargs=1 NewZettel :execute ":e" zettelfolder . strftime("%Y%m%d%H%M") . "-<args>.md"
+command! -nargs=1 NewZettel :execute ":e" zettelfolder . strftime("%Y%m%d%H%M") . "-<args>.md"
 
 function! HandleFZF(file)
     "let filename = fnameescape(fnamemodify(a:file, ":t"))
