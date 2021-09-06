@@ -9,6 +9,7 @@ cask "google-chrome"
 cask "slack"
 cask "spotify"
 cask "discord"
+brew "gopass"
 
 # dev
 brew "curl"
