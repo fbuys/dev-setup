@@ -51,6 +51,7 @@
        [:equal_sign [:paste "👍"]]
        [:hyphen [:paste "👎"]]
        [:a [:paste "⚠️"]] ;alert
+       [:b [:paste "🥦"]] ;alert
        [:c [:paste "✅"]] ;wave
        [:e [:paste "👀"]] ;eyes
        [:l [:paste "😂"]] ;lol

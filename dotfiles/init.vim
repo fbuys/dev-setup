@@ -30,6 +30,9 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'tpope/vim-commentary' " gcc for commenting
   Plug 'tpope/vim-eunuch',
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
+  Plug 'vim-test/vim-test'
+  Plug 'tpope/vim-surround'
 call plug#end()
 " call plug#begin(stdpath('data') . '/plugged')
 "   Plug 'jparise/vim-graphql'        " GraphQL syntax
@@ -37,9 +40,6 @@ call plug#end()
 "   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 "   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "   Plug 'tpope/vim-endwise' " adds end in ruby
-"   Plug 'tpope/vim-rails'
-"   Plug 'tpope/vim-surround'
-"   Plug 'vim-test/vim-test'
 " call plug#end()
 
 " #####################
@@ -85,6 +85,8 @@ set nowrap                  " No wrapping
 set list                    " Show whitespace
 set nojoinspaces            " Use one space, not two, after punctuation.
 map <F6> :setlocal spell! spelllang=en_gb<CR>
+set cursorline
+set cursorcolumn
 
 " AUTOSAVE
 
@@ -273,11 +275,14 @@ inoremap <leader>cr <Plug>(coc-references)
 " TESTS
 " #####################
 let test#strategy = "neovim"
+let test#neovim#term_position = "vert botright 50"
 nmap <silent> <leader>rs :TestNearest<CR>
-nmap <silent> <leader>ft :TestFile<CR>
+nmap <silent> <leader>rt :TestFile<CR>
 nmap <silent> <leader>ra :TestSuite<CR>
 nmap <silent> <leader>rl :TestLast<CR>
-nmap <silent> <leader>tg :TestVisit<CR>
+nmap <silent> <leader>rg :TestVisit<CR>
+nmap <silent> <leader>rf :TestSuite --only-failures<CR>
+let g:test#runner_commands = ['RSpec']
 
 " #####################
 " Zettelkasten
