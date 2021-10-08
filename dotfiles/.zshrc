@@ -140,10 +140,11 @@ alias cdg="cd ~/git/github.com/fbuys"
 alias v="nvim ."
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim/init.vim"
-alias notes="cd ~/git/github.com/fbuys/ombulabs"
+alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
 alias francois="cd ~/git/github.com/fbuys/francois"
 alias devsetup="cd ~/git/github.com/fbuys/dev-setup"
 alias cdtt="cd ~/git/github.com/fbuys/timetrap"
+alias notes="cd ~/Google\ Drive/notes"
 
 # Source sensitive env
 source ~/.secrets.sh
