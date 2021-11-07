@@ -33,7 +33,7 @@ done
 
 # Symlink dotfiles
 dir=./dotfiles
-home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages"
+home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages .asdfrc"
 config_files="karabiner.edn"
 ctags_files="md.ctags"
 nvim_files="init.vim coc-settings.json"
@@ -102,16 +102,16 @@ fi
 println "Installing asdf plugins..."
 asdf plugin add nodejs
 asdf install nodejs latest
-asdf global nodejs latest
 
 asdf plugin-add yarn
 asdf install yarn latest
-asdf global yarn latest
 yarn config set prefix ~/.yarn # To make sure yarn packages are globally accessible
 
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf install ruby latest
-asdf global ruby latest
+
+asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
+asdf install crystal latest
 
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -126,3 +126,7 @@ if [[ ! -d $HOME/git/github.com/dracula ]]; then
   git clone https://github.com/dracula/iterm.git
   cd "$script_dir"
 fi
+
+# postgresql CLI tools
+sudo mkdir -p /etc/paths.d &&
+  echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp

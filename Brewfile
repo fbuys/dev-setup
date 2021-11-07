@@ -28,6 +28,11 @@ tap "yqrashawn/goku"
 brew "asdf"
 brew "coreutils"
 
+# lucky
+tap "luckyframework/homebrew-lucky"
+brew "lucky"
+brew "overmind"overmind
+
 # node
 brew "gnupg"
 brew "gawk"
