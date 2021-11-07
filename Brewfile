@@ -8,6 +8,7 @@ cask "firefox"
 cask "google-chrome"
 cask "slack"
 cask "spotify"
+cask "discord"
 
 # dev
 brew "curl"

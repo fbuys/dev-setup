@@ -117,6 +117,9 @@ prompt pure
 # But this may interfere with gitfast
 # eval "$(hub alias -s)"
 
+# Crystal Config
+export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -140,16 +143,19 @@ alias vimrc="nvim ~/.config/nvim/init.vim"
 alias notes="cd ~/git/github.com/fbuys/ombulabs"
 alias francois="cd ~/git/github.com/fbuys/francois"
 alias devsetup="cd ~/git/github.com/fbuys/dev-setup"
+alias cdtt="cd ~/git/github.com/fbuys/timetrap"
 
 # Source sensitive env
 source ~/.secrets.sh
 
+# Ombulabs for OPSLevel setup
+alias cdops="cd ~/git/gitlab.com/OpsLevel"
+
 
 # Ombulabs Abstract specific details
-export C_INCLUDE_PATH="/usr/local/include"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-alias cda="cd ~/git/github.com/goabstract"
-alias cdap="cd ~/git/github.com/goabstract/projects"
-alias cdau="cd ~/git/github.com/goabstract/ui"
-alias cdtt="cd ~/git/github.com/fbuys/timetrap"
+# export C_INCLUDE_PATH="/usr/local/include"
+# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+# alias cda="cd ~/git/github.com/goabstract"
+# alias cdap="cd ~/git/github.com/goabstract/projects"
+# alias cdau="cd ~/git/github.com/goabstract/ui"

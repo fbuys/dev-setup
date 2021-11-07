@@ -25,6 +25,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'junegunn/fzf.vim' " file search
   Plug 'kassio/neoterm' " makes it easy to use the nvim terminal
   Plug 'michaeljsmith/vim-indent-object' " add ii for managing indented parts
+  Plug 'vim-crystal/vim-crystal' " support crystal lang
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
   Plug 'pangloss/vim-javascript'    " JavaScript support
   Plug 'tpope/vim-commentary' " gcc for commenting
@@ -138,6 +139,7 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️ '
 
 let g:ale_linters = {
+\   'crystal': ['ameba'],
 \   'ruby': ['rubocop', 'standardrb'],
 \   'javascript': ['flow', 'eslint'],
 \}
@@ -145,10 +147,11 @@ let g:ale_linters = {
 " \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'crystal': ['crystal_format'],
 \   'css': ['prettier'],
+\   'javascript': ['eslint'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['eslint'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],
 \   'typescriptreact': ['prettier', 'prettier_standard', 'eslint'],
 \}

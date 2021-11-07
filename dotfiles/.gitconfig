@@ -31,3 +31,6 @@
   defaultBranch = main
 [pull]
 	ff = only
+
+[core]
+	editor = nvim
