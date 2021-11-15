@@ -31,7 +31,7 @@ brew "coreutils"
 # lucky
 tap "luckyframework/homebrew-lucky"
 brew "lucky"
-brew "overmind"overmind
+brew "overmind"
 
 # node
 brew "gnupg"
