@@ -25,21 +25,21 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'junegunn/fzf.vim' " file search
   Plug 'kassio/neoterm' " makes it easy to use the nvim terminal
   Plug 'michaeljsmith/vim-indent-object' " add ii for managing indented parts
-  Plug 'vim-crystal/vim-crystal' " support crystal lang
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
   Plug 'pangloss/vim-javascript'    " JavaScript support
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'tpope/vim-commentary' " gcc for commenting
   Plug 'tpope/vim-eunuch',
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
-  Plug 'vim-test/vim-test'
   Plug 'tpope/vim-surround'
+  Plug 'vim-crystal/vim-crystal' " support crystal lang
+  Plug 'vim-test/vim-test'
 call plug#end()
 " call plug#begin(stdpath('data') . '/plugged')
 "   Plug 'jparise/vim-graphql'        " GraphQL syntax
 "   Plug 'leafgarland/typescript-vim' " TypeScript syntax
 "   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-"   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "   Plug 'tpope/vim-endwise' " adds end in ruby
 " call plug#end()
 

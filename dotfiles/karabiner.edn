@@ -31,8 +31,11 @@
            '"
   }
 
+  ; To find the bundle id
+  ;  osascript -e 'id of app "Some.app"'
   :applications {
     :iterm ["com.googlecode.iterm2"]
+    :evernote ["com.evernote.Evernote"]
   }
 
   :simlayers {
@@ -67,6 +70,11 @@
     {:des "Tap caps => ESC, Hold caps => CTRL"
      :rules [
        [:caps_lock :left_control [:iterm] {:alone :escape}]
+    ]}
+
+    {:des "Tap caps => caps, Hold caps => CTRL"
+     :rules [
+       [:caps_lock :left_control [:evernote] {:alone :caps_lock}]
     ]}
 
     ; ITERM

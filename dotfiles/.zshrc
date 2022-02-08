@@ -120,6 +120,11 @@ prompt pure
 # Crystal Config
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
 
+# Android Config
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+export ANDROID_HOME=~/Library/Android/sdk/
+export PATH="$PATH:$ANDROID_HOME/platform-tools/"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -132,8 +137,6 @@ alias glos="GIT_PAGER=cat glo --max-count=20"
 alias ggpushf="ggpush --force-with-lease"
 
 alias cdo="cd ~/git/github.com/ombulabs"
-alias cdom="cd ~/git/github.com/ombulabs/ombulabs.com"
-alias cdof="cd ~/git/github.com/ombulabs/fastruby.io"
 alias cdf="cd ~/git/github.com/fastruby"
 alias cdfp="cd ~/git/github.com/fastruby/points"
 alias cdg="cd ~/git/github.com/fbuys"
@@ -148,15 +151,3 @@ alias notes="cd ~/Google\ Drive/notes"
 
 # Source sensitive env
 source ~/.secrets.sh
-
-# Ombulabs for OPSLevel setup
-alias cdops="cd ~/git/gitlab.com/OpsLevel"
-
-
-# Ombulabs Abstract specific details
-# export C_INCLUDE_PATH="/usr/local/include"
-# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-# alias cda="cd ~/git/github.com/goabstract"
-# alias cdap="cd ~/git/github.com/goabstract/projects"
-# alias cdau="cd ~/git/github.com/goabstract/ui"
