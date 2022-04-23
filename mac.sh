@@ -6,6 +6,27 @@ println() {
   printf "%b\n" "$1"
 }
 
+mkdir_if_missing() {
+  dir=$1
+  if [[ ! -d $dir ]]; then
+    println "Creating $dir..."
+    mkdir -p $dir
+  fi
+}
+
+symlink() {
+  DIR="$(dirname "$1")"
+  FILE="$(basename "$1")"
+  TO=$2
+
+  cd $DIR
+  if [[ -f $FILE ]]; then
+    println "Creating symlink to $FILE in $TO"
+    ln -sf $(pwd)/$FILE $TO/$FILE
+  fi
+  cd -
+}
+
 if ! command -v brew &>/dev/null; then
   println "The missing package manager for OS X"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -23,13 +44,17 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
-new_directories="$HOME/.bin $HOME/.config/nvim $HOME/.git_template/hooks $HOME/.config/ctags"
+new_directories="$HOME/.bin $HOME/.git_template/hooks $HOME/.config/ctags"
 for dir in "$new_directories"; do
   if [[ ! -d $dir ]]; then
     println "Creating $dir..."
     mkdir -p $dir
   fi
 done
+
+# nvim setup
+mkdir_if_missing "$HOME/.config/nvim/lua/user"
+symlink ./dotfiles/init.lua ~/.config/nvim 
 
 # Symlink dotfiles
 dir=./dotfiles
