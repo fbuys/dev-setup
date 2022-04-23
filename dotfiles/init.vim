@@ -141,15 +141,14 @@ let g:ale_sign_warning = '⚠️ '
 let g:ale_linters = {
 \   'crystal': ['ameba'],
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['flow', 'eslint'],
+\   'javascript': ['eslint'],
 \}
 
-" \   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'crystal': ['crystal_format'],
 \   'css': ['prettier'],
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier', 'prettier_standard', 'eslint'],
 \   'json': ['prettier', 'prettier_standard', 'eslint'],
 \   'ruby': ['rubocop', 'standardrb'],
 \   'typescript': ['prettier', 'prettier_standard', 'eslint'],

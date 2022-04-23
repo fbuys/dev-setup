@@ -84,6 +84,12 @@
        [:right_gui :right_gui [:iterm] {:alone :return_or_enter}]
     ]}
 
+    ; EVERNOTE
+    {:des "Keys for Evernote"
+     :rules [
+       [:right_gui :right_gui [:evernote] {:alone :return_or_enter}]
+    ]}
+
     {:des "B mode in iterm"
      :rules [:b-mode
        ;symbols {}()[]<>

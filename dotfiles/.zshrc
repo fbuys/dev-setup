@@ -6,6 +6,8 @@ path=(
   $HOME/.config/yarn/global/node_modules/.bin
   $HOME/Library/Python/3.9/bin
   $HOME/git/github.com/goabstract/projects/stable/ops/bin
+  /usr/local/opt/php@7.4/bin
+  /usr/local/opt/php@7.4/sbin
   )
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -125,6 +127,10 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Hom
 export ANDROID_HOME=~/Library/Android/sdk/
 export PATH="$PATH:$ANDROID_HOME/platform-tools/"
 
+# PHP config
+export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
+export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -148,6 +154,8 @@ alias francois="cd ~/git/github.com/fbuys/francois"
 alias devsetup="cd ~/git/github.com/fbuys/dev-setup"
 alias cdtt="cd ~/git/github.com/fbuys/timetrap"
 alias notes="cd ~/Google\ Drive/notes"
+alias gdrive="cd /Volumes/GoogleDrive/My Drive"
+alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 # Source sensitive env
 source ~/.secrets.sh
