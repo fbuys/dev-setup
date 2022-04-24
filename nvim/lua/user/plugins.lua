@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-sort-motion'     -- adds gss for sorting
   use 'michaeljsmith/vim-indent-object' -- add ii for managing indented parts
   use 'wbthomason/packer.nvim'          -- packer manager
+  use 'tpope/vim-commentary'            -- gcc to toggle comments
+  use 'Mofiqul/dracula.nvim'            -- colorscheme
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

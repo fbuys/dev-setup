@@ -58,6 +58,7 @@ symlink ./nvim/init.lua $HOME/.config/nvim
 symlink ./nvim/lua/user/options.lua $HOME/.config/nvim/lua/user
 symlink ./nvim/lua/user/keymaps.lua $HOME/.config/nvim/lua/user
 symlink ./nvim/lua/user/plugins.lua $HOME/.config/nvim/lua/user
+symlink ./nvim/lua/user/colorscheme.lua $HOME/.config/nvim/lua/user
 
 # Symlink dotfiles
 dir=./dotfiles
