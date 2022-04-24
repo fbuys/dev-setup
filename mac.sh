@@ -54,11 +54,15 @@ done
 
 # nvim setup
 mkdir_if_missing "$HOME/.config/nvim/lua/user"
-symlink ./nvim/init.lua $HOME/.config/nvim
-symlink ./nvim/lua/user/options.lua $HOME/.config/nvim/lua/user
-symlink ./nvim/lua/user/keymaps.lua $HOME/.config/nvim/lua/user
-symlink ./nvim/lua/user/plugins.lua $HOME/.config/nvim/lua/user
-symlink ./nvim/lua/user/colorscheme.lua $HOME/.config/nvim/lua/user
+# symlink ./nvim/init.lua $HOME/.config/nvim
+# symlink ./nvim/lua/user/options.lua $HOME/.config/nvim/lua/user
+# symlink ./nvim/lua/user/keymaps.lua $HOME/.config/nvim/lua/user
+# symlink ./nvim/lua/user/plugins.lua $HOME/.config/nvim/lua/user
+# symlink ./nvim/lua/user/colorscheme.lua $HOME/.config/nvim/lua/user
+# symlink ./nvim/lua/user/cmp.lua $HOME/.config/nvim/lua/user
+for file in nvim/lua/user/*; do
+  symlink $file $HOME/.config/nvim/lua/user
+done
 
 # Symlink dotfiles
 dir=./dotfiles

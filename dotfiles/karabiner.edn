@@ -91,29 +91,31 @@
        [:right_gui :right_gui [:evernote] {:alone :return_or_enter}]
     ]}
 
-    {:des "B mode in iterm"
-     :rules [:b-mode
-       ;symbols {}()[]<>
-       [:h :open_brace]
-       [:n :close_brace]
+    ; Don't seem to use this brackets things
+    ;{:des "B mode in iterm"
+    ; :rules [:b-mode
+    ;   ;symbols {}()[]<>
+    ;   [:h :open_brace]
+    ;   [:n :close_brace]
 
-       [:j :open_paren]
-       [:k :close_paren]
+    ;   [:j :open_paren]
+    ;   [:k :close_paren]
 
-       [:u :open_bracket]
-       [:i :close_bracket]
+    ;   [:u :open_bracket]
+    ;   [:i :close_bracket]
 
-       [:l :less_than]
-       [:semicolon :greater_than]
-    ]}
+    ;   [:l :less_than]
+    ;   [:semicolon :greater_than]
+    ;]}
 
     {:des "D mode in iterm"
      :rules [:d-mode
        [:i :!TSi [:iterm]]
     ]}
 
-    {:des "T-mode (tmux mode) mode in iterm"
-     :rules [:t-mode
+    ; Easy middle of keyboard b
+    {:des "B-mode mode in iterm"
+     :rules [:b-mode
        [:1 [:!Ta :1] [:iterm]]
        [:2 [:!Ta :2] [:iterm]]
        [:3 [:!Ta :3] [:iterm]]
