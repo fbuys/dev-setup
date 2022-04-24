@@ -54,14 +54,17 @@ done
 
 # nvim setup
 mkdir_if_missing "$HOME/.config/nvim/lua/user"
-symlink ./dotfiles/init.lua ~/.config/nvim 
+symlink ./nvim/init.lua $HOME/.config/nvim
+symlink ./nvim/lua/user/options.lua $HOME/.config/nvim/lua/user
+symlink ./nvim/lua/user/keymaps.lua $HOME/.config/nvim/lua/user
+symlink ./nvim/lua/user/plugins.lua $HOME/.config/nvim/lua/user
 
 # Symlink dotfiles
 dir=./dotfiles
 home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages .asdfrc"
 config_files="karabiner.edn"
 ctags_files="md.ctags"
-nvim_files="init.vim coc-settings.json"
+nvim_files="coc-settings.json"
 
 if [[ -d $dir ]]; then
   cd $dir
@@ -115,7 +118,7 @@ then
 fi
 
 # Brew
-if [[ -z "${UPGRADE_BREW}" ]]
+if [[ ! -z "${UPGRADE_BREW}" ]]
 then
   println "Updating Homebrew formulas..."
   brew update

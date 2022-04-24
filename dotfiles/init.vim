@@ -199,10 +199,10 @@ nnoremap gX :silent :execute
             \ "!open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 " Use  for saving, also in Insert mode
 noremap <localleader>w :w<CR>
-inoremap <localleader>w <Esc>:w<CR>a
 noremap <localleader>wq :wq<CR>
-inoremap <localleader>wq <Esc>:wq<CR>a
 noremap <localleader>q :q<CR>
+inoremap <localleader>w <Esc>:w<CR>a
+inoremap <localleader>wq <Esc>:wq<CR>a
 inoremap <localleader>q <Esc>:q
 
 " Fuzzy Finder

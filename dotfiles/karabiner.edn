@@ -42,10 +42,11 @@
    :b-mode {:key :b}
    :d-mode {:key :d}
    :emoji-mode {:key :z}
-   :w-mode {:key :w}
    :q-mode {:key :q}
    :s-mode {:key :s}
    :spacebar-mode {:key :spacebar}
+   :t-mode {:key :t}
+   :w-mode {:key :w}
   }
 
   :main [
@@ -111,15 +112,17 @@
        [:i :!TSi [:iterm]]
     ]}
 
-    {:des "Spacebar mode in iterm"
-     :rules [:spacebar-mode
+    {:des "T-mode (tmux mode) mode in iterm"
+     :rules [:t-mode
        [:1 [:!Ta :1] [:iterm]]
        [:2 [:!Ta :2] [:iterm]]
        [:3 [:!Ta :3] [:iterm]]
        [:4 [:!Ta :4] [:iterm]]
        [:5 [:!Ta :5] [:iterm]]
+       [:6 [:!Ta :6] [:iterm]]
        [:backslash [:!Ta :backslash] [:iterm]]
        [:c [:!Ta :c] [:iterm]]
+       [:d [:!Ta :d] [:iterm]]
        [:h [:!Ta :h] [:iterm]]
        [:hyphen [:!Ta :hyphen] [:iterm]]
        [:j [:!Ta :j] [:iterm]]
