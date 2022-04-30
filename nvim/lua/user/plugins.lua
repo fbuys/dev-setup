@@ -57,8 +57,9 @@ return require('packer').startup(function(use)
   use "nvim-telescope/telescope.nvim"
 
   -- LSP
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for the built-in LSP client
+  use "neovim/nvim-lspconfig" -- Collection of configurations for the built-in LSP client
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatting and linting
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
