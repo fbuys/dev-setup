@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
   use 'michaeljsmith/vim-indent-object' -- add ii for managing indented parts
   use 'tpope/vim-commentary'            -- gcc to toggle comments
   use 'Mofiqul/dracula.nvim'            -- colorscheme
+  use 'vim-test/vim-test'               -- run tests directly from vim
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
