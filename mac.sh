@@ -53,15 +53,15 @@ for dir in "$new_directories"; do
 done
 
 # nvim setup
-mkdir_if_missing "$HOME/.config/nvim/lua/user"
-# symlink ./nvim/init.lua $HOME/.config/nvim
-# symlink ./nvim/lua/user/options.lua $HOME/.config/nvim/lua/user
-# symlink ./nvim/lua/user/keymaps.lua $HOME/.config/nvim/lua/user
-# symlink ./nvim/lua/user/plugins.lua $HOME/.config/nvim/lua/user
-# symlink ./nvim/lua/user/colorscheme.lua $HOME/.config/nvim/lua/user
-# symlink ./nvim/lua/user/cmp.lua $HOME/.config/nvim/lua/user
+mkdir_if_missing "$HOME/.config/nvim/lua/user/lsp/settings"
 for file in nvim/lua/user/*; do
   symlink $file $HOME/.config/nvim/lua/user
+done
+for file in nvim/lua/user/lsp/*; do
+  symlink $file $HOME/.config/nvim/lua/user/lsp
+done
+for file in nvim/lua/user/lsp/servers/*; do
+  symlink $file $HOME/.config/nvim/lua/user/lsp/servers
 done
 
 # Symlink dotfiles
