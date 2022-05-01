@@ -41,6 +41,7 @@ return require('packer').startup(function(use)
   use 'Mofiqul/dracula.nvim'            -- colorscheme
   use 'vim-test/vim-test'               -- run tests directly from vim
   use 'tpope/vim-fugitive'              -- git wrapper
+  use "akinsho/toggleterm.nvim"       -- manage terminal windows
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
