@@ -13,7 +13,7 @@ M.setup = function()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -40,6 +40,18 @@ M.setup = function()
   }
 
   vim.diagnostic.config(config)
+
+  -- suppress error messages from lang servers
+  vim.notify = function(msg, log_level, _opts)
+    if msg:match("exit code") then
+      return
+    end
+    if log_level == vim.log.levels.ERROR then
+      vim.api.nvim_err_writeln(msg)
+    else
+      vim.api.nvim_echo({ { msg } }, true, {})
+    end
+  end
 end
 
 local function lsp_highlight_document(client)
@@ -52,7 +64,7 @@ local function lsp_highlight_document(client)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]],
+    ]] ,
       false
     )
   end
@@ -63,7 +75,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -87,7 +99,6 @@ local function lsp_keymaps(bufnr)
     border = "rounded",
   })
 end
-
 
 local function turn_formatting_off_if_needed(client)
   if client.name == "tsserver" then

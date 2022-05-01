@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'            -- gcc to toggle comments
   use 'Mofiqul/dracula.nvim'            -- colorscheme
   use 'vim-test/vim-test'               -- run tests directly from vim
+  use 'tpope/vim-fugitive'              -- git wrapper
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

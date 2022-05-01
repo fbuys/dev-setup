@@ -38,7 +38,7 @@ vim.opt.swapfile = false                        -- creates a swapfile
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
-vim.opt.undodir = "~/.config/nvim/undo"         -- where to save undo files
+vim.opt.undodir = vim.fn.stdpath('config') ..'undo'     -- where to save undo files
 vim.opt.undofile = true                         -- enable persistent undo
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
 vim.opt.whichwrap:append "<,>,[,],h,l"

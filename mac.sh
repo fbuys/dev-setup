@@ -54,14 +54,15 @@ done
 
 # nvim setup
 mkdir_if_missing "$HOME/.config/nvim/lua/user/lsp/settings"
+symlink ./nvim/init.lua $HOME/.config/nvim
 for file in nvim/lua/user/*; do
   symlink $file $HOME/.config/nvim/lua/user
 done
 for file in nvim/lua/user/lsp/*; do
   symlink $file $HOME/.config/nvim/lua/user/lsp
 done
-for file in nvim/lua/user/lsp/servers/*; do
-  symlink $file $HOME/.config/nvim/lua/user/lsp/servers
+for file in nvim/lua/user/lsp/settings/*; do
+  symlink $file $HOME/.config/nvim/lua/user/lsp/settings
 done
 
 # Symlink dotfiles
