@@ -1,9 +1,9 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -31,17 +31,18 @@ packer.init {
 
 return require('packer').startup(function(use)
   -- My plugins here
-  use 'wbthomason/packer.nvim'          -- packer manager
-  use "nvim-lua/plenary.nvim"           -- Useful lua functions used ny lots of plugins
-  use "nvim-lua/popup.nvim"             -- An implementation of the Popup API from vim in Neovim
-  use 'christoomey/vim-conflicted'      -- helps resolve merge conflicts
-  use 'christoomey/vim-sort-motion'     -- adds gss for sorting
+  use 'wbthomason/packer.nvim' -- packer manager
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use 'christoomey/vim-conflicted' -- helps resolve merge conflicts
+  use 'christoomey/vim-sort-motion' -- adds gss for sorting
   use 'michaeljsmith/vim-indent-object' -- add ii for managing indented parts
-  use 'tpope/vim-commentary'            -- gcc to toggle comments
-  use 'Mofiqul/dracula.nvim'            -- colorscheme
-  use 'vim-test/vim-test'               -- run tests directly from vim
-  use 'tpope/vim-fugitive'              -- git wrapper
-  use "akinsho/toggleterm.nvim"       -- manage terminal windows
+  use 'tpope/vim-commentary' -- gcc to toggle comments
+  use 'Mofiqul/dracula.nvim' -- colorscheme
+  use 'vim-test/vim-test' -- run tests directly from vim
+  use 'tpope/vim-fugitive' -- git wrapper
+  use "akinsho/toggleterm.nvim" -- manage terminal windows
+  use 'tpope/vim-eunuch' -- unix shell commands in vim
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -58,6 +59,12 @@ return require('packer').startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+
+  -- Treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
 
   -- LSP
   use "neovim/nvim-lspconfig" -- Collection of configurations for the built-in LSP client

@@ -50,6 +50,8 @@ telescope.setup {
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
+        ["<C-w>"] = actions.send_selected_to_qflist,
+        ["<C-q>"] = actions.send_to_qflist,
 
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,

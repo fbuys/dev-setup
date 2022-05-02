@@ -37,3 +37,4 @@ keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files(requ
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap("n", "g*", "<cmd>Telescope grep_string<cr>", opts)
