@@ -58,12 +58,15 @@
        [:b [:paste "🥦"]] ;alert
        [:c [:paste "✅"]] ;wave
        [:e [:paste "👀"]] ;eyes
+       [:f [:paste "🔥"]] ;eyes
+       [:i [:paste "🚧"]] ;eyes
        [:l [:paste "😂"]] ;lol
        [:m [:paste "💪"]] ;muscle
        [:n [:paste "👏"]] ;nice
        [:s [:paste "🙂"]] ;smile
        [:t [:paste "🙏"]] ;thanks
        [:w [:paste "👋"]] ;wave
+       [:x [:paste "❌"]] ;wave
        [:y [:paste "🎉"]] ;Yay
        [:r [:paste "🚀"]] ;rocket
     ]}

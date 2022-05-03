@@ -34,13 +34,16 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-surround'
   Plug 'vim-crystal/vim-crystal' " support crystal lang
+  Plug 'vim-ruby/vim-ruby'
   Plug 'vim-test/vim-test'
+  Plug 'tyru/open-browser.vim' " Open URI from VIM
+  Plug 'tyru/open-browser-github.vim' " Lauch github from VIM
+  Plug 'tpope/vim-endwise' " adds end in ruby
 call plug#end()
 " call plug#begin(stdpath('data') . '/plugged')
 "   Plug 'jparise/vim-graphql'        " GraphQL syntax
 "   Plug 'leafgarland/typescript-vim' " TypeScript syntax
 "   Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
-"   Plug 'tpope/vim-endwise' " adds end in ruby
 " call plug#end()
 
 " #####################
@@ -141,7 +144,8 @@ let g:ale_sign_warning = '⚠️ '
 let g:ale_linters = {
 \   'crystal': ['ameba'],
 \   'ruby': ['rubocop', 'standardrb'],
-\   'javascript': ['eslint'],
+\   'javascript': ['flow', 'eslint'],
+\   'python': ['flake8', 'pylint'],
 \}
 
 let g:ale_fixers = {
