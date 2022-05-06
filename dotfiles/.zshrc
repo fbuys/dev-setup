@@ -157,6 +157,7 @@ alias cdtt="cd ~/git/github.com/fbuys/timetrap"
 alias notes="cd ~/Google\ Drive/notes"
 alias gdrive="cd /Volumes/GoogleDrive/My Drive"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 
 # Source sensitive env
 source ~/.secrets.sh

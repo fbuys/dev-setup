@@ -14,10 +14,12 @@ null_ls.setup {
     -- Formatters
     -- formatting.erb_lint,
     -- formatting.prettier_standard,
+    formatting.eslint,
     formatting.rubocop,
     -- Linters
     -- diagnostics.erb_lint,
     -- diagnostics.prettier_standard,
+    diagnostics.eslint,
     diagnostics.rubocop
   },
 }

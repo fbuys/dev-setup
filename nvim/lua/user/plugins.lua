@@ -42,7 +42,11 @@ return require('packer').startup(function(use)
   use 'vim-test/vim-test' -- run tests directly from vim
   use 'tpope/vim-fugitive' -- git wrapper
   use "akinsho/toggleterm.nvim" -- manage terminal windows
-  use 'tpope/vim-eunuch' -- unix shell commands in vim
+  use "tpope/vim-eunuch" -- unix shell commands in vim
+  use {
+    'tyru/open-browser-github.vim', -- open git file in browser from nvim
+    requires = 'tyru/open-browser.vim'
+  }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
