@@ -8,5 +8,6 @@ require "user.lsp"
 require "user.vim-test"
 require "user.toggleterm"
 require "user.treesitter"
+require "user.luasnip"
 
 require "user.timetracking"
