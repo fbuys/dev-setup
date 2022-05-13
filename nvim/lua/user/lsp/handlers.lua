@@ -104,6 +104,9 @@ local function turn_formatting_off_if_needed(client)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
+  if client.name == "volar" then
+    client.resolved_capabilities.document_formatting = false
+  end
   if client.name == "solargraph" then
     client.resolved_capabilities.document_formatting = false
   end
