@@ -10,7 +10,6 @@
 .bundle
 .byebug_history
 .cache
-.env
 .sass-cache
 Thumbs.db
 db/*.sqlite3
