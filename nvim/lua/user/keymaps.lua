@@ -34,6 +34,7 @@ keymap("v", "p", '"_dP', opts)                            -- Paste without yanki
 
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files(vim.tbl_deep_extend('force', require('telescope.themes').get_dropdown({ previewer = false }), { find_command = {'rg', '--files', '--hidden', '-g', '!.git' }}))<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
