@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-sort-motion' -- adds gss for sorting
   use 'michaeljsmith/vim-indent-object' -- add ii for managing indented parts
   use 'tpope/vim-commentary' -- gcc to toggle comments
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- support vim mixed file commenting
   use 'Mofiqul/dracula.nvim' -- colorscheme
   use 'vim-test/vim-test' -- run tests directly from vim
   use 'tpope/vim-fugitive' -- git wrapper
