@@ -42,15 +42,15 @@ ls.add_snippets("markdown", {
   -- trigger is `timeentry`, expands into time entry with project, notes, start time, stop time and duration
   s("timeentry", {
     -- prompt for project
-    t("@"), i(1, "<project>"),
+    t("@"), i(1),
     -- linebreak
     t({"", "============", ""}),
     -- notes placeholder
-    i(2, "<notes...>"),
+    i(2),
     -- linebreak then [<start>-<stop>](<duration>)
-    t({"", "["}), i(3, "<start>"), t("-"), i(4, "<stop>"), t("]("), i(5, "<duration>"), t(")"),
+    t({"", "["}), i(3), t("-"), i(4), t("]("), i(5), t(")"),
   })
 })
 
 -- shorcut to source my luasnips file again, which will reload my snippets
-vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/user/luasnip.lua<CR>")
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>")
