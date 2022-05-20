@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
     'tyru/open-browser-github.vim', -- open git file in browser from nvim
     requires = 'tyru/open-browser.vim'
   }
+  use "Pocco81/AutoSave.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
