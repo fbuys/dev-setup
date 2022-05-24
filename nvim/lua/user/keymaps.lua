@@ -17,14 +17,17 @@ vim.g.maplocalleader = ","                                -- Use , as local lead
 --   command_mode = "c",
 
 -- Normal --
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-keymap("n", ",,", "<C-^>", opts)                                      -- Alternate buffers
+keymap("n", "<leader>e", ":Lex 30<cr>", opts)                       -- open explorer
+keymap("n", ",,", "<C-^>", opts)                                    -- Alternate buffers
 keymap("n", "<C-j>", ":m .+1<CR>", opts)                            -- Move line down
 keymap("n", "<C-k>", ":m .-2<CR>", opts)                            -- Move line up
+keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)                      -- Move line up
+keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)                      -- Move line up
+
 keymap("n", ";w", ":w<CR>", opts)                                   -- Save
 keymap("n", ";q", ":q<CR>", opts)                                   -- Quit
 keymap("n", ";wq", ":wq<CR>", opts)                                 -- Save and quite
-keymap("n", "<space><space>", ":nohlsearch<Bar>:echo<cr>", opts)      -- turn off highlighting
+keymap("n", "<space><space>", ":nohlsearch<Bar>:echo<cr>", opts)    -- turn off highlighting
 
 
 -- Visual --
