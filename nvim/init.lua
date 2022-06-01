@@ -9,5 +9,6 @@ require "user.vim-test"
 require "user.toggleterm"
 require "user.treesitter"
 require "user.luasnip"
+require "user.autosave"
 
 require "user.timetracking"
