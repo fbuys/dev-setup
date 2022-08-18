@@ -50,6 +50,16 @@ return require('packer').startup(function(use)
   }
   use "Pocco81/AutoSave.nvim"
 
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  }
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
@@ -58,6 +68,7 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
+  use "quangnguyen30192/cmp-nvim-tags"
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine, needd by nvim-cmp

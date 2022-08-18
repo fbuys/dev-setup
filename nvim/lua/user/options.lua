@@ -23,7 +23,9 @@ vim.opt.path:append "**"                        -- include subfolders
 vim.opt.pumheight = 10                          -- pop up menu height
 vim.opt.relativenumber = true                   -- set relative numbered lines
 vim.opt.scrolloff = 8                           -- like vertical screen padding
-vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
+vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
+vim.opt.softtabstop = 4                         -- spaces per tab while editing
+vim.opt.tabstop = 4                             -- insert 2 spaces for a tab
 vim.opt.shortmess:append "c"
 vim.opt.showmode = false                        -- no need for -- INSERT -- anymore
 vim.opt.showtabline = 2                         -- always show tabs
@@ -31,11 +33,9 @@ vim.opt.sidescrolloff = 8                       -- like horizontal screen paddin
 vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
 vim.opt.smartcase = true                        -- smart case
 vim.opt.smartindent = true                      -- make indenting smarter again
-vim.opt.softtabstop = 2                         -- spaces per tab while editing
 vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
 vim.opt.splitright = true                       -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false                        -- creates a swapfile
-vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 vim.opt.timeoutlen = 500                       -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undodir = vim.fn.stdpath('config') ..'undo'     -- where to save undo files
