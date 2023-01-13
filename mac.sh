@@ -132,6 +132,8 @@ then
   brew bundle --file $script_dir/BrewFile
 fi
 
+if [[ ! -z "${WITH_ASDF}" ]]
+then
 # asdf  plugins
 println "Installing asdf plugins..."
 asdf plugin add nodejs
@@ -147,6 +149,10 @@ asdf install ruby latest
 asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
 asdf install crystal latest
 
+asdf plugin add python
+asdf install python latest
+fi
+
 # zshell and oh-my-zshell
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing oh my zshell..."
@@ -160,6 +166,8 @@ if [[ ! -d $HOME/git/github.com/dracula ]]; then
   git clone https://github.com/dracula/iterm.git
   cd "$script_dir"
 fi
+
+
 
 # postgresql CLI tools
 sudo mkdir -p /etc/paths.d &&

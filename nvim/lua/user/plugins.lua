@@ -88,6 +88,9 @@ return require('packer').startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "jose-elias-alvarez/null-ls.nvim" -- for formatting and linting
 
+  -- Jupyter
+  use { "untitled-ai/jupyter_ascending.vim" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
