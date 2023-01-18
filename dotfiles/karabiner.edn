@@ -43,7 +43,6 @@
    :d-mode {:key :d}
    :emoji-mode {:key :z}
    :q-mode {:key :q}
-   :s-mode {:key :s}
    :spacebar-mode {:key :spacebar}
    :t-mode {:key :t}
    :w-mode {:key :w}
@@ -76,40 +75,13 @@
        [:caps_lock :left_control [:iterm] {:alone :escape}]
     ]}
 
-    {:des "Tap caps => caps, Hold caps => CTRL"
-     :rules [
-       [:caps_lock :left_control [:evernote] {:alone :caps_lock}]
-    ]}
-
     ; ITERM
     {:des "Key for Iterm"
      :rules [
        [:s :right_shift [:iterm] {:alone :s}]
+       [:a :left_option [:iterm] {:alone :a}]
        [:right_gui :right_gui [:iterm] {:alone :return_or_enter}]
     ]}
-
-    ; EVERNOTE
-    {:des "Keys for Evernote"
-     :rules [
-       [:right_gui :right_gui [:evernote] {:alone :return_or_enter}]
-    ]}
-
-    ; Don't seem to use this brackets things
-    ;{:des "B mode in iterm"
-    ; :rules [:b-mode
-    ;   ;symbols {}()[]<>
-    ;   [:h :open_brace]
-    ;   [:n :close_brace]
-
-    ;   [:j :open_paren]
-    ;   [:k :close_paren]
-
-    ;   [:u :open_bracket]
-    ;   [:i :close_bracket]
-
-    ;   [:l :less_than]
-    ;   [:semicolon :greater_than]
-    ;]}
 
     {:des "D mode in iterm"
      :rules [:d-mode
