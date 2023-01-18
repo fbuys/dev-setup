@@ -1,14 +1,4 @@
-require "user.colorscheme"
-require "user.keymaps"
-require "user.options"
-require "user.plugins"
-require "user.cmp"
-require "user.telescope"
-require "user.lsp"
-require "user.vim-test"
-require "user.toggleterm"
-require "user.treesitter"
-require "user.luasnip"
-require "user.autosave"
+require('fbuys')
 
-require "user.timetracking"
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
