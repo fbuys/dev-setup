@@ -23,7 +23,7 @@ vim.opt.iskeyword:append "-"                    -- words with - treated as one w
 vim.opt.list = true                             -- show whitespace
 vim.wo.number = true                            -- Make line numbers default
 vim.opt.relativenumber = true                   -- set relative numbered lines
-vim.o.mouse = 'a'                               -- Enable mouse mode
+vim.o.mouse = ''                                -- Disable mouse mode
 vim.opt.numberwidth = 5                         -- set number column width to 2 {default 4}
 vim.opt.path:append "**"                        -- include subfolders
 vim.opt.pumheight = 10                          -- pop up menu height
@@ -52,5 +52,5 @@ vim.cmd "syntax enable"                         -- enable syntax highlighting
 -- vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 -- vim.opt.softtabstop = 4                         -- spaces per tab while editing
 -- vim.opt.tabstop = 4                             -- insert 2 spaces for a tab
-
-
+--
+vim.g.python3_host_prog = "~/.virtualenvs/nvim/bin/python3"

@@ -91,6 +91,10 @@ require('packer').startup(function(use)
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
+
+      -- Additional diagnostics
+      {'jose-elias-alvarez/null-ls.nvim'},
+      {'jay-babu/mason-null-ls.nvim'},
     }
   }
 
@@ -120,6 +124,12 @@ require('packer').startup(function(use)
 
   -- Jupyter
   use { "untitled-ai/jupyter_ascending.vim" }
+
+  -- Auto save after insert or text changes
+  use "Pocco81/auto-save.nvim"
+
+  -- Add mapping for sorting for sorting a range of text
+  use { 'christoomey/vim-sort-motion' }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

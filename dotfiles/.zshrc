@@ -4,10 +4,9 @@ path=(
   $path
   $HOME/.yarn/bin
   $HOME/.config/yarn/global/node_modules/.bin
-  $HOME/Library/Python/3.9/bin
-  $HOME/git/github.com/goabstract/projects/stable/ops/bin
   /usr/local/opt/php@7.4/bin
   /usr/local/opt/php@7.4/sbin
+  $HOME/.virtualenvs/
   )
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH

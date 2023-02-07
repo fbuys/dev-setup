@@ -41,8 +41,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Paste without yanking
-keymap("v", "p", '"_dp', opts)
-keymap("v", "P", '"_dP', opts)
+keymap("v", "p", '"_dP', opts)
+keymap("v", "P", '"_dp', opts)
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

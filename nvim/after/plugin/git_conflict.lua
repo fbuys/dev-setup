@@ -10,6 +10,6 @@ vim.api.nvim_set_keymap("n", "<leader>cb", "<Plug>(git-conflict-both)", opts)
 vim.api.nvim_set_keymap("n", "<leader>c0", "<Plug>(git-conflict-none)", opts)
 vim.api.nvim_set_keymap("n", "]x", "<Plug>(git-conflict-prev-conflict)", opts)
 vim.api.nvim_set_keymap("n", "[x", "<Plug>(git-conflict-next-conflict)", opts)
-vim.api.nvim_set_keymap("n", "<leader>fx", "<cmd>GitConflictListQf<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gx", "<cmd>GitConflictListQf<cr>", opts)
 
 

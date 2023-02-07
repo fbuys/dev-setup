@@ -59,13 +59,26 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  pyright = {},
+  -- pyright = {
+  --   python = {
+  --     analysis = {
+  --       extraPaths = { '~/.venv/nvim/bin/' }
+  --     }
+  --   }
+  -- },
+  pylsp = {
+  python ={
+      host_python = "~/.venv/nvim/bin/",
+      default_venv_name = ".venv" -- For local venv
+    },
+  },
   sumneko_lua = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
+  ruby_ls ={},
 }
 
 -- Setup neovim lua configuration
@@ -113,28 +126,45 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<Tab>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+    -- go to next placeholder in the snippet
+    ['<C-j>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+    end, {'i', 's'}),
+
+    -- go to previous placeholder in the snippet
+    ['<C-k>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, {'i', 's'}),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
+    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -167,3 +197,46 @@ luasnip.add_snippets("markdown", {
 })
 
 lsp.setup()
+
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    null_opts.on_attach(client, bufnr)
+    ---
+    -- you can add other stuff here....
+    ---
+    --
+    local format_cmd = function(input)
+      vim.lsp.buf.format({
+        id = client.id,
+        timeout_ms = 5000,
+        async = input.bang,
+      })
+    end
+
+    local bufcmd = vim.api.nvim_buf_create_user_command
+      bufcmd(bufnr, 'NullFormat', format_cmd, {
+        bang = true,
+        range = true,
+        desc = 'Format using null-ls'
+      })
+  end,
+  sources = {
+    -- Replace these with the tools you have installed
+    null_ls.builtins.completion.spell,
+    null_ls.builtins.diagnostics.rubocop,
+    null_ls.builtins.formatting.rubocop,
+    -- null_ls.builtins.diagnostics.flake8,
+    -- null_ls.builtins.diagnostics.pylint,
+    -- null_ls.builtins.diagnostics.mypy,
+  }
+})
+
+require("mason").setup()
+require("mason-null-ls").setup({
+    automatic_setup = true,
+    -- ensure_installed = { "spell", "pylint", 'flake8', 'mypy' },
+    ensure_installed = { "spell", "rubocop" },
+})
