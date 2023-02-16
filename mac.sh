@@ -44,7 +44,7 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
-new_directories="$HOME/.bin $HOME/.git_template/hooks $HOME/.config/ctags"
+new_directories="$HOME/.bin $HOME/.git_template/hooks $HOME/.config/ctags $HOME/.config/pip"
 for dir in "$new_directories"; do
   if [[ ! -d $dir ]]; then
     println "Creating $dir..."
@@ -72,6 +72,7 @@ home_files=".vimrc .tmux.conf .zshrc .gitconfig .gitignore .default-npm-packages
 config_files="karabiner.edn"
 ctags_files="md.ctags"
 nvim_files="coc-settings.json"
+pip_files="pip.conf"
 
 if [[ -d $dir ]]; then
   cd $dir
@@ -102,6 +103,14 @@ if [[ -d $dir ]]; then
     then
       echo "Creating symlink to $file in home/.config/nvim directory."
       ln -sf $(pwd)/$file ~/.config/nvim/$file
+    fi
+  done
+
+  for file in $pip_files; do
+    if [[ -f $file ]]
+    then
+      echo "Creating symlink to $file in home/.config/pip directory."
+      ln -sf $(pwd)/$file ~/.config/pip/$file
     fi
   done
 

@@ -82,8 +82,17 @@ require('packer').startup(function(use)
       {'hrsh7th/cmp-nvim-lsp'},     -- Required
       {'hrsh7th/cmp-buffer'},       -- Optional
       {'hrsh7th/cmp-path'},         -- Optional
+      {'f3fora/cmp-spell'},         -- Optional
       {'saadparwaiz1/cmp_luasnip'}, -- Optional
       {'hrsh7th/cmp-nvim-lua'},     -- Optional
+      { 'onsails/lspkind.nvim' },    -- icons next to autocomplete list items
+      {
+        'quangnguyen30192/cmp-nvim-tags',
+        -- if you want the sources is available for some file types
+        ft = {
+          'markdown',
+        }
+      },
 
       -- Snippets
       {'L3MON4D3/LuaSnip'},             -- Required
@@ -130,6 +139,9 @@ require('packer').startup(function(use)
 
   -- Add mapping for sorting for sorting a range of text
   use { 'christoomey/vim-sort-motion' }
+
+  -- add ii for managing indented parts
+  use { 'michaeljsmith/vim-indent-object' }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

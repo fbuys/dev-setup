@@ -39,7 +39,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    print(vim.inspect(vim.lsp.buf.list_workspace_fonders()))
   end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
@@ -66,19 +66,20 @@ local servers = {
   --     }
   --   }
   -- },
-  pylsp = {
-  python ={
+  pyright = {
+    python ={
       host_python = "~/.venv/nvim/bin/",
       default_venv_name = ".venv" -- For local venv
     },
   },
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-  ruby_ls ={},
+  -- ruby_ls ={},
+  solargraph ={},
 }
 
 -- Setup neovim lua configuration
@@ -113,19 +114,28 @@ require('fidget').setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
+local lspkind = require('lspkind')
 local luasnip = require 'luasnip'
 require("luasnip/loaders/from_vscode").lazy_load()
 
 cmp.setup {
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol', -- show only symbol annotations
+      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+    }),
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
     ['<Tab>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -147,31 +157,19 @@ cmp.setup {
         fallback()
       end
     end, {'i', 's'}),
-    -- ['<Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = "nvim_lsp" },
+    { name = 'tags' },
+    { name = "nvim_lua" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+    { name = "spell" },
   },
+}
 
-}-- add rails snippets to ruby
+-- add rails snippets to ruby
 luasnip.filetype_extend("ruby", {"rails"})
 luasnip.filetype_extend("python", {"python"})
 
@@ -225,18 +223,19 @@ null_ls.setup({
   end,
   sources = {
     -- Replace these with the tools you have installed
-    null_ls.builtins.completion.spell,
+    -- null_ls.builtins.completion.spell,
+    -- null_ls.builtins.completion.tags,
     null_ls.builtins.diagnostics.rubocop,
     null_ls.builtins.formatting.rubocop,
-    -- null_ls.builtins.diagnostics.flake8,
-    -- null_ls.builtins.diagnostics.pylint,
-    -- null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.formatting.black,
   }
 })
 
 require("mason").setup()
 require("mason-null-ls").setup({
     automatic_setup = true,
-    -- ensure_installed = { "spell", "pylint", 'flake8', 'mypy' },
-    ensure_installed = { "spell", "rubocop" },
+    ensure_installed = { "spell", "rubocop", "black", "tags" },
+    -- ensure_installed = { "spell", "rubocop", "tags" },
 })
+
+vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr>", { noremap = true, silent = true })    -- Trigger auto format

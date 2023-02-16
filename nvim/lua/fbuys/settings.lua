@@ -14,7 +14,7 @@ vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8"                  -- encoding
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
-vim.opt.hlsearch = true                         -- highlight all matches
+vim.opt.hlsearch = false                         -- highlight all matches
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.o.smartcase = true                          -- honour cße when /C or capital in search
 vim.o.breakindent = true                        -- Enable break indent
@@ -53,4 +53,6 @@ vim.cmd "syntax enable"                         -- enable syntax highlighting
 -- vim.opt.softtabstop = 4                         -- spaces per tab while editing
 -- vim.opt.tabstop = 4                             -- insert 2 spaces for a tab
 --
-vim.g.python3_host_prog = "~/.virtualenvs/nvim/bin/python3"
+-- pip install pynvim neovim for python to work
+-- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
+vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"

@@ -118,6 +118,9 @@ prompt pure
 # But this may interfere with gitfast
 # eval "$(hub alias -s)"
 
+# Prevent Brew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
 # Crystal Config
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
 
@@ -129,6 +132,14 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools/"
 # PHP config
 export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
 export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
+
+# Python config
+# Why: To install or upgrade a global package
+# and prevent installing glocal packages otherwise.
+# Usage: gpip install --upgrade pip setuptools virtualenv
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="0" python -m pip "$@"
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
