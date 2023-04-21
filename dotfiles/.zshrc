@@ -133,6 +133,11 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools/"
 export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
 export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
 
+# for tinyhood setup
+export ES_HOME=$HOME/elasticsearch-5.4.3
+export JAVA_HOME=$HOME/.asdf/plugins/java/set-java-home.zsh
+export PATH=$ES_HOME/bin:$JAVA_HOME/bin:$PATH
+
 # Python config
 # Why: To install or upgrade a global package
 # and prevent installing glocal packages otherwise.
@@ -151,6 +156,8 @@ gpip(){
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glos="GIT_PAGER=cat glo --max-count=20"
 alias ggpushf="ggpush --force-with-lease"
+alias -g rnext="BUNDLE_GEMFILE=Gemfile.next"
+alias gbDa="git branch |  grep -v "$(git_develop_branch)" | grep -v "$(git_main_branch)" | xargs git branch -D"
 
 alias cdo="cd ~/git/github.com/ombulabs"
 alias cdf="cd ~/git/github.com/fastruby"
@@ -170,6 +177,7 @@ alias gdrive="cd /Volumes/GoogleDrive/My Drive"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Milnerton"
+
 
 # Source sensitive env
 source ~/.secrets.sh

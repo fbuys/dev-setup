@@ -143,6 +143,9 @@ require('packer').startup(function(use)
   -- add ii for managing indented parts
   use { 'michaeljsmith/vim-indent-object' }
 
+  -- Run your tests at the speed of thought
+  use { 'vim-test/vim-test' }
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then

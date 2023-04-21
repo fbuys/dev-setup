@@ -36,6 +36,7 @@
   :applications {
     :iterm ["com.googlecode.iterm2"]
     :evernote ["com.evernote.Evernote"]
+    :obsidian ["md.obsidian"]
   }
 
   :simlayers {
@@ -73,6 +74,12 @@
     {:des "Tap caps => ESC, Hold caps => CTRL"
      :rules [
        [:caps_lock :left_control [:iterm] {:alone :escape}]
+       [:caps_lock :left_control [:obsidian] {:alone :escape}]
+    ]}
+    {:des "Tap caps => ESC, Hold caps => CTRL"
+     :rules [
+       [:caps_lock :left_control [:iterm] {:alone :escape}]
+       [:caps_lock :left_control [:obsidian] {:alone :escape}]
     ]}
 
     ; ITERM
@@ -80,6 +87,8 @@
      :rules [
        [:s :right_shift [:iterm] {:alone :s}]
        [:a :left_option [:iterm] {:alone :a}]
+       [:s :right_shift [:obsidian] {:alone :s}]
+       [:a :left_option [:obsidian] {:alone :a}]
        [:right_gui :right_gui [:iterm] {:alone :return_or_enter}]
     ]}
 
