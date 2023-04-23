@@ -59,19 +59,12 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  -- pyright = {
-  --   python = {
-  --     analysis = {
-  --       extraPaths = { '~/.venv/nvim/bin/' }
-  --     }
-  --   }
+  --   python ={
+  --     host_python = "~/.venv/nvim/bin/",
+  --     default_venv_name = ".venv" -- For local venv
+  --   },
   -- },
-  pyright = {
-    python ={
-      host_python = "~/.venv/nvim/bin/",
-      default_venv_name = ".venv" -- For local venv
-    },
-  },
+  pylsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -79,8 +72,14 @@ local servers = {
     },
   },
   -- ruby_ls ={},
-  solargraph ={},
+  solargraph = {},
+  elixirls = {},
 }
+
+lsp.configure('solargraph', {
+  force_setup = true
+})
+
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -121,8 +120,8 @@ require("luasnip/loaders/from_vscode").lazy_load()
 cmp.setup {
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = 'symbol',       -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
     }),
   },
@@ -147,7 +146,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     -- go to previous placeholder in the snippet
     ['<C-k>'] = cmp.mapping(function(fallback)
@@ -156,7 +155,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
   },
   sources = {
     { name = "nvim_lsp" },
@@ -170,8 +169,8 @@ cmp.setup {
 }
 
 -- add rails snippets to ruby
-luasnip.filetype_extend("ruby", {"rails"})
-luasnip.filetype_extend("python", {"python"})
+luasnip.filetype_extend("ruby", { "rails" })
+luasnip.filetype_extend("python", { "python" })
 
 -- Own snippets
 local s = luasnip.snippet
@@ -186,11 +185,11 @@ luasnip.add_snippets("markdown", {
     -- prompt for project
     t("@"), i(1),
     -- linebreak
-    t({"", "============", ""}),
+    t({ "", "============", "" }),
     -- notes placeholder
     i(2),
     -- linebreak then [<start>-<stop>](<duration>)
-    t({"", "["}), i(3), t("-"), i(4), t("]("), i(5), t(")"),
+    t({ "", "[" }), i(3), t("-"), i(4), t("]("), i(5), t(")"),
   })
 })
 
@@ -199,7 +198,13 @@ lsp.setup()
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
 
+local conditional = function(fn)
+  local utils = require("null-ls.utils").make_conditional_utils()
+  return fn(utils)
+end
+
 null_ls.setup({
+  debug = true,
   on_attach = function(client, bufnr)
     null_opts.on_attach(client, bufnr)
     ---
@@ -209,33 +214,53 @@ null_ls.setup({
     local format_cmd = function(input)
       vim.lsp.buf.format({
         id = client.id,
-        timeout_ms = 5000,
+        timeout_ms = 10000,
         async = input.bang,
       })
     end
 
     local bufcmd = vim.api.nvim_buf_create_user_command
-      bufcmd(bufnr, 'NullFormat', format_cmd, {
-        bang = true,
-        range = true,
-        desc = 'Format using null-ls'
-      })
+    bufcmd(bufnr, 'NullFormat', format_cmd, {
+      bang = true,
+      range = true,
+      desc = 'Format using null-ls'
+    })
   end,
   sources = {
     -- Replace these with the tools you have installed
     -- null_ls.builtins.completion.spell,
     -- null_ls.builtins.completion.tags,
-    null_ls.builtins.diagnostics.rubocop,
-    null_ls.builtins.formatting.rubocop,
+    -- null_ls.builtins.diagnostics.rubocop,
+    -- null_ls.builtins.formatting.rubocop,
+    null_ls.builtins.diagnostics.credo,
+    null_ls.builtins.formatting.mix,
     null_ls.builtins.formatting.black,
+    conditional(function(utils)
+      return utils.root_has_file("Gemfile")
+          and null_ls.builtins.diagnostics.rubocop.with({
+            command = "bundle",
+            args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.diagnostics.rubocop._opts.args),
+          })
+          or (null_ls.builtins.diagnostics.rubocop)
+    end),
+    conditional(function(utils)
+      return utils.root_has_file("Gemfile")
+          and null_ls.builtins.formatting.rubocop.with({
+            command = "bundle",
+            args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.formatting.rubocop._opts.args),
+          })
+          or (null_ls.builtins.formatting.rubocop)
+    end),
   }
 })
 
 require("mason").setup()
 require("mason-null-ls").setup({
-    automatic_setup = true,
-    ensure_installed = { "spell", "rubocop", "black", "tags" },
-    -- ensure_installed = { "spell", "rubocop", "tags" },
+  automatic_setup = true,
+  ensure_installed = { "spell", "rubocop", "black", "tags", "elixirls" },
 })
 
-vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr>", { noremap = true, silent = true })    -- Trigger auto format
+vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr> ::NullFormat<cr>", { noremap = true, silent = true }) -- Trigger auto format
+-- vim.api.nvim_set_keymap("n", "<leader>f", "::NullFormat<cr>", { noremap = true, silent = true })    -- Trigger auto format
+-- Enable logging
+vim.lsp.set_log_level('debug')

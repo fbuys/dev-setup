@@ -70,22 +70,22 @@ require('packer').startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      { 'neovim/nvim-lspconfig' },           -- Required
+      { 'williamboman/mason.nvim' },         -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},         -- Required
-      {'hrsh7th/cmp-nvim-lsp'},     -- Required
-      {'hrsh7th/cmp-buffer'},       -- Optional
-      {'hrsh7th/cmp-path'},         -- Optional
-      {'f3fora/cmp-spell'},         -- Optional
-      {'saadparwaiz1/cmp_luasnip'}, -- Optional
-      {'hrsh7th/cmp-nvim-lua'},     -- Optional
-      { 'onsails/lspkind.nvim' },    -- icons next to autocomplete list items
+      { 'hrsh7th/nvim-cmp' },       -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },   -- Required
+      { 'hrsh7th/cmp-buffer' },     -- Optional
+      { 'hrsh7th/cmp-path' },       -- Optional
+      { 'f3fora/cmp-spell' },       -- Optional
+      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+      { 'hrsh7th/cmp-nvim-lua' },   -- Optional
+      { 'onsails/lspkind.nvim' },   -- icons next to autocomplete list items
       {
         'quangnguyen30192/cmp-nvim-tags',
         -- if you want the sources is available for some file types
@@ -95,21 +95,21 @@ require('packer').startup(function(use)
       },
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},             -- Required
-      {'rafamadriz/friendly-snippets'}, -- Optional
+      { 'L3MON4D3/LuaSnip' },           -- Required
+      { 'rafamadriz/friendly-snippets' }, -- Optional
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
 
       -- Additional diagnostics
-      {'jose-elias-alvarez/null-ls.nvim'},
-      {'jay-babu/mason-null-ls.nvim'},
+      { 'jose-elias-alvarez/null-ls.nvim' },
+      { 'jay-babu/mason-null-ls.nvim' },
     }
   }
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'          -- Detect tabstop and shiftwidth automatically
 
   -- Add/change/delete surrounding delimiter pairs
   use({
@@ -123,13 +123,13 @@ require('packer').startup(function(use)
   })
 
   -- Manage multiple terminal windows
-  use {"akinsho/toggleterm.nvim", tag = '*'}
+  use { "akinsho/toggleterm.nvim", tag = '*' }
 
   -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- Visualise and resolve merge conflicts
-  use {'akinsho/git-conflict.nvim', tag = "*"}
+  use { 'akinsho/git-conflict.nvim', tag = "*" }
 
   -- Jupyter
   use { "untitled-ai/jupyter_ascending.vim" }
