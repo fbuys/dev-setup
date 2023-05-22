@@ -146,6 +146,14 @@ require('packer').startup(function(use)
   -- Run your tests at the speed of thought
   use { 'vim-test/vim-test' }
 
+  -- LUA port of tpope's famous vim-unimpaired plugin
+  use { 'Tummetott/unimpaired.nvim',
+    config = function()
+        require('unimpaired').setup {
+            -- add any options here or leave empty
+        }
+    end
+  } 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
