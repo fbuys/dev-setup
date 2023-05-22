@@ -154,6 +154,16 @@ require('packer').startup(function(use)
         }
     end
   } 
+
+  -- Add color highlights to hex values
+  use { 'norcalli/nvim-colorizer.lua',
+    config = function()
+        require('colorizer').setup {
+            -- add any options here or leave empty
+        }
+    end
+  } 
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
