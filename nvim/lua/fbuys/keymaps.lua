@@ -48,3 +48,6 @@ keymap("v", "P", '"_dp', opts)
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Copy the current buffer's path to the clipboard
+keymap("n", "cp", ":let @+ = expand('%')<CR>", opts)
+
