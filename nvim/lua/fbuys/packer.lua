@@ -70,22 +70,22 @@ require('packer').startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },           -- Required
-      { 'williamboman/mason.nvim' },         -- Optional
+      { 'neovim/nvim-lspconfig' },             -- Required
+      { 'williamboman/mason.nvim' },           -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },       -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },   -- Required
-      { 'hrsh7th/cmp-buffer' },     -- Optional
-      { 'hrsh7th/cmp-path' },       -- Optional
-      { 'f3fora/cmp-spell' },       -- Optional
+      { 'hrsh7th/nvim-cmp' },         -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+      { 'hrsh7th/cmp-buffer' },       -- Optional
+      { 'hrsh7th/cmp-path' },         -- Optional
+      { 'f3fora/cmp-spell' },         -- Optional
       { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-      { 'hrsh7th/cmp-nvim-lua' },   -- Optional
-      { 'onsails/lspkind.nvim' },   -- icons next to autocomplete list items
+      { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+      { 'onsails/lspkind.nvim' },     -- icons next to autocomplete list items
       {
         'quangnguyen30192/cmp-nvim-tags',
         -- if you want the sources is available for some file types
@@ -95,7 +95,7 @@ require('packer').startup(function(use)
       },
 
       -- Snippets
-      { 'L3MON4D3/LuaSnip' },           -- Required
+      { 'L3MON4D3/LuaSnip' },             -- Required
       { 'rafamadriz/friendly-snippets' }, -- Optional
 
       -- Additional lua configuration, makes nvim stuff amazing
@@ -149,20 +149,34 @@ require('packer').startup(function(use)
   -- LUA port of tpope's famous vim-unimpaired plugin
   use { 'Tummetott/unimpaired.nvim',
     config = function()
-        require('unimpaired').setup {
-            -- add any options here or leave empty
-        }
+      require('unimpaired').setup {
+        -- add any options here or leave empty
+      }
     end
-  } 
+  }
 
   -- Add color highlights to hex values
   use { 'norcalli/nvim-colorizer.lua',
     config = function()
-        require('colorizer').setup {
-            -- add any options here or leave empty
-        }
+      require('colorizer').setup {
+        -- add any options here or leave empty
+      }
     end
-  } 
+  }
+
+  -- Show possible keybindings
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
