@@ -55,7 +55,6 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
@@ -74,6 +73,7 @@ local servers = {
   -- ruby_ls ={},
   solargraph = {},
   elixirls = {},
+  gopls = {},
 }
 
 lsp.configure('solargraph', {
@@ -251,13 +251,29 @@ null_ls.setup({
           })
           or (null_ls.builtins.formatting.rubocop)
     end),
+    -- GO lang
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.goimports_reviser,
   }
 })
 
 require("mason").setup()
 require("mason-null-ls").setup({
   automatic_setup = true,
-  ensure_installed = { "spell", "rubocop", "black", "tags", "elixirls" },
+  ensure_installed = {
+    "black",
+    "elixirls",
+    "gofumpt",
+    "goimports",
+    "goimports_reviser",
+    "golangci_lint",
+    "prettier",
+    "rubocop",
+    "spell",
+    "tags",
+  },
 })
 
 vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr> ::NullFormat<cr>", { noremap = true, silent = true }) -- Trigger auto format
