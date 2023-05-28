@@ -19,8 +19,7 @@ keymap("", "<Space>", "<Nop>", opts)                      -- Better user experie
 --   term_mode = "t",
 --   command_mode = "c",
 
--- [ NORMAL MODE ]
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)             -- open explorer
+keymap("n", "<leader>x", ":Lex 30<cr>", opts)             -- open explorer
 keymap("n", ",,", "<C-^>", opts)                          -- Alternate buffers
 
 -- Move line down
@@ -34,7 +33,6 @@ keymap("v", "˚", ":m '<-2<CR>gv=gv", opts)
 keymap("n", ";w", ":w<CR>", opts)                         -- Save
 keymap("n", ";q", ":q<CR>", opts) -- Quit
 keymap("n", ";wq", ":wq<CR>", opts) -- Save and quite
-keymap("n", "<leader>ho", ":nohlsearch<Bar>:echo<cr>", opts) -- turn off highlighting
 
 -- indentation
 keymap("v", "<", "<gv", opts)
@@ -51,3 +49,21 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Copy the current buffer's path to the clipboard
 keymap("n", "cp", ":let @+ = expand('%')<CR>", opts)
 
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+vim.keymap.set("n", "J", "mzJ`z")
+
+-- Move up and down but keep cursor at zz
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- Jump to search but keep cursor at zz
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Rename word under cursor
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

@@ -10,12 +10,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost packer.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost packer.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -65,27 +65,32 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  --- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },             -- Required
-      { 'williamboman/mason.nvim' },           -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+      {'neovim/nvim-lspconfig'},             -- Required
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },         -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-      { 'hrsh7th/cmp-buffer' },       -- Optional
-      { 'hrsh7th/cmp-path' },         -- Optional
       { 'f3fora/cmp-spell' },         -- Optional
-      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+      { 'hrsh7th/cmp-buffer' },       -- Optional
+      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
       { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+      { 'hrsh7th/cmp-path' },         -- Optional
+      { 'hrsh7th/nvim-cmp' },         -- Required
       { 'onsails/lspkind.nvim' },     -- icons next to autocomplete list items
+      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
       {
         'quangnguyen30192/cmp-nvim-tags',
         -- if you want the sources is available for some file types
@@ -106,6 +111,8 @@ require('packer').startup(function(use)
       { 'jay-babu/mason-null-ls.nvim' },
     }
   }
+
+
 
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
@@ -132,7 +139,7 @@ require('packer').startup(function(use)
   use { 'akinsho/git-conflict.nvim', tag = "*" }
 
   -- Jupyter
-  use { "untitled-ai/jupyter_ascending.vim" }
+  -- use { "untitled-ai/jupyter_ascending.vim" }
 
   -- Auto save after insert or text changes
   use "Pocco81/auto-save.nvim"
@@ -177,6 +184,9 @@ require('packer').startup(function(use)
       }
     end
   }
+
+  -- LSP formatting 
+ use "lukas-reineke/lsp-format.nvim"
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')

@@ -15,6 +15,7 @@ vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.opt.fileencoding = "utf-8"                  -- encoding
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.hlsearch = false                         -- highlight all matches
+vim.opt.incsearch = true                         -- highlight all matches
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.o.smartcase = true                          -- honour cße when /C or capital in search
 vim.o.breakindent = true                        -- Enable break indent
@@ -47,6 +48,7 @@ vim.opt.wildmode = "list:longest"               -- bash-like tab completion
 vim.opt.wrap = false                            -- display lines as one long line
 vim.opt.writebackup = false                     -- prevent overwriting changes made by another program
 vim.cmd "syntax enable"                         -- enable syntax highlighting
+vim.opt.shell = "/bin/zsh"
 
 -- Tabs and spaces
 -- vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation

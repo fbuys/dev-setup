@@ -32,6 +32,9 @@ vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch curren
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Ctrl-P search git files only' })
+vim.keymap.set('n', '<leader>ss', function()
+  builtin.grep_string({ search = vim.fn.input("Grep > ") });
+end, { desc = '[S]earch input [S]tring' })
 
 -- [LSP SETTINGS]
 vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = '[G]oto [R]eferences' })
