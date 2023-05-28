@@ -55,6 +55,7 @@ done
 # nvim setup
 mkdir_if_missing "$HOME/.config/nvim/lua/fbuys"
 symlink ./nvim/init.lua $HOME/.config/nvim
+symlink ./nvim/.luarc.json $HOME/.config/nvim
 
 for file in nvim/lua/fbuys/*; do
   symlink $file $HOME/.config/nvim/lua/fbuys

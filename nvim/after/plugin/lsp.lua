@@ -1,7 +1,29 @@
+
 -- Learn the keybindings, see :help lsp-zero-keybindings
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+-- make sure this servers are installed
+-- see :help lsp-zero.ensure_installed()
+lsp.ensure_installed({
+  'lua_ls',
+  'ruby_ls',
+})
+
+-- Setup lua_ls specifically for Neovim
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+
+
+--[[
+-- local lsp = require('lsp-zero')
+-- lsp.preset('recommended')
+
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
@@ -232,6 +254,9 @@ null_ls.setup({
     -- null_ls.builtins.completion.tags,
     -- null_ls.builtins.diagnostics.rubocop,
     -- null_ls.builtins.formatting.rubocop,
+    null_ls.builtins.formatting.prettier.with({
+      extra_filetypes = { "ruby" }
+    }),
     null_ls.builtins.diagnostics.credo,
     null_ls.builtins.formatting.mix,
     null_ls.builtins.formatting.black,
@@ -243,14 +268,14 @@ null_ls.setup({
           })
           or (null_ls.builtins.diagnostics.rubocop)
     end),
-    conditional(function(utils)
-      return utils.root_has_file("Gemfile")
-          and null_ls.builtins.formatting.rubocop.with({
-            command = "bundle",
-            args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.formatting.rubocop._opts.args),
-          })
-          or (null_ls.builtins.formatting.rubocop)
-    end),
+    -- conditional(function(utils)
+    --   return utils.root_has_file("Gemfile")
+    --       and null_ls.builtins.formatting.rubocop.with({
+    --         command = "bundle",
+    --         args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.formatting.rubocop._opts.args),
+    --       })
+    --       or (null_ls.builtins.formatting.rubocop)
+    -- end),
     -- GO lang
     null_ls.builtins.formatting.gofumpt,
     null_ls.builtins.diagnostics.golangci_lint,
@@ -280,3 +305,4 @@ vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr> ::NullFormat<cr>"
 -- vim.api.nvim_set_keymap("n", "<leader>f", "::NullFormat<cr>", { noremap = true, silent = true })    -- Trigger auto format
 -- Enable logging
 vim.lsp.set_log_level('debug')
+--]]
