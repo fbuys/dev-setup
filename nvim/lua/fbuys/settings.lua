@@ -51,9 +51,9 @@ vim.cmd "syntax enable"                         -- enable syntax highlighting
 vim.opt.shell = "/bin/zsh"
 
 -- Tabs and spaces
--- vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
--- vim.opt.softtabstop = 4                         -- spaces per tab while editing
--- vim.opt.tabstop = 4                             -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
+vim.opt.softtabstop = 2                         -- spaces per tab while editing
+vim.opt.tabstop = 2                            -- insert 2 spaces for a tab
 --
 -- pip install pynvim neovim for python to work
 -- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
