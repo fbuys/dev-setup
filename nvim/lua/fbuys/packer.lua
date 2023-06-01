@@ -188,6 +188,8 @@ require('packer').startup(function(use)
   -- LSP formatting 
  use "lukas-reineke/lsp-format.nvim"
 
+   use 'ThePrimeagen/harpoon'
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
