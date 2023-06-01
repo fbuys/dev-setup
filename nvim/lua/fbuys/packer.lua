@@ -142,7 +142,7 @@ require('packer').startup(function(use)
   -- use { "untitled-ai/jupyter_ascending.vim" }
 
   -- Auto save after insert or text changes
-  use "Pocco81/auto-save.nvim"
+  -- use "Pocco81/auto-save.nvim"
 
   -- Add mapping for sorting for sorting a range of text
   use { 'christoomey/vim-sort-motion' }
@@ -185,8 +185,8 @@ require('packer').startup(function(use)
     end
   }
 
-  -- LSP formatting 
- use "lukas-reineke/lsp-format.nvim"
+    -- LSP formatting 
+   use "lukas-reineke/lsp-format.nvim"
 
    use 'ThePrimeagen/harpoon'
 
