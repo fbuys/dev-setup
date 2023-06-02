@@ -1,11 +1,16 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local actions = require('telescope.actions')
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ["<C-f>"] =actions.send_selected_to_qflist + actions.open_qflist, 
+      },
+      n = {
+        ["<C-f>"] =actions.send_selected_to_qflist + actions.open_qflist, 
       },
     },
   },
