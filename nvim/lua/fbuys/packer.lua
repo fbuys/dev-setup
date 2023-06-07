@@ -187,8 +187,9 @@ require('packer').startup(function(use)
     end
   }
 
-    -- LSP formatting 
-   use "lukas-reineke/lsp-format.nvim"
+  -- LSP formatting 
+  -- Removing it because it slows my editor down
+  -- use "lukas-reineke/lsp-format.nvim"
 
    use 'ThePrimeagen/harpoon'
 
