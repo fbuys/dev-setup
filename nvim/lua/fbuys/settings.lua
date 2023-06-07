@@ -57,4 +57,5 @@ vim.opt.tabstop = 2                            -- insert 2 spaces for a tab
 --
 -- pip install pynvim neovim for python to work
 -- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
-vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"
+-- vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"
+vim.g.python3_host_prog = "~/git/github.com/ombulabs/pecas-genie/venv/bin/python"

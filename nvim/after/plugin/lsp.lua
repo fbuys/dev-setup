@@ -38,6 +38,7 @@ end)
 lsp.ensure_installed({
   "elixirls",
   "lua_ls",
+  "pylsp", -- Add config so pylsp does not auto add flake8
   "ruby_ls",
 })
 

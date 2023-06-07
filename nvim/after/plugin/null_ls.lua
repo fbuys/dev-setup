@@ -1,14 +1,15 @@
 require("mason-null-ls").setup({
   automatic_setup = true,
   ensure_installed = {
+    "black",
     "credo",
+    "pyproject_flake8",
     "goimports",
     "goimports_reviser",
     "golangci_lint",
     "mix",
     "prettier",
     "rubocop",
-    -- "black",
     -- "gofumpt",
     -- "spell",
     -- "tags",
@@ -51,6 +52,7 @@ null_ls.setup({
   on_attach = on_attach,
   sources = {
     -- Formatting
+    null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.gofumpt,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.goimports_reviser,
@@ -59,9 +61,15 @@ null_ls.setup({
       extra_filetypes = { "ruby" }
     }),
     -- Diagnostics
+    ---- Elixir
     null_ls.builtins.diagnostics.credo,
+    ---- Go
     null_ls.builtins.diagnostics.golangci_lint,
+    ---- Ruby
     null_ls.builtins.diagnostics.rubocop,
+    ---- Python
+		null_ls.builtins.diagnostics.pyproject_flake8,
+    null_ls.builtins.diagnostics.pylint,
   },
 })
 
