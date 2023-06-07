@@ -98,9 +98,9 @@ luasnip.add_snippets("markdown", {
   -- trigger is `timeentry`, expands into time entry with project, notes, start time, stop time and duration
   s("timeentry", {
     -- prompt for project
-    t("@"), i(1),
+    t("# @"), i(1),
     -- linebreak
-    t({ "", "============", "" }),
+    -- t({ "", "============", "" }),
     -- notes placeholder
     i(2),
     -- linebreak then [<start>-<stop>](<duration>)
