@@ -18,33 +18,46 @@ require("mason-null-ls").setup({
 
 local null_ls = require('null-ls')
 
-local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
-end
+-- local lsp_formatting = function(bufnr)
+--     vim.lsp.buf.format({
+--         filter = function(client)
+--             -- apply whatever logic you want (in this example, we'll only use null-ls)
+--             return client.name == "null-ls"
+--         end,
+--         bufnr = bufnr,
+--     })
+-- end
 
 -- if you want to set up formatting on save, you can use this as a callback
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- add to your shared on_attach callback
 local on_attach = function(client, bufnr)
   if client.supports_method("textDocument/formatting") then
-    -- Removing auto-format for now.
     -- require("lsp-format").on_attach(client)
+    local format_cmd = function(input)
+      vim.lsp.buf.format({
+        id = client.id,
+        timeout_ms = 10000, -- has no affect when async is true
+        async = input.bang,
+      })
+    end
 
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
+    local bufcmd = vim.api.nvim_buf_create_user_command
+    bufcmd(bufnr, 'NullFormat', format_cmd, {
+      bang = true,
+      range = true,
+      desc = 'Format using null-ls'
     })
+
+    -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   group = augroup,
+    --   buffer = bufnr,
+    --   callback = function()
+    --     lsp_formatting(bufnr)
+    --   end,
+    -- })
   end
 end
 
