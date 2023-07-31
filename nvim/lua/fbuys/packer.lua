@@ -80,7 +80,7 @@ require('packer').startup(function(use)
       {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      {'j-hui/fidget.nvim', tag = 'legacy'},
 
       -- Autocompletion
       { 'f3fora/cmp-spell' },         -- Optional
@@ -109,8 +109,12 @@ require('packer').startup(function(use)
       -- Additional diagnostics
       { 'jose-elias-alvarez/null-ls.nvim' },
       { 'jay-babu/mason-null-ls.nvim' },
+      { 'mfussenegger/nvim-lint' },
     }
   }
+
+  -- Neovim plugin for Elixir
+  use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" }})
 
 
 
@@ -144,7 +148,7 @@ require('packer').startup(function(use)
   -- use { "untitled-ai/jupyter_ascending.vim" }
 
   -- Auto save after insert or text changes
-  -- use "Pocco81/auto-save.nvim"
+  use "Pocco81/auto-save.nvim"
 
   -- Add mapping for sorting for sorting a range of text
   use { 'christoomey/vim-sort-motion' }
@@ -187,11 +191,14 @@ require('packer').startup(function(use)
   --   end
   -- }
 
-  -- LSP formatting 
-  -- Removing it because it slows my editor down
-  -- use "lukas-reineke/lsp-format.nvim"
+  -- Formatting
+  -- async fast minimalist plugin make format easy in neovim
+  use "nvimdev/guard.nvim"
 
-   use 'ThePrimeagen/harpoon'
+  use 'ThePrimeagen/harpoon'
+
+  -- Open file or project in GitHub
+  use "almo7aya/openingh.nvim"
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -203,3 +210,6 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+vim.api.nvim_set_keymap("n", "<Leader>ps", ":PackerSync <CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("v", "<Leader>ps", ":PackerSync <CR>", { silent = true, noremap = true })

@@ -1,13 +1,18 @@
 # PATH Export
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/Library/Python/3.9/bin:$HOME/git/github.com/goabstract/projects/stable/ops/bin:$PATH"
+# /usr/local/opt/php@7.4/bin
+# /usr/local/opt/php@7.4/sbin
 path=(
   $path
   $HOME/.yarn/bin
   $HOME/.config/yarn/global/node_modules/.bin
-  /usr/local/opt/php@7.4/bin
-  /usr/local/opt/php@7.4/sbin
   $HOME/.virtualenvs/
+  $HOME/.composer/vendor/bin
+  $HOME/Library/Application\ Support/multipass/bin
   )
+
+  # Multipass aliases
+  # $HOME/Library/Application\ Support/multipass/bin
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -134,9 +139,12 @@ export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
 export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
 
 # for tinyhood setup
-export ES_HOME=$HOME/elasticsearch-5.4.3
-export JAVA_HOME=$HOME/.asdf/plugins/java/set-java-home.zsh
-export PATH=$ES_HOME/bin:$JAVA_HOME/bin:$PATH
+# export ES_HOME=$HOME/elasticsearch-5.4.3
+# export JAVA_HOME=$HOME/.asdf/plugins/java/set-java-home.zsh
+# export PATH=$ES_HOME/bin:$JAVA_HOME/bin:$PATH
+
+# For UpgradeJs setup
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Python config
 # Why: To install or upgrade a global package
@@ -181,6 +189,7 @@ alias gdrive="cd /Volumes/GoogleDrive/My Drive"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Milnerton"
+alias docker-compose="docker compose"
 
 
 # Source sensitive env

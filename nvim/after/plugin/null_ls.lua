@@ -9,7 +9,7 @@ require("mason-null-ls").setup({
     "golangci_lint",
     "mix",
     "prettier",
-    "rubocop",
+    -- "rubocop",
     -- "gofumpt",
     -- "spell",
     -- "tags",
@@ -62,7 +62,7 @@ local on_attach = function(client, bufnr)
 end
 
 null_ls.setup({
-  debug = true,
+  debug = false,
   on_attach = on_attach,
   sources = {
     -- Formatting
@@ -70,7 +70,9 @@ null_ls.setup({
     null_ls.builtins.formatting.gofumpt,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.goimports_reviser,
+    ---- Elixir
     null_ls.builtins.formatting.mix,
+    ---- Prettier
     null_ls.builtins.formatting.prettier.with({
       extra_filetypes = { "ruby" }
     }),
@@ -80,12 +82,16 @@ null_ls.setup({
     ---- Go
     null_ls.builtins.diagnostics.golangci_lint,
     ---- Ruby
-    null_ls.builtins.diagnostics.rubocop,
+    -- null_ls.builtins.diagnostics.rubocop,
     ---- Python
 		null_ls.builtins.diagnostics.pyproject_flake8,
     null_ls.builtins.diagnostics.pylint,
   },
 })
+
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>ff", ":NullFormat<CR>", opts)
+
 
 --[[
 local null_ls = require('null-ls')

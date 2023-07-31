@@ -3,7 +3,7 @@
 local lsp = require("lsp-zero").preset({})
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({ buffer = bufnr })
 
   local nmap = function(keys, func, desc)
     if desc then
@@ -22,7 +22,7 @@ lsp.on_attach(function(client, bufnr)
 
   -- See `:help K` for why this keymap
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+  nmap("<∂>", vim.lsp.buf.signature_help, "Signature Documentation") -- Alt+d = ∂
 
   -- Lesser used LSP functionality
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -33,6 +33,13 @@ lsp.on_attach(function(client, bufnr)
   end, "[W]orkspace [L]ist Folders")
 end)
 
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
+
 -- make sure this servers are installed
 -- see :help lsp-zero.ensure_installed()
 lsp.ensure_installed({
@@ -40,13 +47,23 @@ lsp.ensure_installed({
   "lua_ls",
   "pylsp", -- Add config so pylsp does not auto add flake8
   "ruby_ls",
+  "gopls",
 })
 
 -- Setup lua_ls specifically for Neovim
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
+-- lsp.skip_server_setup({ 'elixirls' })
+
 lsp.setup()
 
+-- require("elixir").setup({
+--   credo = {enable = true},
+--   elixirls = {enable = true},
+-- })
+
+-- Enable logging
+-- vim.lsp.set_log_level("debug")
 
 --[[
 -- (Optional) Configure lua language server for neovim
@@ -139,6 +156,4 @@ mason_lspconfig.setup_handlers {
 lsp.setup()
 vim.api.nvim_set_keymap("n", "<leader>f", "::LspZeroFormat<cr> ::NullFormat<cr>", { noremap = true, silent = true }) -- Trigger auto format
 -- vim.api.nvim_set_keymap("n", "<leader>f", "::NullFormat<cr>", { noremap = true, silent = true })    -- Trigger auto format
--- Enable logging
-vim.lsp.set_log_level("debug")
 --]]

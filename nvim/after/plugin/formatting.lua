@@ -1,3 +1,20 @@
+local ft = require('guard.filetype')
+
+-- use stylua to format lua files and no linter
+ft('ruby'):fmt('rubocop')
+
+-- call setup LAST
+require('guard').setup({
+    -- the only options for the setup function
+    fmt_on_save = false,
+    -- Use lsp if no formatter was defined for this filetype
+    lsp_as_default_formatter = false,
+})
+
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>GuardFmt<CR>", opts)
+vim.api.nvim_set_keymap("v", "<leader>gg", "<cmd>GuardFmt<CR>", opts)
+
 -- I don't want autoformating for now
 -- it slows my editor down.
 -- require("lsp-format").setup {}

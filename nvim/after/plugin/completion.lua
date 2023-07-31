@@ -101,8 +101,9 @@ luasnip.add_snippets("markdown", {
     t("# @"), i(1),
     -- linebreak
     -- t({ "", "============", "" }),
+    -- t({ "", "============", "" }),
     -- notes placeholder
-    i(2),
+    t({ "" }), i(2),
     -- linebreak then [<start>-<stop>](<duration>)
     t({ "", "[" }), i(3), t("-"), i(4), t("]("), i(5), t(")"),
   })
