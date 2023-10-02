@@ -1,7 +1,7 @@
 local ft = require('guard.filetype')
 
--- use stylua to format lua files and no linter
-ft('ruby'):fmt('rubocop')
+ft('ruby'):fmt('rubocop'):lint('rubocop')
+-- ft('python'):lint('pylint')
 
 -- call setup LAST
 require('guard').setup({

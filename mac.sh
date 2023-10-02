@@ -118,6 +118,18 @@ if [[ -d $dir ]]; then
   cd $script_dir
 fi
 
+# Symlink shell scripts
+scripts_directory="$HOME/.scripts"
+mkdir_if_missing $scripts_directory
+if [[ -d "$scripts_directory" ]]; then
+  for script_file in scripts/*; do
+    # Check if the file is a regular file and is executable
+    if [[ -f "$script_file" && -x "$script_file" ]]; then
+      symlink "$script_file" "$scripts_directory"
+    fi
+  done
+fi
+
 # Symlink git hooks
 dir=./.git_template/hooks
 hooks="ctags post-commit post-merge post-checkout post-rewrite"

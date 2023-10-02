@@ -6,9 +6,9 @@ path=(
   $path
   $HOME/.yarn/bin
   $HOME/.config/yarn/global/node_modules/.bin
-  $HOME/.virtualenvs/
+  $HOME/.venv/
   $HOME/.composer/vendor/bin
-  $HOME/Library/Application\ Support/multipass/bin
+  $HOME/.scripts
   )
 
   # Multipass aliases
@@ -189,8 +189,23 @@ alias gdrive="cd /Volumes/GoogleDrive/My Drive"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Milnerton"
-alias docker-compose="docker compose"
-
+# alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
 source ~/.secrets.sh
+
+# Source personal scripts
+# Specify the directory containing your scripts
+# script_directory="$HOME/.scripts"
+
+# Check if the directory exists
+# if [[ -d "$script_directory" ]]; then
+#     # Loop through the files in the directory
+#     for script_file in "$script_directory"/*; do
+#         # Check if the file is a regular file and is executable
+#         if [[ -f "$script_file" && -x "$script_file" ]]; then
+#             # Source the script
+#             source "$script_file"
+#         fi
+#     done
+# fi

@@ -84,7 +84,7 @@ null_ls.setup({
     ---- Ruby
     -- null_ls.builtins.diagnostics.rubocop,
     ---- Python
-		null_ls.builtins.diagnostics.pyproject_flake8,
+    null_ls.builtins.diagnostics.pyproject_flake8,
     null_ls.builtins.diagnostics.pylint,
   },
 })

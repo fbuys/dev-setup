@@ -121,6 +121,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth'          -- Detect tabstop and shiftwidth automatically
+  use 'adelarsq/vim-matchit'      -- extended matching for the % operator
 
   -- Add/change/delete surrounding delimiter pairs
   use({
