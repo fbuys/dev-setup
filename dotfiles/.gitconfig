@@ -12,7 +12,7 @@
 [merge]
   ff = only
 [push]
-  default = upstream
+  default = current
 [fetch]
   prune = true
 [gitsh "color"]

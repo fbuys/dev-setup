@@ -1,6 +1,8 @@
 local ft = require('guard.filetype')
 
 ft('ruby'):fmt('rubocop'):lint('rubocop')
+ft('javascript'):fmt('prettier'):lint('eslint')
+ft('html, json'):fmt('prettier')
 -- ft('python'):lint('pylint')
 
 -- call setup LAST

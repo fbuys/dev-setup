@@ -53,9 +53,10 @@ lsp.ensure_installed({
 -- Setup lua_ls specifically for Neovim
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
--- lsp.skip_server_setup({ 'elixirls' })
 
 lsp.setup()
+
+-- lsp.skip_server_setup({ 'elixirls' })
 
 -- require("elixir").setup({
 --   credo = {enable = true},

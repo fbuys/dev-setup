@@ -34,9 +34,10 @@
   ; To find the bundle id
   ;  osascript -e 'id of app "Some.app"'
   :applications {
-    :iterm ["com.googlecode.iterm2"]
     :evernote ["com.evernote.Evernote"]
+    :iterm ["com.googlecode.iterm2"]
     :obsidian ["md.obsidian"]
+    :vscode ["com.microsoft.VSCode"]
   }
 
   :simlayers {
@@ -75,11 +76,13 @@
      :rules [
        [:caps_lock :left_control [:iterm] {:alone :escape}]
        [:caps_lock :left_control [:obsidian] {:alone :escape}]
+       [:caps_lock :left_control [:vscode] {:alone :escape}]
     ]}
     {:des "Tap caps => ESC, Hold caps => CTRL"
      :rules [
        [:caps_lock :left_control [:iterm] {:alone :escape}]
        [:caps_lock :left_control [:obsidian] {:alone :escape}]
+       [:caps_lock :left_control [:vscode] {:alone :escape}]
     ]}
 
     ; ITERM
@@ -89,6 +92,8 @@
        [:a :left_option [:iterm] {:alone :a}]
        [:s :right_shift [:obsidian] {:alone :s}]
        [:a :left_option [:obsidian] {:alone :a}]
+       [:s :right_shift [:vscode] {:alone :s}]
+       [:a :left_option [:vscode] {:alone :a}]
        [:right_gui :right_gui [:iterm] {:alone :return_or_enter}]
     ]}
 

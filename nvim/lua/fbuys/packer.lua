@@ -194,9 +194,9 @@ require('packer').startup(function(use)
 
   -- Formatting
   -- async fast minimalist plugin make format easy in neovim
-  use "nvimdev/guard.nvim"
+  use { "nvimdev/guard.nvim", requires = { "nvimdev/guard-collection" } }
 
-  use 'ThePrimeagen/harpoon'
+  -- use 'ThePrimeagen/harpoon'
 
   -- Open file or project in GitHub
   use "almo7aya/openingh.nvim"

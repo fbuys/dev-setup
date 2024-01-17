@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+#
+# Based on scripts/cnra.sh
+# Here we install rails 7.1 with the minimal flag and postgresql by default.
+#
+cnra7mp() {
+  cnra myapp 7.1.0 --minimal -d=postgresql
+}
