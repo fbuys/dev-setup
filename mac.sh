@@ -202,6 +202,8 @@ if [[ ! -d $HOME/git/github.com/rose-pine ]]; then
   git clone git@github.com:rose-pine/iterm.git
   cd "$script_dir"
 fi
+# Fonts
+curl -LJO https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip
 
 # postgresql CLI tools
 if [[ ! -d /etc/paths.d ]]; then
