@@ -9,6 +9,7 @@ path=(
   $HOME/.venv/
   $HOME/.composer/vendor/bin
   $HOME/.scripts
+  /usr/local/opt/llvm/bin
   )
 
   # Multipass aliases
@@ -127,16 +128,16 @@ prompt pure
 export HOMEBREW_NO_ANALYTICS=1
 
 # Crystal Config
-export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+# export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
 
 # Android Config
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-export ANDROID_HOME=~/Library/Android/sdk/
-export PATH="$PATH:$ANDROID_HOME/platform-tools/"
+# export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+# export ANDROID_HOME=~/Library/Android/sdk/
+# export PATH="$PATH:$ANDROID_HOME/platform-tools/"
 
 # PHP config
-export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
-export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
+# export LDFLAGS="-L/usr/local/opt/php@7.4/lib"
+# export CPPFLAGS="-I/usr/local/opt/php@7.4/include"
 
 # for tinyhood setup
 # export ES_HOME=$HOME/elasticsearch-5.4.3
@@ -154,6 +155,9 @@ gpip(){
    PIP_REQUIRE_VIRTUALENV="0" python -m pip "$@"
 }
 
+# For asdf ruby
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 # GO lang setup
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true

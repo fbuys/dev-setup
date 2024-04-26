@@ -1,22 +1,22 @@
-require("mason-null-ls").setup({
-  automatic_setup = true,
-  ensure_installed = {
-    "black",
-    "credo",
-    "pyproject_flake8",
-    "goimports",
-    "goimports_reviser",
-    "golangci_lint",
-    "mix",
-    "prettier",
-    -- "rubocop",
-    -- "gofumpt",
-    -- "spell",
-    -- "tags",
-  },
-})
-
-local null_ls = require('null-ls')
+-- require("mason-null-ls").setup({
+--   automatic_setup = true,
+--   ensure_installed = {
+--     "black",
+--     "credo",
+--     "pyproject_flake8",
+--     "goimports",
+--     "goimports_reviser",
+--     "golangci_lint",
+--     "mix",
+--     "prettier",
+--     -- "rubocop",
+--     -- "gofumpt",
+--     -- "spell",
+--     -- "tags",
+--   },
+-- })
+--
+-- local null_ls = require('null-ls')
 
 -- local lsp_formatting = function(bufnr)
 --     vim.lsp.buf.format({
@@ -32,66 +32,66 @@ local null_ls = require('null-ls')
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- add to your shared on_attach callback
-local on_attach = function(client, bufnr)
-  if client.supports_method("textDocument/formatting") then
-    -- require("lsp-format").on_attach(client)
-    local format_cmd = function(input)
-      vim.lsp.buf.format({
-        id = client.id,
-        timeout_ms = 10000, -- has no affect when async is true
-        async = input.bang,
-      })
-    end
+-- local on_attach = function(client, bufnr)
+--   if client.supports_method("textDocument/formatting") then
+--     -- require("lsp-format").on_attach(client)
+--     local format_cmd = function(input)
+--       vim.lsp.buf.format({
+--         id = client.id,
+--         timeout_ms = 10000, -- has no affect when async is true
+--         async = input.bang,
+--       })
+--     end
+--
+--     local bufcmd = vim.api.nvim_buf_create_user_command
+--     bufcmd(bufnr, 'NullFormat', format_cmd, {
+--       bang = true,
+--       range = true,
+--       desc = 'Format using null-ls'
+--     })
+--
+--     -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+--     -- vim.api.nvim_create_autocmd("BufWritePre", {
+--     --   group = augroup,
+--     --   buffer = bufnr,
+--     --   callback = function()
+--     --     lsp_formatting(bufnr)
+--     --   end,
+--     -- })
+--   end
+-- end
 
-    local bufcmd = vim.api.nvim_buf_create_user_command
-    bufcmd(bufnr, 'NullFormat', format_cmd, {
-      bang = true,
-      range = true,
-      desc = 'Format using null-ls'
-    })
-
-    -- vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    -- vim.api.nvim_create_autocmd("BufWritePre", {
-    --   group = augroup,
-    --   buffer = bufnr,
-    --   callback = function()
-    --     lsp_formatting(bufnr)
-    --   end,
-    -- })
-  end
-end
-
-null_ls.setup({
-  debug = false,
-  on_attach = on_attach,
-  sources = {
-    -- Formatting
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.gofumpt,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.goimports_reviser,
-    ---- Elixir
-    null_ls.builtins.formatting.mix,
-    ---- Prettier
-    null_ls.builtins.formatting.prettier.with({
-      extra_filetypes = { "ruby" }
-    }),
-    -- Diagnostics
-    ---- Elixir
-    null_ls.builtins.diagnostics.credo,
-    ---- Go
-    null_ls.builtins.diagnostics.golangci_lint,
-    ---- Ruby
-    -- null_ls.builtins.diagnostics.rubocop,
-    ---- Python
-    null_ls.builtins.diagnostics.pyproject_flake8,
-    null_ls.builtins.diagnostics.pylint,
-  },
-})
-
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>ff", ":NullFormat<CR>", opts)
-
+-- null_ls.setup({
+--   debug = false,
+--   on_attach = on_attach,
+--   sources = {
+--     -- Formatting
+--     null_ls.builtins.formatting.black,
+--     null_ls.builtins.formatting.gofumpt,
+--     null_ls.builtins.formatting.goimports,
+--     null_ls.builtins.formatting.goimports_reviser,
+--     ---- Elixir
+--     null_ls.builtins.formatting.mix,
+--     ---- Prettier
+--     null_ls.builtins.formatting.prettier.with({
+--       extra_filetypes = { "ruby" }
+--     }),
+--     -- Diagnostics
+--     ---- Elixir
+--     null_ls.builtins.diagnostics.credo,
+--     ---- Go
+--     null_ls.builtins.diagnostics.golangci_lint,
+--     ---- Ruby
+--     -- null_ls.builtins.diagnostics.rubocop,
+--     ---- Python
+--     null_ls.builtins.diagnostics.pyproject_flake8,
+--     null_ls.builtins.diagnostics.pylint,
+--   },
+-- })
+--
+-- local opts = { noremap = true, silent = true }
+-- vim.api.nvim_set_keymap("n", "<leader>ff", ":NullFormat<CR>", opts)
+--
 
 --[[
 local null_ls = require('null-ls')

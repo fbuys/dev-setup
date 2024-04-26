@@ -19,7 +19,6 @@ vim.opt.incsearch = true                         -- highlight all matches
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.o.smartcase = true                          -- honour cße when /C or capital in search
 vim.o.breakindent = true                        -- Enable break indent
-vim.cmd [[colorscheme dracula]]                 -- Set colorscheme
 vim.opt.iskeyword:append "-"                    -- words with - treated as one word
 vim.opt.list = true                             -- show whitespace
 vim.wo.number = true                            -- Make line numbers default
@@ -54,6 +53,18 @@ vim.opt.shell = "/bin/zsh"
 vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
 vim.opt.softtabstop = 2                         -- spaces per tab while editing
 vim.opt.tabstop = 2                            -- insert 2 spaces for a tab
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
 --
 -- pip install pynvim neovim for python to work
 -- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"

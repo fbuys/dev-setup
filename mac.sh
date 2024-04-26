@@ -29,7 +29,7 @@ symlink() {
 
 if ! command -v brew &>/dev/null; then
   println "The missing package manager for OS X"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   if [ ! -f "$HOME/.bashrc" ]; then
     touch $HOME/.bashrc
@@ -44,6 +44,15 @@ else
   println "Homebrew already installed. Skipping..."
 fi
 
+# Brew
+if [[ ! -z "${UPGRADE_BREW}" ]]
+then
+  println "Updating Homebrew formulas..."
+  brew update
+  brew upgrade
+  brew bundle --file $script_dir/BrewFile
+fi
+
 new_directories="$HOME/.bin $HOME/.git_template/hooks $HOME/.config/ctags $HOME/.config/pip"
 for dir in "$new_directories"; do
   if [[ ! -d $dir ]]; then
@@ -53,19 +62,26 @@ for dir in "$new_directories"; do
 done
 
 # nvim setup
-mkdir_if_missing "$HOME/.config/nvim/lua/fbuys"
+mkdir_if_missing "$HOME/.config/nvim/lua/fbuys/plugins"
 symlink ./nvim/init.lua $HOME/.config/nvim
 symlink ./nvim/.luarc.json $HOME/.config/nvim
 
 for file in nvim/lua/fbuys/*; do
   symlink $file $HOME/.config/nvim/lua/fbuys
 done
+for file in nvim/lua/fbuys/plugins/*; do
+  symlink $file $HOME/.config/nvim/lua/fbuys/plugins
+done
 
 # nvim plugins config
-mkdir_if_missing "$HOME/.config/nvim/after/plugin"
-for file in nvim/after/plugin/*; do
-  symlink $file $HOME/.config/nvim/after/plugin
-done
+# mkdir_if_missing "$HOME/.config/nvim/after/plugin"
+# for file in nvim/after/plugin/*; do
+#   symlink $file $HOME/.config/nvim/after/plugin
+# done
+
+# Clone Tmux Plugin Manager
+# See: https://github.com/tmux-plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Symlink dotfiles
 dir=./dotfiles
@@ -146,15 +162,6 @@ then
   done
 fi
 
-# Brew
-if [[ ! -z "${UPGRADE_BREW}" ]]
-then
-  println "Updating Homebrew formulas..."
-  brew update
-  brew upgrade
-  brew bundle --file $script_dir/BrewFile
-fi
-
 if [[ ! -z "${WITH_ASDF}" ]]
 then
 # asdf  plugins
@@ -181,17 +188,23 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing oh my zshell..."
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/.
-  touch $home/.secrets.sh
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  touch $HOME/.secrets.sh
 fi
 
 if [[ ! -d $HOME/git/github.com/dracula ]]; then
-  mkdir - $HOME/git/github.com/dracula && cd $_
+  mkdir -p $HOME/git/github.com/dracula && cd $_
   git clone https://github.com/dracula/iterm.git
   cd "$script_dir"
 fi
-
-
+if [[ ! -d $HOME/git/github.com/rose-pine ]]; then
+  mkdir -p $HOME/git/github.com/rose-pine && cd $_
+  git clone git@github.com:rose-pine/iterm.git
+  cd "$script_dir"
+fi
 
 # postgresql CLI tools
-sudo mkdir -p /etc/paths.d &&
-  echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+if [[ ! -d /etc/paths.d ]]; then
+  sudo mkdir -p /etc/paths.d &&
+    echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+fi
