@@ -192,7 +192,7 @@ alias notes="cd ~/Google\ Drive/notes"
 alias gdrive="cd /Volumes/GoogleDrive/My Drive"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
-alias ww="curl wttr.in/Milnerton"
+alias ww="curl wttr.in/Bothasig"
 # alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
