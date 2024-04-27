@@ -1,4 +1,13 @@
 -- Color theme
+
+function ColorMyPencils(color)
+  color = color or "rose-pine"
+  vim.cmd.colorscheme(color)
+
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" });
+end
+
 return {
   { -- Theme
   "rose-pine/neovim",
@@ -12,15 +21,11 @@ return {
         italic = true,
         transparency = true,
       },
+      highlight_groups = {
+        StatusLine = { fg = "pine", bg = "pine", blend = 10 },
+        StatusLineNC = { fg = "subtle", bg = "surface" },
+      },
     })
-
-    function ColorMyPencils(color)
-      color = color or "rose-pine"
-      vim.cmd.colorscheme(color)
-
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" });
-    end
 
     ColorMyPencils()
   end,

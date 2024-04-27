@@ -65,8 +65,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Statusline
+vim.opt.laststatus = 2 -- Or 3 for global statusline
+vim.opt.statusline = " %r%m %{FugitiveStatusline()} %t %= %l:%c %p%% %Y ♥ "
+
 --
 -- pip install pynvim neovim for python to work
 -- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
 -- vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"
 vim.g.python3_host_prog = "~/git/github.com/ombulabs/pecas-genie/venv/bin/python"
+
