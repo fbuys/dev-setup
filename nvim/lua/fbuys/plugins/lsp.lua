@@ -4,9 +4,9 @@ return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     dependencies = {
-      {'neovim/nvim-lspconfig'}, -- Quickstart configs for Nvim LSP
-      {'williamboman/mason-lspconfig.nvim'}, -- makes it easier to use lspconfig
-      { -- Easily install and manage LSP servers, DAP servers, linters, and formatters
+      { 'neovim/nvim-lspconfig' },           -- Quickstart configs for Nvim LSP
+      { 'williamboman/mason-lspconfig.nvim' }, -- makes it easier to use lspconfig
+      {                                      -- Easily install and manage LSP servers, DAP servers, linters, and formatters
         'williamboman/mason.nvim',
         init = function()
           pcall(vim.cmd, 'MasonUpdate')
@@ -26,14 +26,14 @@ return {
       lsp_zero.on_attach(function(client, bufnr)
         -- see :help lsp-zero-keybindings
         -- to learn the available actions
-        lsp_zero.default_keymaps({buffer = bufnr})
+        lsp_zero.default_keymaps({ buffer = bufnr })
       end)
 
       require('mason').setup({})
       require('mason-lspconfig').setup({
-        -- Replace the language servers listed here 
+        -- Replace the language servers listed here
         -- with the ones you want to install
-        ensure_installed = {'tsserver', 'ruby_lsp'},
+        ensure_installed = { 'tsserver', 'ruby_lsp' },
         handlers = {
           function(server_name)
             require('lspconfig')[server_name].setup({})

@@ -1,15 +1,15 @@
 return { -- async fast minimalist plugin make format easy in neovim
     'nvimdev/guard.nvim',
-    dependencies =  {
+    dependencies = {
         { "nvimdev/guard-collection" }, -- required by nvimdev/guard.nvim
     },
     config = function()
-
         local ft = require('guard.filetype')
 
         ft('ruby'):fmt('rubocop'):lint('rubocop')
         ft('javascript'):fmt('prettier'):lint('eslint')
         ft('html, json'):fmt('prettier')
+        ft('lua'):fmt('lsp'):append('stylua')
 
         -- call setup LAST
         require('guard').setup({
