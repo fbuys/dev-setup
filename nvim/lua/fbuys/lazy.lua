@@ -10,7 +10,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("fbuys.plugins")
+
+require("lazy").setup({
+  spec = "fbuys.plugins",
+  change_detection = { notify = false }
+})
 
 -- local plugins = {
 --   { "rose-pine/neovim", name = "rose-pine", priority = 999 }, -- Color theme
