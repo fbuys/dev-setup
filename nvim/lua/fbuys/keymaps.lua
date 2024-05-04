@@ -30,9 +30,9 @@ keymap("v", "∆", ":m '>+1<CR>gv=gv", opts)
 keymap("n", "˚", ":m .-2<CR>", opts)
 keymap("v", "˚", ":m '<-2<CR>gv=gv", opts)
 
-keymap("n", ";w", ":w<CR>", opts)                         -- Save
-keymap("n", ";q", ":q<CR>", opts) -- Quit
-keymap("n", ";wq", ":wq<CR>", opts) -- Save and quite
+keymap("n", "<leader>w", ":w<CR>", opts)                         -- Save
+keymap("n", "<leader>q", ":q<CR>", opts) -- Quit
+keymap("n", "<leader>wq", ":wq<CR>", opts) -- Save and quite
 
 -- indentation
 keymap("v", "<", "<gv", opts)
@@ -53,7 +53,7 @@ keymap("n", "cp", ":let @+ = expand('%')<CR>", opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
 
 vim.keymap.set("n", "J", "mzJ`z")
 
