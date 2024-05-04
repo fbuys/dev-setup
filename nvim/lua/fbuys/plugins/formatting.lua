@@ -10,6 +10,7 @@ return { -- async fast minimalist plugin make format easy in neovim
         ft('javascript'):fmt('prettier'):lint('eslint')
         ft('html, json'):fmt('prettier')
         ft('lua'):fmt('lsp'):append('stylua')
+        ft('markdown'):fmt('prettier')
 
         -- call setup LAST
         require('guard').setup({

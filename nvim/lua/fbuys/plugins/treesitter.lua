@@ -15,6 +15,7 @@ return {
           'ruby',
           'typescript',
           'vim',
+          'markdown',
           -- 'c',
           -- 'cpp',
           -- 'eex',
