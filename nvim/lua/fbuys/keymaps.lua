@@ -67,3 +67,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Rename word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Remoe current file and buffer
+vim.keymap.set("n", "<leader>rm", ":call delete(expand('%')) | bdelete!<CR>")
