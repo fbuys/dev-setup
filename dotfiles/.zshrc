@@ -194,6 +194,7 @@ alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
+alias fd='cd $(fzf | xargs dirname)'
 # alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
