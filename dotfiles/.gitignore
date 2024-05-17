@@ -20,6 +20,7 @@ tags
 tmp/**/*
 vim/view
 .project-notes*
+.project-notes/*
 .vimrc.local
 node_modules
 *.tags
