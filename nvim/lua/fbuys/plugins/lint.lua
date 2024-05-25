@@ -15,7 +15,8 @@ return {
   config = function()
     require("lint").linters_by_ft = {
       ruby = { "rubocop" },
-      lua = { "luacheck" },
+      -- lua = { "luacheck" },
+      -- javascript = { "eslint" },
     }
   end,
 }

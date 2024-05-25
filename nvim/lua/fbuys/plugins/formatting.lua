@@ -33,12 +33,21 @@ return { -- formatter plugin for Neovim
       lua = { "stylua" },
       javascript = { { "prettierd", "prettier" } }, -- contains sub-list
       ruby = { { "rubocop" } },
+      eruby = { "erb_formatter" },
       -- python = { "isort", "black" }, -- list exec
     },
     -- Set up format-on-save
     -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
     -- Customize formatters
     formatters = {
+      erb_formatter = {
+        command = "bundle",
+        args = {
+          "exec",
+          "erb-format",
+          "$FILENAME",
+        },
+      },
       rubocop = {
         command = "bundle",
         args = {
