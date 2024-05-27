@@ -84,7 +84,10 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(asdf bundler git gitfast rails zsh-autosuggestions)
+#
+# Plugins
+# z = Jump quickly to directories that you have visited "frecently." A native Zsh port of z.sh with added features.
+plugins=(asdf bundler git gitfast rails zsh-autosuggestions z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -185,7 +188,7 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim/init.lua"
 alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
 alias francois="cd ~/git/github.com/fbuys/francois"
-alias devsetup="cd ~/git/github.com/fbuys/dev-setup && nvim ."
+alias devsetup="cd ~/git/github.com/fbuys/dev-setup && nvim .nvim"
 alias budget="cd ~/git/gitlab.com/buysfran/happybudget-cli"
 alias notes="cd ~/Google\ Drive/notes"
 alias gdrive="cd /Volumes/GoogleDrive/My Drive"
