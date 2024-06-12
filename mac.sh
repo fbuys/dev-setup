@@ -30,6 +30,10 @@ symlink() {
 if ! command -v brew &>/dev/null; then
   println "The missing package manager for OS X"
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # ==> Next steps:
+  # - Run these two commands in your terminal to add Homebrew to your PATH:
+  #  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/ombulabs/.zprofile
+  #  eval "$(/opt/homebrew/bin/brew shellenv)"
 
   if [ ! -f "$HOME/.bashrc" ]; then
     touch $HOME/.bashrc
@@ -176,8 +180,8 @@ yarn config set prefix ~/.yarn # To make sure yarn packages are globally accessi
 asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf install ruby latest
 
-asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
-asdf install crystal latest
+# asdf plugin-add crystal https://github.com/asdf-community/asdf-crystal.git
+# asdf install crystal latest
 
 asdf plugin add python
 asdf install python latest
@@ -187,23 +191,25 @@ fi
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   println "Installing oh my zshell..."
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/.
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   touch $HOME/.secrets.sh
+  mkdir_if_missing "$HOME/.zsh"
+  mkdir -p "$HOME/.zsh"
+  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
-if [[ ! -d $HOME/git/github.com/dracula ]]; then
-  mkdir -p $HOME/git/github.com/dracula && cd $_
-  git clone https://github.com/dracula/iterm.git
-  cd "$script_dir"
-fi
+# if [[ ! -d $HOME/git/github.com/dracula ]]; then
+#   mkdir -p $HOME/git/github.com/dracula && cd $_
+#   git clone https://github.com/dracula/iterm.git
+#   cd "$script_dir"
+# fi
 if [[ ! -d $HOME/git/github.com/rose-pine ]]; then
   mkdir -p $HOME/git/github.com/rose-pine && cd $_
   git clone git@github.com:rose-pine/iterm.git
   cd "$script_dir"
 fi
 # Fonts
-curl -LJO https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip
+# curl -LJO https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip
 
 # postgresql CLI tools
 if [[ ! -d /etc/paths.d ]]; then
@@ -212,4 +218,4 @@ if [[ ! -d /etc/paths.d ]]; then
 fi
 
 # Run karabiner
-goku
+# goku

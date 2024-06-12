@@ -5,12 +5,12 @@
 
 # apps
 # cask "firefox", usualy manually installed
-cask "google-chrome"
-cask "spotify"
+#cask "google-chrome"
+#cask "spotify"
 cask "discord"
 cask "google-drive"
 # brew "gopass"
-# cask "slack"
+cask "slack"
 
 # dev
 brew "curl"
@@ -42,18 +42,19 @@ brew "openssl@1.1"
 brew "readline"
 brew "libyaml"
 brew "gmp"
+brew "zlib"
+brew "libffi"
 
 # postgresql
-cask "postgres-unofficial"
+# cask "postgres-unofficial"
  
 # redis
 brew "redis"
 
 # terminal
 cask "iterm2"
-brew "zsh-completions"
 brew "tmux"
-brew "tmux-mem-cpu-load"
+# brew "tmux-mem-cpu-load"
 tap "homebrew/cask-fonts"
 cask "font-fantasque-sans-mono-nerd-font"
 cask "font-iosevka-nerd-font"
