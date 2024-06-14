@@ -1,0 +1,104 @@
+
+(defcfg
+  ;; For MacOS
+  input  (iokit-name)
+  output (kext)
+
+  ;; Comment this if you want unhandled events not to be emitted
+  fallthrough true
+
+  ;; Set this to false to disable any command-execution in KMonad
+  allow-cmd true
+)
+
+
+#| --------------------------------------------------------------------------
+                      Necessary: at least 1 `defsrc` block
+  -------------------------------------------------------------------------- |#
+
+;; Apple/Mac Keymap
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft `    z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+
+#| --------------------------------------------------------------------------
+                        Optional : `defalias` statements
+  -------------------------------------------------------------------------- |#
+
+;; Layers
+
+;; (defalias nav (layer-toggle navigation-layer))
+
+;; Below, I use `around' to compose `layer-toggle' with `fn' (instead
+;; of using `layer-toggle' directly) so that the `fn' keypress
+;; actually gets emitted. This matters when using an application that
+;; can use `fn' as a modifier (like Emacs).
+(defalias fn (around (layer-toggle function) fn))
+
+(defalias ehc (tap-hold-next 300 esc lctl)) ;; tap = esc, hold = left control
+(defalias shs (tap-hold-next 300 s lsft)) ;; tap = s, hold = left shift
+(defalias aha (tap-hold-next 300 a lalt)) ;; tap = a, hold = left alt
+(defalias tmx (tap-hold-next 300 C-a ralt))   ;; tap = ctrl+a (tmux leader), hold = right alt
+(defalias nav (tap-hold-next 300 q (layer-toggle navigation-layer)))   ;; tap = q, hold = toggle navigation-layer
+
+#| --------------------------------------------------------------------------
+                     Necessary: at least 1 `deflayer` block
+
+  1. Any keycode evaluates to a button that, on press, emits the press of that
+     keycode, and on release, emits the release of that keycode. Just a 'normal'
+     button. The exception is '\', which gets used as an escape character. Use
+     '\\' instead. Other characters that need to be escaped to match the literal
+     character are '(', ')', and '_'.
+
+  2. An @-prefixed name evaluates to an alias lookup. We named two buttons in
+     the `defalias` block above, we could now refer to these buttons using
+     `@num` and `@kil`. This is also why we only use alias-names no longer than
+     3 characters in this tutorial. Also, note that we are already referencing
+     some aliases that have not yet been defined, this is not an issue.
+
+  3. The '_' character evaluates to transparent. I.e. no handler for that
+     key-event in this layer, causing this event to be handed down the layer
+     stack to perhaps be handled by the next layer.
+
+  4. The 'XX' character evaluates to blocked. I.e. no action bound to that
+     key-event in this layer, but do actually catch event, preventing any
+     underlying layer from handling it.
+
+  Finally, it is important to note that the *first* `deflayer` statement in a
+  KMonad config will be the layer that is active when KMonad starts up.
+
+  -------------------------------------------------------------------------- |#
+
+(deflayer default
+  caps    brdn brup lp   mctl bldn blup prev pp   next mute vold volu
+  _     _     _     _    _    _    _      _    _    _    _    _    _    _
+  _     @nav  _     _    _    _    _      _    _    _    _    _    _    _
+  @ehc  @aha  @shs  _    _    _    _      _    _    _    _    _    _
+  _     _     _     _    _    _    _      _    _    _    _    _    _    _
+  @fn  _      _     _              _              _    @tmx    _    _    _
+)
+
+(deflayer function
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    del
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer navigation-layer
+  _     _     _     _    _    _    _    _    _    _    _    _    _
+  _     _     _     _    _    _    _    _    _    _    _    _    _    _
+  _     _     _     _    _    _    _    _    _    _    _    _    _    _
+  _     _     _     _    _    _    left    down    up    right    _    _    _
+  _     _     _     _    _    _    _    _    _    _    _    _    _    _
+  _     _     _     _              _              _    _    _    _    _
+)

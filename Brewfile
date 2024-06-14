@@ -44,6 +44,7 @@ brew "libyaml"
 brew "gmp"
 brew "zlib"
 brew "libffi"
+# brew "gcc"
 
 # postgresql
 # cask "postgres-unofficial"

@@ -1,21 +1,42 @@
+# On macOS, starting a Bash or Zsh shell automatically calls a utility called path_helper.
+# path_helper can rearrange items in PATH (and MANPATH), causing inconsistent behavior for
+# tools that require specific ordering. To workaround this, asdf on macOS defaults to
+# forcily adding its PATH-entries to the front (taking highest priority). This is
+# controllable with the ASDF_FORCE_PREPEND variable.
+# See: https://asdf-vm.com/guide/getting-started.html
+# export ASDF_FORCE_PREPEND="no"
+
 # PATH Export
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/Library/Python/3.9/bin:$HOME/git/github.com/goabstract/projects/stable/ops/bin:$PATH"
 # /usr/local/opt/php@7.4/bin
 # /usr/local/opt/php@7.4/sbin
+# path=(
+#   $path
+#   $HOME/.yarn/bin
+#   $HOME/.config/yarn/global/node_modules/.bin
+#   $HOME/.venv/
+#   $HOME/.composer/vendor/bin
+#   $HOME/.scripts
+#   $HOME/.local/bin/
+#   /usr/local/opt/llvm/bin
+# )
 path=(
   $path
-  $HOME/.yarn/bin
-  $HOME/.config/yarn/global/node_modules/.bin
   $HOME/.venv/
-  $HOME/.composer/vendor/bin
   $HOME/.scripts
-  /usr/local/opt/llvm/bin
-  )
+  $HOME/.local/bin/
+  /Applications/Postgres.app/Contents/Versions/latest/bin # for postress app
+)
 
   # Multipass aliases
   # $HOME/Library/Application\ Support/multipass/bin
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Could not get pure prompt to load
+# See: https://github.com/sindresorhus/pure/issues/584
+# See: https://github.com/sindresorhus/pure
+fpath+=($HOME/.zsh/pure)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -99,6 +120,7 @@ source $ZSH/oh-my-zsh.sh
 # particular shell function). $fpath should not be empty for this to work.
 for func in $^fpath/*(N-.x:t); autoload $func
 
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -159,8 +181,37 @@ gpip(){
 }
 
 # For asdf ruby
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# On intel chip
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export CPPFLAGS="-I/usr/local/opt/llvm/include"
+#
+# On M3 chip, asdf install ruby latest
+# export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@3) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-gdbm-dir=$(brew --prefix gdbm)"
+# export CFLAGS="-Wno-error=implicit-function-declaration"
+# Older ruby version on M Chip
+#
+# # For asdf install ruby 2.6.8
+export optflags="-Wno-error=implicit-function-declaration"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig /opt/homebrew/opt/openssl@1.1/pkgconfig"
+
+# libpq is keg-only, which means it was not symlinked into /opt/homebrew,
+# because conflicts with postgres formula.
+#
+# If you need to have libpq first in your PATH, run:
+#   echo 'export PATH="/opt/homebrew/opt/libpq/bin:$PATH"' >> ~/.zshrc
+#
+# For compilers to find libpq you may need to set:
+#   export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+#   export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+#
+# For pkg-config to find libpq you may need to set:
+#   export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+
+
+
 
 # GO lang setup
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
@@ -188,7 +239,7 @@ alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.config/nvim/init.lua"
 alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
 alias francois="cd ~/git/github.com/fbuys/francois"
-alias devsetup="cd ~/git/github.com/fbuys/dev-setup && nvim .nvim"
+alias devsetup="cd ~/git/github.com/fbuys/dev-setup && nvim ."
 alias budget="cd ~/git/gitlab.com/buysfran/happybudget-cli"
 alias notes="cd ~/Google\ Drive/notes"
 alias gdrive="cd /Volumes/GoogleDrive/My Drive"
@@ -196,11 +247,12 @@ alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
+alias modkb="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
 alias fd='cd $(fzf | xargs dirname)'
 # alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
-source ~/.secrets.sh
+# source ~/.secrets.sh
 
 # Source personal scripts
 # Specify the directory containing your scripts
