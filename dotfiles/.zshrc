@@ -257,6 +257,7 @@ alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
 alias modkb="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
+alias modkb2="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
 # alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
