@@ -141,9 +141,10 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- Visualise and resolve merge conflicts
-  use { 'akinsho/git-conflict.nvim', tag = "*", config = function ()
-    require('git-conflict').setup()
-  end}
+  -- Causes: Vim:E903: Process failed to start: too many open files
+  -- use { 'akinsho/git-conflict.nvim', tag = "*", config = function ()
+  --   require('git-conflict').setup()
+  -- end}
 
   -- Jupyter
   -- use { "untitled-ai/jupyter_ascending.vim" }

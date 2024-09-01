@@ -20,6 +20,7 @@ return {
       }
     },
     { 'rafamadriz/friendly-snippets' }, -- Set of preconfigured snippets for different languages.
+    { 'github/copilot.vim' }, -- GitHub Copilot
   },
   config = function ()
     -- nvim-cmp setup
@@ -129,5 +130,20 @@ return {
         -- t({ "" }), i(2),
       })
     })
+
+    -- If you'd rather use a key that isn't <Tab>, define an <expr> map that calls
+    -- copilot#Accept().  We will use right arrow
+    vim.keymap.set('i', '<Right>', 'copilot#Accept("\\<CR>")', {
+      expr = true,
+      replace_keycodes = false
+    })
+    vim.g.copilot_no_tab_map = true
+  -- Note that M- (a.k.a. meta or alt) maps are highly dependent on your terminal
+  -- to function correctly and may be unsupported with your setup.  As an
+  -- alternative, you can create your own versions that invoke the <Plug> maps
+  -- instead.
+    vim.keymap.set('i', '<Down>', '<Plug>(copilot-next)')
+    vim.keymap.set('i', '<Up>', '<Plug>(copilot-previous)')
+    vim.keymap.set('i', '¬', '<Plug>(copilot-accept-word)')
   end,
 }

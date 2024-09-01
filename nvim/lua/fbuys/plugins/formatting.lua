@@ -30,7 +30,7 @@ return { -- formatter plugin for Neovim
     -- Conform will run multiple (a list of) formatters sequentially
     -- Use a sub-list to run only the first available formatter
     formatters_by_ft = {
-      lua = { "stylua" },
+      -- lua = { "stylua" },
       javascript = { { "prettierd", "prettier" } }, -- contains sub-list
       ruby = { { "rubocop" } },
       eruby = { "erb_formatter" },

@@ -33,6 +33,7 @@ keymap("v", "˚", ":m '<-2<CR>gv=gv", opts)
 keymap("n", "<leader>w", ":w<CR>", opts)                         -- Save
 keymap("n", "<leader>q", ":q<CR>", opts) -- Quit
 keymap("n", "<leader>wq", ":wq<CR>", opts) -- Save and quite
+keymap("n", "<leader>qq", ":qa<CR>", opts) -- Quite all
 
 -- indentation
 keymap("v", "<", "<gv", opts)

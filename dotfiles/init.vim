@@ -204,10 +204,12 @@ nnoremap gX :silent :execute
 " Use  for saving, also in Insert mode
 noremap <localleader>w :w<CR>
 noremap <localleader>wq :wq<CR>
-noremap <localleader>q :q<CR>
+noremap <localleader>qa :qa<CR>
+noremap <localleader>z :q<CR>
 inoremap <localleader>w <Esc>:w<CR>a
 inoremap <localleader>wq <Esc>:wq<CR>a
-inoremap <localleader>q <Esc>:q
+inoremap <localleader>q <Esc>:q<CR>
+inoremap <localleader>z <Esc>:qa<CR>
 
 " Fuzzy Finder
 set rtp+=~/.fzf

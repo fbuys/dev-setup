@@ -42,11 +42,13 @@
 ;; can use `fn' as a modifier (like Emacs).
 (defalias fn (around (layer-toggle function) fn))
 
-(defalias ehc (tap-hold-next 300 esc lctl)) ;; tap = esc, hold = left control
-(defalias shs (tap-hold-next 300 s lsft)) ;; tap = s, hold = left shift
-(defalias aha (tap-hold-next 300 a lalt)) ;; tap = a, hold = left alt
-(defalias tmx (tap-hold-next 300 C-a ralt))   ;; tap = ctrl+a (tmux leader), hold = right alt
-(defalias nav (tap-hold-next 300 q (layer-toggle navigation-layer)))   ;; tap = q, hold = toggle navigation-layer
+(defalias ehc (tap-hold-next 400 esc lctl)) ;; tap = esc, hold = left control
+(defalias shs (tap-hold-next 400 s lsft)) ;; tap = s, hold = left shift
+(defalias aha (tap-hold-next 400 a lalt)) ;; tap = a, hold = left alt
+;; (defalias tmx (tap-hold-next 300 C-a ralt))   ;; tap = ctrl+a (tmux leader), hold = right alt
+;; (defalias tmx (tap-hold-next 400 b C-a))   ;; tap = b, hold = ctrl+a (tmux leader)
+(defalias tmx (multi-tap 300 ` 300 C-a `))   ;; tap = b, tap x 2 = ctrl+a (tmux leader), tap x 3 = b
+(defalias nav (tap-hold-next 500 q (layer-toggle navigation-layer)))   ;; tap = q, hold = toggle navigation-layer
 
 #| --------------------------------------------------------------------------
                      Necessary: at least 1 `deflayer` block
@@ -81,8 +83,8 @@
   _     _     _     _    _    _    _      _    _    _    _    _    _    _
   _     @nav  _     _    _    _    _      _    _    _    _    _    _    _
   @ehc  @aha  @shs  _    _    _    _      _    _    _    _    _    _
-  _     _     _     _    _    _    _      _    _    _    _    _    _    _
-  @fn  _      _     _              _              _    @tmx    _    _    _
+  _    _      _     _    _    _    _      _    _    _    _    _    _    _
+  @fn  _      _     _              _              @tmx   _    _    _    _
 )
 
 (deflayer function

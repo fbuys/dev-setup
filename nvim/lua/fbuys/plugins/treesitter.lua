@@ -11,11 +11,11 @@ return {
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = {
           'javascript',
-          'lua',
+          'markdown',
           'ruby',
           'typescript',
           'vim',
-          'markdown',
+          'vimdoc',
           -- 'c',
           -- 'cpp',
           -- 'eex',
@@ -23,6 +23,7 @@ return {
           -- 'erlang',
           -- 'go',
           -- 'heex',
+          -- 'lua',
           -- 'python',
           -- 'rust',
         },

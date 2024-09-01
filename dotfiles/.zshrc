@@ -108,7 +108,16 @@ HYPHEN_INSENSITIVE="true"
 #
 # Plugins
 # z = Jump quickly to directories that you have visited "frecently." A native Zsh port of z.sh with added features.
-plugins=(asdf bundler git gitfast rails zsh-autosuggestions z)
+plugins=(
+  asdf
+  bundler
+  git
+  gitfast
+  rails
+  z
+  zsh-autosuggestions
+  zsh-fzf-history-search
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -193,8 +202,8 @@ gpip(){
 # # For asdf install ruby 2.6.8
 export optflags="-Wno-error=implicit-function-declaration"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-# export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl@1.1/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openssl@1.1/include"
+export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openssl@1.1/include"
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig /opt/homebrew/opt/openssl@1.1/pkgconfig"
 
 # libpq is keg-only, which means it was not symlinked into /opt/homebrew,
@@ -248,7 +257,6 @@ alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
 alias modkb="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
-alias fd='cd $(fzf | xargs dirname)'
 # alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
@@ -269,3 +277,46 @@ alias fd='cd $(fzf | xargs dirname)'
 #         fi
 #     done
 # fi
+
+### Zinit
+# I don't think I need zinit when I use omz
+#
+# 🌻 Welcome!
+#
+# Now to get started you can check out the following:
+# - The README section on the ice-modifiers:
+#     🧊 https://github.com/zdharma-continuum/zinit#ice-modifiers
+# - There's also an introduction to Zinit on the wiki:
+#     📚 https://zdharma-continuum.github.io/zinit/wiki/INTRODUCTION/
+# - The For-Syntax article on the wiki, which highlights some best practices:
+#     📖 https://zdharma-continuum.github.io/zinit/wiki/For-Syntax/
+#
+# 💁 Need help?
+# - 💬 Get in touch with us on Gitter: https://gitter.im/zdharma-continuum
+# - 🔖 Or on GitHub: https://github.com/zdharma-continuum
+# /var/folders/4h/k8vvz_210xq1ncr5m53z5sfw0000gn/T/tmp.XMspYJLURT/git-process-output.zsh
+# /var/folders/4h/k8vvz_210xq1ncr5m53z5sfw0000gn/T/tmp.XMspYJLURT
+
+### Added by Zinit's installer
+# if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+#     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+#     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+#     command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+#         print -P "%F{33} %F{34}Installation successful.%f%b" || \
+#         print -P "%F{160} The clone has failed.%f%b"
+# fi
+#
+# source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+# autoload -Uz _zinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
+#
+# # Load a few important annexes, without Turbo
+# # (this is currently required for annexes)
+# zinit light-mode for \
+#     zdharma-continuum/zinit-annex-as-monitor \
+#     zdharma-continuum/zinit-annex-bin-gem-node \
+#     zdharma-continuum/zinit-annex-patch-dl \
+#     zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
