@@ -225,6 +225,26 @@ export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openss
 # GO lang setup
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
+
+# Helper to retry failing tasks up to 20 times
+# Specificially useful with kmonad
+# See: https://github.com/kmonad/kmonad/issues/817#issuecomment-2002421584
+retry() {
+    local retries=20
+    local delay=1
+    local count=0
+
+    while [[ $count -lt $retries ]]; do
+        if "$@"; then
+            return 0
+        fi
+        count=$((count + 1))
+        sleep $delay
+    done
+
+    return 1
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -256,9 +276,8 @@ alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
 alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
-alias modkb="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
-alias modkb2="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
-# alias docker-compose="docker compose --compatibility $@"
+alias kmo="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
+alias kmo2="retry sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
 
 # Source sensitive env
 # source ~/.secrets.sh
