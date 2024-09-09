@@ -136,11 +136,11 @@ for func in $^fpath/*(N-.x:t); autoload $func
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -278,9 +278,10 @@ alias ww="curl wttr.in/Bothasig"
 alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
 alias kmo="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
 alias kmo2="retry sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
+alias docker-compose="docker compose --compatibility $@"
 
 # Source sensitive env
-# source ~/.secrets.sh
+source ~/.secrets.sh
 
 # Source personal scripts
 # Specify the directory containing your scripts
