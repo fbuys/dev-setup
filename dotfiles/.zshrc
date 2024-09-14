@@ -116,7 +116,6 @@ plugins=(
   rails
   z
   zsh-autosuggestions
-  zsh-fzf-history-search
 )
 
 source $ZSH/oh-my-zsh.sh
