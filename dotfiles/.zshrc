@@ -26,6 +26,7 @@ path=(
   $HOME/.scripts
   $HOME/.local/bin/
   /Applications/Postgres.app/Contents/Versions/latest/bin # for postress app
+  ${ASDF_DATA_DIR:-$HOME/.asdf}/shims
 )
 
   # Multipass aliases
@@ -108,6 +109,7 @@ HYPHEN_INSENSITIVE="true"
 #
 # Plugins
 # z = Jump quickly to directories that you have visited "frecently." A native Zsh port of z.sh with added features.
+# zsh-github-copilot = GitHub Copilot for your command line needs: git clone https://github.com/loiccoyle/zsh-github-copilot ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-github-copilot
 plugins=(
   asdf
   bundler
@@ -116,6 +118,9 @@ plugins=(
   rails
   z
   zsh-autosuggestions
+  zsh-fzf-history-search
+  zsh-github-copilot
+  direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -128,7 +133,6 @@ source $ZSH/oh-my-zsh.sh
 # particular shell function). $fpath should not be empty for this to work.
 for func in $^fpath/*(N-.x:t); autoload $func
 
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -140,6 +144,11 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+
+# Github Copilot
+bindkey '¿' zsh_gh_copilot_explain  # bind Option+shift+/ to explain
+bindkey '÷' zsh_gh_copilot_suggest  # bind Option+/ to suggest
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -194,15 +203,15 @@ gpip(){
 # export CPPFLAGS="-I/usr/local/opt/llvm/include"
 #
 # On M3 chip, asdf install ruby latest
-# export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@3) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-gdbm-dir=$(brew --prefix gdbm)"
-# export CFLAGS="-Wno-error=implicit-function-declaration"
+export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@3) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-gdbm-dir=$(brew --prefix gdbm)"
+export CFLAGS="-Wno-error=implicit-function-declaration"
 # Older ruby version on M Chip
 #
-# # For asdf install ruby 2.6.8
-export optflags="-Wno-error=implicit-function-declaration"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openssl@1.1/include"
+# # For asdf install ruby 2.*.*
+# export optflags="-Wno-error=implicit-function-declaration"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openssl@1.1/include"
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig /opt/homebrew/opt/openssl@1.1/pkgconfig"
 
 # libpq is keg-only, which means it was not symlinked into /opt/homebrew,
@@ -218,7 +227,9 @@ export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/openss
 # For pkg-config to find libpq you may need to set:
 #   export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
 
-
+# Disable Spring in Rails with `DISABLE_SPRING`
+# spring makes dual booting harder.
+export DISABLE_SPRING=true
 
 
 # GO lang setup
@@ -252,32 +263,33 @@ retry() {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias glos="GIT_PAGER=cat glo --max-count=20"
-alias ggpushf="ggpush --force-with-lease"
 alias -g rnext="BUNDLE_GEMFILE=Gemfile.next"
-alias gbDa="git branch |  grep -v "$(git_develop_branch)" | grep -v "$(git_main_branch)" | xargs git branch -D"
-
-alias cdo="cd ~/git/github.com/ombulabs"
+alias budget="cd ~/git/gitlab.com/buysfran/happybudget-cli"
+alias cdcx="cd ~/git/github.com/fbuys/r15-web-cx"
 alias cdf="cd ~/git/github.com/fastruby"
 alias cdfp="cd ~/git/github.com/fastruby/points"
 alias cdg="cd ~/git/github.com/fbuys"
-alias cdcx="cd ~/git/github.com/fbuys/r15-web-cx"
-alias v="nvim ."
-alias zshrc="nvim ~/.zshrc"
-alias vimrc="nvim ~/.config/nvim/init.lua"
-alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
-alias francois="cd ~/git/github.com/fbuys/francois"
+alias cdo="cd ~/git/github.com/ombulabs"
 alias devsetup="cd ~/git/github.com/fbuys/dev-setup && nvim ."
-alias budget="cd ~/git/gitlab.com/buysfran/happybudget-cli"
-alias notes="cd ~/Google\ Drive/notes"
-alias gdrive="cd /Volumes/GoogleDrive/My Drive"
-alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
-alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
-alias ww="curl wttr.in/Bothasig"
-alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
-alias kmo="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
-alias kmo2="retry sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
 alias docker-compose="docker compose --compatibility $@"
+alias francois="cd ~/git/github.com/fbuys/francois"
+alias gbDa="git branch |  grep -v "$(git_develop_branch)" | grep -v "$(git_main_branch)" | xargs git branch -D"
+alias gdrive="cd /Volumes/GoogleDrive/My Drive"
+alias ggpr="ggpull --rebase"
+alias ggpushf="ggpush --force-with-lease"
+alias glos="GIT_PAGER=cat glo --max-count=20"
+alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias kmo2="retry sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
+alias kmo="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
+alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
+alias notes="cd ~/Google\ Drive/notes"
+alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
+alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."
+alias v="nvim ."
+alias vimrc="nvim ~/.config/nvim/init.lua"
+alias ww="curl wttr.in/Bothasig"
+alias zshrc="nvim ~/.zshrc"
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
 
 # Source sensitive env
 source ~/.secrets.sh
@@ -340,3 +352,14 @@ source ~/.secrets.sh
 
 ### End of Zinit's installer chunk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+### Krew for kubectl
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/ombulabs/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

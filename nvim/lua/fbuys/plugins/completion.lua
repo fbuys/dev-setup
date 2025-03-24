@@ -117,17 +117,18 @@ return {
     -- Markdown snippets
     luasnip.add_snippets("markdown", {
       -- luasnip.parser.parse_snippet("timeentry", "@$1\n============\n$2\n[$3-$4](#:##)")
-      -- trigger is `timeentry`, expands into time entry with project, notes, start time, stop time and duration
-      s("timeentry", {
-        -- [<start>-<stop>](<duration>)
-        t({ "[" }), i(1), t("-"), i(2), t("]("), i(3), t(") - ", i(4)),
-        -- prompt for project
-        -- t("# @"), i(1),
+      -- trigger is `tt`, expands into time entry with project, notes, start time, stop time and duration
+      s("ttt", {
+        -- # <project>
+        t("# "), i(1),
         -- linebreak
-        -- t({ "", "============", "" }),
-        -- t({ "", "============", "" }),
-        -- notes placeholder
-        -- t({ "" }), i(2),
+        t({ "", "============", "" }),
+        -- [<start>-<stop>](<duration>) - <notes>
+        t({ "[" }), i(2), t("-"), i(3), t("]("), i(4), t(") - ", i(5)),
+      }),
+      s("tt", {
+        -- [<start>-<stop>](<duration>) - <notes>
+        t({ "[" }), i(1), t("-"), i(2), t("]("), i(3), t(") - ", i(4)),
       })
     })
 

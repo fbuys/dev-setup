@@ -45,10 +45,21 @@
 (defalias ehc (tap-hold-next 400 esc lctl)) ;; tap = esc, hold = left control
 (defalias shs (tap-hold-next 400 s lsft)) ;; tap = s, hold = left shift
 (defalias aha (tap-hold-next 400 a lalt)) ;; tap = a, hold = left alt
-;; (defalias tmx (tap-hold-next 300 C-a ralt))   ;; tap = ctrl+a (tmux leader), hold = right alt
-;; (defalias tmx (tap-hold-next 400 b C-a))   ;; tap = b, hold = ctrl+a (tmux leader)
-(defalias tmx (multi-tap 300 ` 300 C-a `))   ;; tap = b, tap x 2 = ctrl+a (tmux leader), tap x 3 = b
+(defalias mmeta (tap-hold-next 1000 m lmet)) ;; tap = m, hold = left meta
+(defalias tmx (multi-tap 300 lmet 300 C-a `))   ;; tap = meta, tap x 2 = ctrl+a (tmux leader), tap x 3 = b
 (defalias nav (tap-hold-next 500 q (layer-toggle navigation-layer)))   ;; tap = q, hold = toggle navigation-layer
+;; (defalias enhs (multi-tap 300 rshift ent))   ;; tap = rshift, tap x 2 = enter
+(defalias ttab (multi-tap 300 t 300 t tab))   ;; tap = t, tap x 2 = tab
+
+
+(defalias
+  mctr (tap-hold-next 500 lalt (layer-toggle mission-control-layer)) ;; tap = left alt, hold = toggle mission-control-layer
+  wleft C-left ;; control + left - move to left screen
+  wright C-right ;; control + right - move to right screen
+  wup C-up ;; control + up - missing control
+  wdown C-down ;; control + down - close mission control
+  stab S-tab ;; shift + tab - previous item in mission control
+)
 
 #| --------------------------------------------------------------------------
                      Necessary: at least 1 `deflayer` block
@@ -80,11 +91,11 @@
 
 (deflayer default
   caps    brdn brup lp   mctl bldn blup prev pp   next mute vold volu
-  _     _     _     _    _    _    _      _    _    _    _    _    _    _
-  _     @nav  _     _    _    _    _      _    _    _    _    _    _    _
+  _     _     _     _    _    _    _      _    _    _    _    _    _     _
+  _     @nav  _     _    _    _    _      _    _    _    _    _    _     _
   @ehc  @aha  @shs  _    _    _    _      _    _    _    _    _    _
-  _    _      _     _    _    _    _      _    _    _    _    _    _    _
-  @fn  _      _     _              _              @tmx   _    _    _    _
+  _    _      _     _    _    _    _      _    @mmeta    _    _    _    _ _
+  @fn  _      @mctr     _              _              @tmx   _    _    _     _
 )
 
 (deflayer function
@@ -104,3 +115,13 @@
   _     _     _     _    _    _    _    _    _    _    _    _    _    _
   _     _     _     _              _              _    _    _    _    _
 )
+
+(deflayer mission-control-layer
+  _     _     _     _    _    _    _    _    _    _    _    _    _
+  _     _     _     _    _    _    _    _    _    _    _    _    _    _
+  _     _     _     _    _    _    _    _    tab    @stab    _    _    _    _
+  _     _     _     _    _    _    @wleft    @wdown    @wup    @wright    _    _    _
+  _     _     _     _    _    _    _    _    _    _    _    _    _    _
+  _     _     _     _              _              _    _    _    _    _
+)
+
