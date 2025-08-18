@@ -12,7 +12,7 @@ vim.opt.conceallevel = 0                        -- show `` in markdown files
 vim.opt.cursorcolumn = true                     -- highlight current column
 vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.expandtab = true                        -- convert tabs to spaces
-vim.opt.fileencoding = "utf-8"                  -- encoding
+-- vim.opt.fileencoding = "utf-8"                  -- encoding
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.hlsearch = false                         -- highlight all matches
 vim.opt.incsearch = true                         -- highlight all matches
@@ -65,13 +65,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Statusline
-vim.opt.laststatus = 2 -- Or 3 for global statusline
-vim.opt.statusline = " %r%m %{FugitiveStatusline()} %t %= %l:%c %p%% %Y ♥ "
-
+-- -- Statusline
+-- vim.opt.laststatus = 2 -- Or 3 for global statusline
+-- vim.opt.statusline = " %r%m %{FugitiveStatusline()} %t %= %l:%c %p%% %Y ♥ "
 --
--- pip install pynvim neovim for python to work
--- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
--- vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"
-vim.g.python3_host_prog = "~/git/github.com/ombulabs/pecas-genie/venv/bin/python"
+-- --
+-- -- pip install pynvim neovim for python to work
+-- -- vim.g.python3_host_prog = "~/.venv/nvim3-11-1/bin/python"
+-- -- vim.g.python3_host_prog = "~/.venv/pecas-dragon/bin/python"
+-- vim.g.python3_host_prog = "~/git/github.com/ombulabs/pecas-genie/venv/bin/python"
 

@@ -231,6 +231,11 @@ export CFLAGS="-Wno-error=implicit-function-declaration"
 # spring makes dual booting harder.
 export DISABLE_SPRING=true
 
+# PYTHON ASDF Config
+# export CPPFLAGS="-I$(brew --prefix)/include"
+# export LDFLAGS="-L$(brew --prefix)/lib"
+# End PYTHON ASDF Config
+
 
 # GO lang setup
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
@@ -363,3 +368,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+. "$HOME/.local/bin/env"

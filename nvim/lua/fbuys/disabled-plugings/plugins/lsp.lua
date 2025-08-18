@@ -1,65 +1,48 @@
 return {
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "ruby_lsp", "ts_ls" },
-    },
+    -- help you setup Neovim's LSP client
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
     dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      "neovim/nvim-lspconfig",
+      { 'neovim/nvim-lspconfig' },           -- Quickstart configs for Nvim LSP
+      { 'williamboman/mason-lspconfig.nvim' }, -- makes it easier to use lspconfig
+      {                                      -- Easily install and manage LSP servers, DAP servers, linters, and formatters
+        'williamboman/mason.nvim',
+        init = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      { 'j-hui/fidget.nvim' }, -- Notifications and LSP progress messages in right corner
+      { 'folke/neodev.nvim' }, -- Additional lua configuration, makes nvim stuff amazing
     },
-    config = function()
-      require("mason-lspconfig").setup {
-      }
-    end,
-  }
-}
 
--- return {
---   {
---     -- help you setup Neovim's LSP client
---     'VonHeikemen/lsp-zero.nvim',
---     branch = 'v3.x',
---     dependencies = {
---       { 'neovim/nvim-lspconfig' },           -- Quickstart configs for Nvim LSP
---       { 'williamboman/mason-lspconfig.nvim' }, -- makes it easier to use lspconfig
---       {                                      -- Easily install and manage LSP servers, DAP servers, linters, and formatters
---         'williamboman/mason.nvim',
---         init = function()
---           pcall(vim.cmd, 'MasonUpdate')
---         end,
---       },
---       { 'j-hui/fidget.nvim' }, -- Notifications and LSP progress messages in right corner
---       { 'folke/neodev.nvim' }, -- Additional lua configuration, makes nvim stuff amazing
---     },
---
---     config = function()
---       -- Turn on lsp status information
---       require('fidget').setup()
---
---       -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
---       local lsp_zero = require('lsp-zero')
---
---       lsp_zero.on_attach(function(client, bufnr)
---         -- see :help lsp-zero-keybindings
---         -- to learn the available actions
---         lsp_zero.default_keymaps({ buffer = bufnr })
---       end)
---
---       require('mason').setup({})
---       require('mason-lspconfig').setup({
---         -- Replace the language servers listed here
---         -- with the ones you want to install
---         ensure_installed = { 'ts_ls', 'ruby_lsp' },
---         handlers = {
---           function(server_name)
---             require('lspconfig')[server_name].setup({})
---           end,
---         },
---       })
---     end,
---   },
--- }
+    config = function()
+      -- Turn on lsp status information
+      require('fidget').setup()
+
+      -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
+      local lsp_zero = require('lsp-zero')
+
+      lsp_zero.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp_zero.default_keymaps({ buffer = bufnr })
+      end)
+
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        -- Replace the language servers listed here
+        -- with the ones you want to install
+        ensure_installed = { 'ts_ls', 'ruby_lsp' },
+        handlers = {
+          function(server_name)
+            require('lspconfig')[server_name].setup({})
+          end,
+        },
+      })
+    end,
+  },
+}
 
 -- local lsp = require("lsp-zero").preset({})
 --

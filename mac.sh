@@ -127,13 +127,13 @@ if [[ -d $dir ]]; then
     fi
   done
 
-  for file in $pip_files; do
-    if [[ -f $file ]]
-    then
-      echo "Creating symlink to $file in home/.config/pip directory."
-      ln -sf $(pwd)/$file ~/.config/pip/$file
-    fi
-  done
+  # for file in $pip_files; do
+  #   if [[ -f $file ]]
+  #   then
+  #     echo "Creating symlink to $file in home/.config/pip directory."
+  #     ln -sf $(pwd)/$file ~/.config/pip/$file
+  #   fi
+  # done
 
   cd $script_dir
 fi
