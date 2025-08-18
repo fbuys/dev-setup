@@ -2,8 +2,8 @@
 
 #
 # Based on scripts/cnra.sh
-# Here we install rails 7.1 with the minimal flag and postgresql by default.
+# Here we install rails 8.0 with the minimal flag
 #
 cnra71mp() {
-  cnra myapp 7.1.3 --minimal -d=postgresql
+  cnra myapp 8.0.2 --minimal
 }
