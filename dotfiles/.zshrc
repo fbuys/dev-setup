@@ -260,6 +260,14 @@ retry() {
     return 1
 }
 
+# This function makes it easy to create a new note in my thinking garden.
+# It used to be an alias, but now it's a function so that the date is evaluated at runtime.
+# Replaced: alias nnote="cd ~/git/github.com/fbuys/my-thinking-garden/0.logs && nvim $(date +%Y_%m_%d).md"
+nnote() {
+  cd ~/git/github.com/fbuys/my-thinking-garden/0.logs || return
+  nvim "$(date +%Y_%m_%d).md"
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -286,7 +294,6 @@ alias glos="GIT_PAGER=cat glo --max-count=20"
 alias icloud="cd /Users/francois/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias kmo2="retry sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad_2.kbd"
 alias kmo="sudo kmonad ~/git/github.com/fbuys/dev-setup/config_files/kmonad.kbd"
-alias nnote="cd ~/git/github.com/fbuys/my-second-brain/0.inbox && nvim $(date +%Y_%m_%d).md"
 alias notes="cd ~/Google\ Drive/notes"
 alias ombulabs="cd ~/git/github.com/fbuys/ombulabs"
 alias tt="cd ~/git/github.com/fbuys/timetracking && nvim ."

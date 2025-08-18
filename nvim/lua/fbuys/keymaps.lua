@@ -56,7 +56,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
 
-vim.keymap.set("n", "J", "mzJ`z")
+-- Join lines without moving cursor
+-- vim.keymap.set("n", "J", "mzJ`z")
 
 -- Move up and down but keep cursor at zz
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
