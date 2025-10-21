@@ -129,6 +129,10 @@ return {
       s("tt", {
         -- [<start>-<stop>](<duration>) - <notes>
         t({ "[" }), i(1), t("-"), i(2), t("]("), i(3), t(") - ", i(4)),
+      }),
+      s("ll", {
+        -- - [<time>]: <log-entry>
+        t("- ["), i(1), t("]: "), i(2),
       })
     })
 
