@@ -31,9 +31,11 @@ return { -- formatter plugin for Neovim
     -- Use a sub-list to run only the first available formatter
     formatters_by_ft = {
       -- lua = { "stylua" },
-      javascript = { { "prettierd", "prettier" } }, -- contains sub-list
-      ruby = { { "rubocop" } },
+      -- javascript = { "prettierd", "prettier", "standardjs", stop_after_first = true },
+      javascript = { "prettier", stop_after_first = true },
+      ruby = { "rubocop" },
       eruby = { "erb_formatter" },
+      ["*"] = { "codespell" },
       -- python = { "isort", "black" }, -- list exec
     },
     -- Set up format-on-save
